@@ -1,5 +1,7 @@
 import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
+import 'package:final_project/screens/front_screen.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
+import 'package:final_project/screens/test.screen.dart';
 import 'package:flutter/material.dart';
 
 class AppNavigationBar extends StatefulWidget {
@@ -10,12 +12,12 @@ class AppNavigationBar extends StatefulWidget {
 }
 
 class _AppNavigationBarState extends State<AppNavigationBar> {
-  int selected = 0;
+  int selected = 1;
 
   List<Widget> screens = [
-    const TeethScreen(),
-    const TeethScreen(),
-    const TeethScreen(),
+    const MyWidget(),
+    const FrontScreen(),
+    const MyWidget(),
   ];
 
   @override

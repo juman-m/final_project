@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:final_project/globals/global.dart';
 import 'package:final_project/screens/auth_screens/signup_screen.dart';
+import 'package:final_project/screens/nav_bar.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:final_project/services/supabase_auth_request.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-            builder: (context) => const TeethScreen(),
+            builder: (context) => const AppNavigationBar(),
           ),
           (route) => false,
         );

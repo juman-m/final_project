@@ -4,6 +4,7 @@ import 'package:final_project/blocs/Auth_bloc/auth_state.dart';
 import 'package:final_project/screens/auth_screens/button_widget.dart';
 import 'package:final_project/screens/auth_screens/signin_screen.dart';
 import 'package:final_project/screens/auth_screens/text_filed.dart';
+import 'package:final_project/screens/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +37,7 @@ class OtpScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SignInScreen(),
+                  builder: (context) => const AppNavigationBar(),
                 ),
               );
             } else if (state is ErrorOtpState) {
