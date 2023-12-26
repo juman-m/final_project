@@ -1,6 +1,5 @@
 import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 import 'package:final_project/screens/front_screen.dart';
-import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:final_project/screens/test.screen.dart';
 import 'package:flutter/material.dart';
 
