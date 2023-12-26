@@ -1,7 +1,7 @@
 import 'package:final_project/blocs/Auth_bloc/auth_bloc.dart';
 import 'package:final_project/blocs/date_picker_bloc/date_piker_bloc.dart';
 import 'package:final_project/blocs/status_chip_bloc/status_chip_bloc.dart';
-import 'package:final_project/screens/nav_bar.dart';
+import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:final_project/services/supabase_auth_request.dart';
 import 'package:final_project/services/supabase_service.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class MainApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Cairo',
         ),
-        home: const AppNavigationBar(),
+        home: const TeethScreen(),
       ),
     );
   }

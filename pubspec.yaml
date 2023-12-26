@@ -29,4 +29,18 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-  - assets/image
+  - assets/images/
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: assets/static/Cairo-Light.ttf
+          weight: 200
+        - asset: assets/static/Cairo-Regular.ttf
+        - asset: assets/static/Cairo-Medium.ttf
+          weight: 500
+        - asset: assets/static/Cairo-SemiBold.ttf
+          weight: 600
+        - asset: assets/static/Cairo-Bold.ttf
+          weight: 700
+        - asset: assets/static/Cairo-Black.ttf
+          weight: 800

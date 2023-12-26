@@ -108,13 +108,13 @@ class TeethScreen extends StatelessWidget {
                               child: Stack(
                                 children: [
                                   Image.asset(
-                                    "assets/image/tooth1_background.png",
+                                    "assets/images/tooth1_background.png",
                                     height: 35,
                                     fit: BoxFit.cover,
                                     color: teethColors[0],
                                   ),
                                   Image.asset(
-                                    "assets/image/tooth1.png",
+                                    "assets/images/tooth1.png",
                                     height: 35,
                                     color: Colors.black,
                                     fit: BoxFit.cover,
@@ -160,13 +160,13 @@ class TeethScreen extends StatelessWidget {
                               child: Stack(
                                 children: [
                                   Image.asset(
-                                    "assets/image/tooth2_background.png",
+                                    "assets/images/tooth2_background.png",
                                     height: 36,
                                     fit: BoxFit.cover,
                                     color: teethColors[1],
                                   ),
                                   Image.asset(
-                                    "assets/image/tooth2.png",
+                                    "assets/images/tooth2.png",
                                     height: 36,
                                     color: Colors.black,
                                     fit: BoxFit.cover,
@@ -199,13 +199,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth3_background.png",
+                                  "assets/images/tooth3_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[2],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth3.png",
+                                  "assets/images/tooth3.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -237,13 +237,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth4_background.png",
+                                  "assets/images/tooth4_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[3],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth4.png",
+                                  "assets/images/tooth4.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -275,13 +275,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth5_background.png",
+                                  "assets/images/tooth5_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[4],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth5.png",
+                                  "assets/images/tooth5.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -313,13 +313,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth6_background.png",
+                                  "assets/images/tooth6_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[5],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth6.png",
+                                  "assets/images/tooth6.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -351,13 +351,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth7_background.png",
+                                  "assets/images/tooth7_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[6],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth7.png",
+                                  "assets/images/tooth7.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -385,13 +385,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth8_background.png",
+                                  "assets/images/tooth8_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[7],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth8.png",
+                                  "assets/images/tooth8.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -419,13 +419,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth9_background.png",
+                                  "assets/images/tooth9_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[8],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth9.png",
+                                  "assets/images/tooth9.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -457,13 +457,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth10_background.png",
+                                  "assets/images/tooth10_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[9],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth10.png",
+                                  "assets/images/tooth10.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -495,13 +495,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth11_background.png",
+                                  "assets/images/tooth11_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[10],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth11.png",
+                                  "assets/images/tooth11.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -533,13 +533,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth12_background.png",
+                                  "assets/images/tooth12_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[11],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth12.png",
+                                  "assets/images/tooth12.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -557,13 +557,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth13_background.png",
+                                  "assets/images/tooth13_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[12],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth13.png",
+                                  "assets/images/tooth13.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -595,13 +595,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth14_background.png",
+                                  "assets/images/tooth14_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[13],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth14.png",
+                                  "assets/images/tooth14.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -633,13 +633,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth15_background.png",
+                                  "assets/images/tooth15_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[14],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth15.png",
+                                  "assets/images/tooth15.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -666,13 +666,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth16_background.png",
+                                  "assets/images/tooth16_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[15],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth16.png",
+                                  "assets/images/tooth16.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -710,13 +710,13 @@ class TeethScreen extends StatelessWidget {
                                 Stack(
                                   children: [
                                     Image.asset(
-                                      "assets/image/tooth32_background.png",
+                                      "assets/images/tooth32_background.png",
                                       height: 38,
                                       fit: BoxFit.cover,
                                       color: teethColors[31],
                                     ),
                                     Image.asset(
-                                      "assets/image/tooth32.png",
+                                      "assets/images/tooth32.png",
                                       height: 38,
                                       color: Colors.black,
                                       fit: BoxFit.cover,
@@ -745,13 +745,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth31_background.png",
+                                  "assets/images/tooth31_background.png",
                                   height: 38,
                                   fit: BoxFit.cover,
                                   color: teethColors[30],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth31.png",
+                                  "assets/images/tooth31.png",
                                   height: 38,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -783,13 +783,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth30_background.png",
+                                  "assets/images/tooth30_background.png",
                                   height: 38,
                                   fit: BoxFit.cover,
                                   color: teethColors[29],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth30.png",
+                                  "assets/images/tooth30.png",
                                   height: 38,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -821,13 +821,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth29_background.png",
+                                  "assets/images/tooth29_background.png",
                                   height: 38,
                                   fit: BoxFit.cover,
                                   color: teethColors[28],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth29.png",
+                                  "assets/images/tooth29.png",
                                   height: 38,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -859,13 +859,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth28_background.png",
+                                  "assets/images/tooth28_background.png",
                                   height: 36,
                                   fit: BoxFit.cover,
                                   color: teethColors[27],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth28.png",
+                                  "assets/images/tooth28.png",
                                   height: 36,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -897,13 +897,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth27_background.png",
+                                  "assets/images/tooth27_background.png",
                                   height: 31,
                                   fit: BoxFit.cover,
                                   color: teethColors[26],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth27.png",
+                                  "assets/images/tooth27.png",
                                   height: 31,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -921,13 +921,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth26_background.png",
+                                  "assets/images/tooth26_background.png",
                                   height: 33,
                                   fit: BoxFit.cover,
                                   color: teethColors[25],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth26.png",
+                                  "assets/images/tooth26.png",
                                   height: 33,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -959,13 +959,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth25_background.png",
+                                  "assets/images/tooth25_background.png",
                                   height: 29,
                                   fit: BoxFit.cover,
                                   color: teethColors[24],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth25.png",
+                                  "assets/images/tooth25.png",
                                   height: 29,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -993,13 +993,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth24_background.png",
+                                  "assets/images/tooth24_background.png",
                                   height: 29,
                                   fit: BoxFit.cover,
                                   color: teethColors[23],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth24.png",
+                                  "assets/images/tooth24.png",
                                   height: 29,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -1027,13 +1027,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth23_background.png",
+                                  "assets/images/tooth23_background.png",
                                   height: 32,
                                   fit: BoxFit.cover,
                                   color: teethColors[22],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth23.png",
+                                  "assets/images/tooth23.png",
                                   height: 32,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -1065,13 +1065,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth22_background.png",
+                                  "assets/images/tooth22_background.png",
                                   height: 32,
                                   fit: BoxFit.cover,
                                   color: teethColors[21],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth22.png",
+                                  "assets/images/tooth22.png",
                                   height: 32,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -1103,13 +1103,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth21_background.png",
+                                  "assets/images/tooth21_background.png",
                                   height: 38,
                                   fit: BoxFit.cover,
                                   color: teethColors[20],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth21.png",
+                                  "assets/images/tooth21.png",
                                   height: 38,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -1141,13 +1141,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth20_background.png",
+                                  "assets/images/tooth20_background.png",
                                   height: 38,
                                   fit: BoxFit.cover,
                                   color: teethColors[19],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth20.png",
+                                  "assets/images/tooth20.png",
                                   height: 38,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -1179,13 +1179,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth19_background.png",
+                                  "assets/images/tooth19_background.png",
                                   height: 40,
                                   fit: BoxFit.cover,
                                   color: teethColors[18],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth19.png",
+                                  "assets/images/tooth19.png",
                                   height: 40,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -1217,13 +1217,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth18_background.png",
+                                  "assets/images/tooth18_background.png",
                                   height: 39,
                                   fit: BoxFit.cover,
                                   color: teethColors[17],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth18.png",
+                                  "assets/images/tooth18.png",
                                   height: 39,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
@@ -1250,13 +1250,13 @@ class TeethScreen extends StatelessWidget {
                             Stack(
                               children: [
                                 Image.asset(
-                                  "assets/image/tooth17_background.png",
+                                  "assets/images/tooth17_background.png",
                                   height: 39,
                                   fit: BoxFit.cover,
                                   color: teethColors[16],
                                 ),
                                 Image.asset(
-                                  "assets/image/tooth17.png",
+                                  "assets/images/tooth17.png",
                                   height: 39,
                                   color: Colors.black,
                                   fit: BoxFit.cover,
