@@ -4,6 +4,7 @@ import 'package:final_project/blocs/status_chip_bloc/status_chip_bloc.dart';
 import 'package:final_project/screens/teeth_screens/date_picker.dart';
 import 'package:final_project/screens/teeth_screens/status_chip_widget.dart';
 import 'package:final_project/style/size.dart';
+import 'package:final_project/widgets/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -18,7 +19,8 @@ class AddToothStatusBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chipStatusBloc = context.read<StatusChipBloc>();
+    // final chipStatusBloc = context.read<StatusChipBloc>();
+    String selectedStatus = "جراحة و دواعم";
     final TextEditingController hospitalNameController =
         TextEditingController();
     final TextEditingController doctorNameController = TextEditingController();
@@ -163,7 +165,9 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                                 },
                                 child: Center(
                                     child: Text(
-                                  "${state.pickedDate.year}-${state.pickedDate.month}-${state.pickedDate.day}",
+                                  selectedDate == ""
+                                      ? "DD/MM/YY"
+                                      : selectedDate,
                                   style: const TextStyle(
                                     color: Color(0xFFC5C5C5),
                                     fontSize: 14,
@@ -217,7 +221,7 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                           context
                               .read<StatusChipBloc>()
                               .add(SelectChipEvent(statusList[index]));
-                          chipStatusBloc.selectedStatus = statusList[index];
+                          selectedStatus = statusList[index];
                         },
                         child: BlocBuilder<StatusChipBloc, StatusChipState>(
                           builder: (context, state) {
@@ -225,12 +229,10 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                               return StatusChip(
                                 title: statusList[index],
                                 color: statusColorList[index],
-                                background: chipStatusBloc.selectedStatus ==
-                                        statusList[index]
+                                background: selectedStatus == statusList[index]
                                     ? const Color.fromARGB(255, 154, 154, 154)
                                     : const Color(0xFFEEEEEE),
-                                text: chipStatusBloc.selectedStatus ==
-                                        statusList[index]
+                                text: selectedStatus == statusList[index]
                                     ? Colors.white
                                     : Colors.black,
                               );
@@ -238,12 +240,10 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                             return StatusChip(
                               title: statusList[index],
                               color: statusColorList[index],
-                              background: chipStatusBloc.selectedStatus ==
-                                      statusList[index]
+                              background: selectedStatus == statusList[index]
                                   ? const Color.fromARGB(255, 154, 154, 154)
                                   : const Color(0xFFEEEEEE),
-                              text: chipStatusBloc.selectedStatus ==
-                                      statusList[index]
+                              text: selectedStatus == statusList[index]
                                   ? Colors.white
                                   : Colors.black,
                             );
@@ -428,24 +428,9 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                 if (state is ToothStatusErrorState) {
                   Navigator.pop(context);
                   showErrorDialog(context, state.error, "خطأ");
-                  // ScaffoldMessenger.of(context).showSnackBar(
-                  //   SnackBar(
-                  //       behavior: SnackBarBehavior.floating,
-                  //       margin: EdgeInsets.only(
-                  //         bottom: MediaQuery.of(context).size.height - 200,
-                  //         left: 10,
-                  //         right: 10,
-                  //       ),
-                  //       content: Text(
-                  //         state.error,
-                  //         style: const TextStyle(fontWeight: FontWeight.bold),
-                  //       ),
-                  //       backgroundColor: const Color(0xff018CDD)),
-                  // );
                 }
                 if (state is ToothStatusAddedState) {
                   Navigator.pop(context);
-
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -461,11 +446,10 @@ class AddToothStatusBottomSheet extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   final userId = Supabase.instance.client.auth.currentUser!.id;
-
                   context.read<AddToothStatusBloc>().add(AddToothStatusEvent(
                       userId,
                       toothNum,
-                      chipStatusBloc.selectedStatus,
+                      selectedStatus,
                       hospitalNameController.text,
                       doctorNameController.text,
                       "prescription",
@@ -501,26 +485,4 @@ class AddToothStatusBottomSheet extends StatelessWidget {
       ),
     );
   }
-}
-
-void showErrorDialog(BuildContext context, String errorMessage, String title) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(
-          title,
-          style: const TextStyle(
-              fontWeight: FontWeight.bold, color: Color(0xff018CDD)),
-        ),
-        content: Text(errorMessage),
-        backgroundColor: Colors.white,
-      );
-    },
-  );
-
-  // Close the dialog automatically after two seconds
-  Future.delayed(const Duration(seconds: 1), () {
-    Navigator.of(context).pop();
-  });
 }

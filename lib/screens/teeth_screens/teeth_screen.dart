@@ -94,7 +94,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () async {
                                 bottomSheetWidget(
-                                  ToothNo: "1",
+                                  toothNo: "1",
                                   context: context,
                                 );
                               },
@@ -135,7 +135,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "2",
+                                  toothNo: "2",
                                   context: context,
                                 );
                               },
@@ -181,7 +181,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "3",
+                                  toothNo: "3",
                                   context: context,
                                 );
                               },
@@ -227,7 +227,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "4",
+                                  toothNo: "4",
                                   context: context,
                                 );
                               },
@@ -273,7 +273,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "5",
+                                  toothNo: "5",
                                   context: context,
                                 );
                               },
@@ -319,7 +319,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "6",
+                                  toothNo: "6",
                                   context: context,
                                 );
                               },
@@ -365,7 +365,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "7",
+                                  toothNo: "7",
                                   context: context,
                                 );
                               },
@@ -407,7 +407,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "8",
+                                  toothNo: "8",
                                   context: context,
                                 );
                               },
@@ -449,7 +449,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "9",
+                                  toothNo: "9",
                                   context: context,
                                 );
                               },
@@ -495,7 +495,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "10",
+                                  toothNo: "10",
                                   context: context,
                                 );
                               },
@@ -541,7 +541,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "11",
+                                  toothNo: "11",
                                   context: context,
                                 );
                               },
@@ -587,7 +587,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "12",
+                                  toothNo: "12",
                                   context: context,
                                 );
                               },
@@ -619,7 +619,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "13",
+                                  toothNo: "13",
                                   context: context,
                                 );
                               },
@@ -665,7 +665,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "14",
+                                  toothNo: "14",
                                   context: context,
                                 );
                               },
@@ -711,7 +711,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "15",
+                                  toothNo: "15",
                                   context: context,
                                 );
                               },
@@ -752,7 +752,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "16",
+                                  toothNo: "16",
                                   context: context,
                                 );
                               },
@@ -804,7 +804,7 @@ class TeethScreen extends StatelessWidget {
                                 InkWell(
                                   onTap: () {
                                     bottomSheetWidget(
-                                      ToothNo: "32",
+                                      toothNo: "32",
                                       context: context,
                                     );
                                   },
@@ -847,7 +847,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "31",
+                                  toothNo: "31",
                                   context: context,
                                 );
                               },
@@ -893,7 +893,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "30",
+                                  toothNo: "30",
                                   context: context,
                                 );
                               },
@@ -939,7 +939,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "29",
+                                  toothNo: "29",
                                   context: context,
                                 );
                               },
@@ -985,7 +985,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "28",
+                                  toothNo: "28",
                                   context: context,
                                 );
                               },
@@ -1031,7 +1031,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "27",
+                                  toothNo: "27",
                                   context: context,
                                 );
                               },
@@ -1063,7 +1063,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "26",
+                                  toothNo: "26",
                                   context: context,
                                 );
                               },
@@ -1109,7 +1109,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "25",
+                                  toothNo: "25",
                                   context: context,
                                 );
                               },
@@ -1151,7 +1151,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "24",
+                                  toothNo: "24",
                                   context: context,
                                 );
                               },
@@ -1193,7 +1193,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "23",
+                                  toothNo: "23",
                                   context: context,
                                 );
                               },
@@ -1239,7 +1239,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "22",
+                                  toothNo: "22",
                                   context: context,
                                 );
                               },
@@ -1285,7 +1285,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "21",
+                                  toothNo: "21",
                                   context: context,
                                 );
                               },
@@ -1331,7 +1331,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "20",
+                                  toothNo: "20",
                                   context: context,
                                 );
                               },
@@ -1377,7 +1377,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "19",
+                                  toothNo: "19",
                                   context: context,
                                 );
                               },
@@ -1423,7 +1423,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "18",
+                                  toothNo: "18",
                                   context: context,
                                 );
                               },
@@ -1464,7 +1464,7 @@ class TeethScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 bottomSheetWidget(
-                                  ToothNo: "17",
+                                  toothNo: "17",
                                   context: context,
                                 );
                               },
@@ -1560,11 +1560,10 @@ class TeethScreen extends StatelessWidget {
 }
 
 bottomSheetWidget(
-    {required BuildContext context, required String ToothNo}) async {
+    {required BuildContext context, required String toothNo}) async {
   final userId = Supabase.instance.client.auth.currentUser!.id;
-  final tooth = await getToothStatus(userId, ToothNo);
+  final tooth = await getToothStatus(userId, toothNo);
   if (tooth != null) {
-    
     showModalBottomSheet(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -1592,7 +1591,7 @@ bottomSheetWidget(
       context: context,
       builder: (context) {
         return AddToothStatusBottomSheet(
-          toothNum: ToothNo,
+          toothNum: toothNo,
         );
       },
     );

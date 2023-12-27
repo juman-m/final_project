@@ -9,9 +9,7 @@ class AddToothStatusBloc
     extends Bloc<AddToothStatusEvent, AddToothStatusState> {
   AddToothStatusBloc() : super(AddToothStatusInitial()) {
     on<AddToothStatusEvent>((event, emit) async {
-      print("heere");
       emit(AddStatusLoadingState());
-      print("heere2");
       try {
         if (event.date.isNotEmpty &&
             event.hospitalName.isNotEmpty &&
@@ -33,10 +31,9 @@ class AddToothStatusBloc
             "report": event.report,
             "date": event.date
           });
-          print("heere3");
+
           emit(ToothStatusAddedState());
         } else {
-           print("heere4");
           emit(ToothStatusErrorState("الرجاء إدخال جميع الحقول"));
         }
       } catch (e) {

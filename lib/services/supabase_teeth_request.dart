@@ -17,7 +17,6 @@ Future<Tooth?> getToothStatus(String userId, String toothNo) async {
       .from("teeth_status")
       .select('*')
       .match({'user_id': userId, "tooth_no": toothNo});
-  print(response);
   if (response.isNotEmpty) {
     final Tooth tooth = Tooth.fromJson(response[0]);
     return tooth;
