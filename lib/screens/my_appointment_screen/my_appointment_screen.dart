@@ -1,9 +1,9 @@
 import 'dart:developer';
-
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_event.dart';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_state.dart';
 import 'package:final_project/functions/check_expiration.dart';
+import 'package:final_project/functions/calculate_time_difference.dart';
 import 'package:final_project/functions/formatDate.dart';
 import 'package:final_project/functions/is_same_day.dart';
 import 'package:final_project/functions/remaining_days.dart';
@@ -13,7 +13,6 @@ import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/screen_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 class MyAppointmentScreen extends StatelessWidget {
   const MyAppointmentScreen({super.key});
@@ -23,7 +22,7 @@ class MyAppointmentScreen extends StatelessWidget {
     return Scaffold(
       floatingActionButton: const FAB(),
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
           children: [
             ScreenAppBar(
@@ -33,6 +32,13 @@ class MyAppointmentScreen extends StatelessWidget {
                 }),
             ElevatedButton(
                 onPressed: () async {
+                  log(TimeOfDay(hour: 01, minute: 5).toString());
+
+                  // log(TimeOfDay.now().hour.toString());
+                  // TimeOfDay time = TimeOfDay(hour: 7, minute: 30);
+                  // calculateTimeDifference(
+                  //     const TimeOfDay(hour: 11, minute: 40), TimeOfDay.now());
+                  // time.
                   // remainingDays();
                   // DateTime date1 = DateTime.now();
                   // DateTime date2 = DateTime(2024, 1, 1);
@@ -64,19 +70,23 @@ class MyAppointmentScreen extends StatelessWidget {
                                       appoinment:
                                           state.listOfAppointments[i])));
                         },
-                        onRescheduleTaped: checkExpiration(state
-                                    .listOfAppointments[i].date
-                                    .toString()) ==
+                        onRescheduleTaped: checkExpiration(
+                                    state.listOfAppointments[i].date.toString(),
+                                    state.listOfAppointments[i].time!) ==
                                 false
                             ? () {}
                             : () {
                                 //Reschedule
-                                log('EDIT');
+
+                                log('EDIT${state.listOfAppointments[i].id}');
                               },
                         isTime: isSameDay(
                             state.listOfAppointments[i].date.toString()),
                         isEnded: checkExpiration(
-                            state.listOfAppointments[i].date.toString()),
+                            state.listOfAppointments[i].date.toString(),
+                            state.listOfAppointments[i].time!),
+                        category:
+                            state.listOfAppointments[i].category.toString(),
                         description:
                             state.listOfAppointments[i].description.toString(),
                         date: formatDate(
@@ -84,7 +94,7 @@ class MyAppointmentScreen extends StatelessWidget {
                         time: state.listOfAppointments[i].time!.format(context),
                         remaining: isSameDay(
                                 state.listOfAppointments[i].date.toString())
-                            ? '24:01:29'
+                            ? '216:01:29'
                             : remainingDays(
                                 state.listOfAppointments[i].date.toString()),
                       );

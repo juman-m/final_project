@@ -39,16 +39,25 @@ class MyAppointmentsBloc
           "category": event.selectedCategory,
           "description": event.description,
           "date": event.selectedDate.toString(),
-          "time": "${event.selectedTime!.hour}:${event.selectedTime!.minute}"
+          "time": event.selectedTime!.hour < 10 &&
+                  event.selectedTime!.minute < 10
+              ? "0${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
+              : event.selectedTime!.hour < 10
+                  ? "0${event.selectedTime!.hour}:${event.selectedTime!.minute}"
+                  : event.selectedTime!.minute < 10
+                      ? "${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
+                      : "${event.selectedTime!.hour}:${event.selectedTime!.minute}"
         };
         await SupabaseFunctions().createAppointment(body);
         emit(SuccessSubmitState());
       }
     });
 
-    /// ================ Get Appointment Variables ==============
-    ///
-
+    // "time": event.selectedTime!.hour < 10
+    //     ? "0${event.selectedTime!.hour}:${event.selectedTime!.minute}"
+    //     : event.selectedTime!.minute < 10
+    //         ? "${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
+    //         : "${event.selectedTime!.hour}:${event.selectedTime!.minute}"
     /// ================ Get Appointment ==============
     on<GetAppointmentsEvent>((event, emit) async {
       final List<AppointmentModel> appointmentList =

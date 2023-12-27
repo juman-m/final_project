@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ScreenAppBar extends StatelessWidget {
   ScreenAppBar({super.key, required this.title, required this.onPressed});
   final String title;

@@ -26,14 +26,14 @@ class AppointmentModel {
     time = stringToTimeOfDay(json['time']);
   }
 
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = new Map<String, dynamic>();
-  //   data['id'] = this.id;
-  //   data['user_id'] = this.userId;
-  //   data['category'] = this.category;
-  //   data['description'] = this.description;
-  //   data['date'] = this.date;
-  //   data['time'] = this.time;
-  //   return data;
-  // }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['user_id'] = this.userId;
+    data['category'] = this.category;
+    data['description'] = this.description;
+    data['date'] = this.date;
+    data['time'] = this.time;
+    return data;
+  }
 }

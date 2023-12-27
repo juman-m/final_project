@@ -2,12 +2,14 @@ import 'package:final_project/screens/my_appointment_screen/widgets/conut_down_c
 import 'package:final_project/screens/my_appointment_screen/widgets/reschedule_container.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AppointmentCard extends StatelessWidget {
   AppointmentCard({
     super.key,
     required this.onContainerTaped,
     required this.onRescheduleTaped,
     required this.isEnded,
+    required this.category,
     required this.description,
     required this.date,
     required this.time,
@@ -17,6 +19,7 @@ class AppointmentCard extends StatelessWidget {
   Function() onContainerTaped;
   Function() onRescheduleTaped;
   final bool isEnded;
+  final String category;
   final String description;
   final String date;
   final String time;
@@ -37,7 +40,11 @@ class AppointmentCard extends StatelessWidget {
                 height: 80,
                 width: 7,
                 decoration: BoxDecoration(
-                    color: const Color(0xff9747FF),
+                    color: category == '0'
+                        ? const Color(0xffD66CCF)
+                        : category == '1'
+                            ? const Color(0xff9747FF)
+                            : const Color(0xffFFB8B8),
                     borderRadius: BorderRadius.circular(20))),
             Container(
               height: 96,

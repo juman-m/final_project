@@ -5,9 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CancelButton extends StatelessWidget {
-  const CancelButton({
-    super.key,
-  });
+  const CancelButton({super.key});
 
   @override
   Widget build(BuildContext context) {
