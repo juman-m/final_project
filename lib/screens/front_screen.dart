@@ -1,3 +1,4 @@
+
 import 'package:final_project/globals/global.dart';
 import 'package:final_project/screens/ai_screen.dart';
 import 'package:final_project/screens/auth_screens/button_widget.dart';
@@ -5,6 +6,10 @@ import 'package:final_project/screens/contener_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
+import 'package:flutter/material.dart';
+
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
@@ -42,6 +47,7 @@ class FrontScreen extends StatelessWidget {
     );
 
     return Scaffold(
+
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -144,25 +150,35 @@ class FrontScreen extends StatelessWidget {
           ],
         ),
       ),
+      // floatingActionButton: Container(
+      //   margin: const EdgeInsets.only(top: 16, left: 16),
+
+      // body: const SizedBox(height: 20),
       floatingActionButton: Container(
-        margin: const EdgeInsets.only(top: 16, left: 16),
+        margin: const EdgeInsets.only(top: 50, left: 16),
+
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => TeethScreen(),
+                builder: (context) => const TeethScreen(),
               ),
             );
           },
+          backgroundColor: const Color(0xff018CDD),
+          elevation: 2,
+          shape: const CircleBorder(),
           child: Image.asset(
             'assets/flot.png',
             height: 80,
             width: 80,
           ),
-          backgroundColor: const Color(0xff018CDD),
-          elevation: 2,
-          shape: const CircleBorder(),
+
+          // backgroundColor: const Color(0xff018CDD),
+          // elevation: 2,
+          // shape: const CircleBorder(),
+
         ),
       ),
     );

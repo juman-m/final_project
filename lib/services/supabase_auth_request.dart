@@ -1,3 +1,4 @@
+import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -27,5 +28,27 @@ class SupabaseFunctions {
     final response = await supabase.from("users").select('*').eq('id', id);
     final UserModel user = UserModel.fromJson(response[0]);
     return user;
+  }
+
+  Future createAppointment(Map body) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('appointments').insert(body);
+  }
+
+  Future<List<AppointmentModel>> getAppointments() async {
+    final supabase = Supabase.instance.client;
+    final userId = supabase.auth.currentUser!.id;
+    final body = await supabase
+        .from('appointments')
+        .select()
+        .eq('user_id', userId)
+        .order('date');
+
+    List<AppointmentModel> listOfObjects = [];
+
+    for (var appointment in body) {
+      listOfObjects.add(AppointmentModel.fromJson(appointment));
+    }
+    return listOfObjects;
   }
 }

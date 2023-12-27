@@ -1,9 +1,13 @@
+import 'package:final_project/blocs/add_tooth_status_bloc/add_tooth_status_bloc.dart';
+import 'package:final_project/blocs/date_picker_bloc/date_piker_bloc.dart';
 import 'package:final_project/blocs/status_chip_bloc/status_chip_bloc.dart';
-import 'package:final_project/screens/teeth_screens/date_piker_widget.dart';
+import 'package:final_project/screens/teeth_screens/date_picker.dart';
 import 'package:final_project/screens/teeth_screens/status_chip_widget.dart';
 import 'package:final_project/style/size.dart';
+import 'package:final_project/widgets/show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class AddToothStatusBottomSheet extends StatelessWidget {
@@ -15,7 +19,12 @@ class AddToothStatusBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final chipStatusBloc = context.read<StatusChipBloc>();
     String selectedStatus = "جراحة و دواعم";
+    final TextEditingController hospitalNameController =
+        TextEditingController();
+    final TextEditingController doctorNameController = TextEditingController();
+    String selectedDate = "";
     final List<String> statusList = [
       "جراحة و دواعم",
       "تلبيس",
@@ -122,7 +131,79 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                       ),
                     ),
                     width10(),
-                    const DatePickerContainer(),
+                    Container(
+                      width: 141,
+                      height: 34,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.50, color: Color(0xFFC8C8C8)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: BlocListener<DatePikerBloc, DatePikerState>(
+                        listener: (context, state) {
+                          if (state is DatePickerUpdated) {
+                            selectedDate =
+                                "${state.pickedDate.year}-${state.pickedDate.month}-${state.pickedDate.day}";
+                          }
+                        },
+                        child: BlocBuilder<DatePikerBloc, DatePikerState>(
+                          builder: (context, state) {
+                            if (state is DatePickerUpdated) {
+                              return InkWell(
+                                onTap: () async {
+                                  displayDate(
+                                      context: context,
+                                      onSelected: (value) {
+                                        if (value != null) {
+                                          context
+                                              .read<DatePikerBloc>()
+                                              .add(DatePicked(value));
+                                        }
+                                      });
+                                },
+                                child: Center(
+                                    child: Text(
+                                  selectedDate == ""
+                                      ? "DD/MM/YY"
+                                      : selectedDate,
+                                  style: const TextStyle(
+                                    color: Color(0xFFC5C5C5),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                )),
+                              );
+                            } else {
+                              return InkWell(
+                                onTap: () {
+                                  displayDate(
+                                      context: context,
+                                      onSelected: (value) {
+                                        if (value != null) {
+                                          context
+                                              .read<DatePikerBloc>()
+                                              .add(DatePicked(value));
+                                        }
+                                      });
+                                },
+                                child: const Center(
+                                  child: Text(
+                                    'DD/MM/YY',
+                                    style: TextStyle(
+                                      color: Color(0xFFC5C5C5),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 height14(),
@@ -190,6 +271,7 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                   width: 330,
                   height: 38,
                   child: TextField(
+                    controller: hospitalNameController,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
@@ -227,6 +309,7 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                   width: 330,
                   height: 38,
                   child: TextField(
+                    controller: doctorNameController,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
@@ -330,25 +413,68 @@ class AddToothStatusBottomSheet extends StatelessWidget {
           ),
           height20(),
           Center(
-            child: InkWell(
-              onTap: () {},
-              child: Container(
-                width: 243.61,
-                height: 47.88,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF008BDB),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.02),
+            child: BlocListener<AddToothStatusBloc, AddToothStatusState>(
+              listener: (context, state) {
+                if (state is AddStatusLoadingState) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const Center(
+                      child: CircularProgressIndicator(
+                        color: Color(0xff018CDD),
+                      ),
+                    ),
+                  );
+                }
+                if (state is ToothStatusErrorState) {
+                  Navigator.pop(context);
+                  showErrorDialog(context, state.error, "خطأ");
+                }
+                if (state is ToothStatusAddedState) {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        dismissDirection: DismissDirection.up,
+                        content: Text(
+                          "تم إضافة الحالة بنجاح",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff018CDD)),
+                  );
+                }
+              },
+              child: InkWell(
+                onTap: () {
+                  final userId = Supabase.instance.client.auth.currentUser!.id;
+                  context.read<AddToothStatusBloc>().add(AddToothStatusEvent(
+                      userId,
+                      toothNum,
+                      selectedStatus,
+                      hospitalNameController.text,
+                      doctorNameController.text,
+                      "prescription",
+                      "xray",
+                      "report",
+                      selectedDate));
+                },
+                child: Container(
+                  width: 243.61,
+                  height: 47.88,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFF008BDB),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.02),
+                    ),
                   ),
-                ),
-                child: const Center(
-                  child: Text(
-                    'حفظ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
+                  child: const Center(
+                    child: Text(
+                      'حفظ',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),

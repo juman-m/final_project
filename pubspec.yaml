@@ -21,6 +21,9 @@ dependencies:
   flutter_bloc: ^8.1.3
   flutter_localizations:
     sdk: flutter
+  table_calendar: ^3.0.9
+  intl:
+  flutter_svg: ^2.0.9
 
 
 dev_dependencies:
