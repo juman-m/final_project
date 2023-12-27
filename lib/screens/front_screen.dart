@@ -1,15 +1,14 @@
-
 import 'package:final_project/globals/global.dart';
 import 'package:final_project/screens/ai_screen.dart';
 import 'package:final_project/screens/auth_screens/button_widget.dart';
 import 'package:final_project/screens/contener_widget.dart';
+import 'package:final_project/screens/my_appointment_screen/my_appointment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:flutter/material.dart';
-
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
@@ -47,7 +46,6 @@ class FrontScreen extends StatelessWidget {
     );
 
     return Scaffold(
-
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +120,14 @@ class FrontScreen extends StatelessWidget {
                 ServiceSquareContainer(
                     imagePath: 'assets/cont2.png',
                     serviceName: 'مواعيدي',
-                    onPressed: () {}),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyAppointmentScreen(),
+                        ),
+                      );
+                    }),
                 ServiceSquareContainer(
                     imagePath: 'assets/cont3.png',
                     serviceName: 'أسناني',
@@ -156,7 +161,6 @@ class FrontScreen extends StatelessWidget {
       // body: const SizedBox(height: 20),
       floatingActionButton: Container(
         margin: const EdgeInsets.only(top: 50, left: 16),
-
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(
@@ -178,7 +182,6 @@ class FrontScreen extends StatelessWidget {
           // backgroundColor: const Color(0xff018CDD),
           // elevation: 2,
           // shape: const CircleBorder(),
-
         ),
       ),
     );
