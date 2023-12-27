@@ -32,7 +32,7 @@ class SupabaseFunctions {
     return user;
   }
 
-  createAppointment(Map body) async {
+  Future createAppointment(Map body) async {
     final supabase = Supabase.instance.client;
     await supabase.from('appointments').insert(body);
   }
@@ -40,8 +40,11 @@ class SupabaseFunctions {
   Future<List<AppointmentModel>> getAppointments() async {
     final supabase = Supabase.instance.client;
     final userId = supabase.auth.currentUser!.id;
-    final body =
-        await supabase.from('appointments').select().eq('user_id', userId);
+    final body = await supabase
+        .from('appointments')
+        .select()
+        .eq('user_id', userId)
+        .order('date');
 
     List<AppointmentModel> listOfObjects = [];
 

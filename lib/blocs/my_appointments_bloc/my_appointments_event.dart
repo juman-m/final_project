@@ -4,6 +4,10 @@ abstract class MyAppointmentsEvent {}
 
 class TestEvent extends MyAppointmentsEvent {}
 
+/// ================ Get Appointment ==============
+class GetAppointmentsEvent extends MyAppointmentsEvent {}
+
+/// ================ Create Appointment ==============
 class SelectCategoryEvent extends MyAppointmentsEvent {
   final int index;
   SelectCategoryEvent({required this.index});

@@ -12,6 +12,7 @@ class AppointmentCard extends StatelessWidget {
     required this.date,
     required this.time,
     required this.remaining,
+    required this.isTime,
   });
   Function() onContainerTaped;
   Function() onRescheduleTaped;
@@ -20,6 +21,7 @@ class AppointmentCard extends StatelessWidget {
   final String date;
   final String time;
   final String remaining;
+  final bool isTime;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -82,7 +84,10 @@ class AppointmentCard extends StatelessWidget {
                     isEnded
                         ? RescheduleContainer(
                             onRescheduleTaped: onRescheduleTaped)
-                        : CountDownContainer(remaining: remaining),
+                        : CountDownContainer(
+                            remaining: remaining,
+                            isTime: isTime,
+                          ),
                   ],
                 ),
               ),

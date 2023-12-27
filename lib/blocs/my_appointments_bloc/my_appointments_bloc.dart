@@ -1,14 +1,18 @@
 import 'dart:developer';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_event.dart';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_state.dart';
+import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/services/supabase_auth_request.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MyAppointmentsBloc
     extends Bloc<MyAppointmentsEvent, MyAppointmentsState> {
+  /// ================ Create Appointment Variables ==============
   DateTime selectedDate = DateTime.now();
   List? formattedTime;
+
+  /// ================ Create Appointment ==============
   MyAppointmentsBloc() : super(MyAppointmentsInitial()) {
     on<SelectDateEvent>((event, emit) {
       selectedDate = event.date;
@@ -18,7 +22,7 @@ class MyAppointmentsBloc
       formattedTime = event.time != null ? event.formattedTime : null;
       emit(UpdateTimeState(formattedTime: formattedTime!));
     });
-    on<SubmitEvent>((event, emit) {
+    on<SubmitEvent>((event, emit) async {
       final supabase = Supabase.instance.client;
       final userId = supabase.auth.currentUser!.id;
       log(event.description);
@@ -37,16 +41,23 @@ class MyAppointmentsBloc
           "date": event.selectedDate.toString(),
           "time": "${event.selectedTime!.hour}:${event.selectedTime!.minute}"
         };
-
-        SupabaseFunctions().createAppointment(body);
-
+        await SupabaseFunctions().createAppointment(body);
         emit(SuccessSubmitState());
       }
     });
 
-    //   on<TestEvent>((event, emit) {
-    //   print('THE STATE NOW IS TEST STATE');
-    //   emit(TestState());
-    // });
+    /// ================ Get Appointment Variables ==============
+    ///
+
+    /// ================ Get Appointment ==============
+    on<GetAppointmentsEvent>((event, emit) async {
+      final List<AppointmentModel> appointmentList =
+          await SupabaseFunctions().getAppointments();
+      if (appointmentList.isEmpty) {
+        emit(EmptyAppointmentsState());
+      } else {
+        emit(GetAppointmentsState(listOfAppointments: appointmentList));
+      }
+    });
   }
 }

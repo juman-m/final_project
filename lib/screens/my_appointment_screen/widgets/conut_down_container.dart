@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CountDownContainer extends StatelessWidget {
-  CountDownContainer({
+  const CountDownContainer({
     super.key,
     required this.remaining,
+    required this.isTime,
   });
   final String remaining;
+  final bool isTime;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,17 +17,12 @@ class CountDownContainer extends StatelessWidget {
           color: const Color(0xff81C5E8),
           borderRadius: BorderRadius.circular(10)),
       child: Center(
-          child: Text(
-              // '\t11\nيوم',
-              // '1:30:18',
-              // '\t\t5\nأيام',
-              // 'يومان',
-              // '\t10\nأيام',
-              remaining,
+          child: Text(remaining,
               style: TextStyle(
-                  fontSize: 22,
+                  fontSize: isTime == true ? 17 : 22,
                   color: Colors.black,
-                  fontWeight: FontWeight.w600))),
+                  fontWeight:
+                      isTime == true ? FontWeight.w700 : FontWeight.w600))),
     );
   }
 }

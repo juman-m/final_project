@@ -1,8 +1,22 @@
+import 'package:final_project/models/appointment_model.dart';
+
 abstract class MyAppointmentsState {}
 
 final class MyAppointmentsInitial extends MyAppointmentsState {}
 
 final class TestState extends MyAppointmentsState {}
+
+/// ================ Get Appointment ==============
+class GetAppointmentsState extends MyAppointmentsState {
+  final List<AppointmentModel> listOfAppointments;
+  GetAppointmentsState({required this.listOfAppointments});
+}
+
+class EmptyAppointmentsState extends MyAppointmentsState {}
+
+class LoadinAppointmentsState extends MyAppointmentsState {}
+
+/// ================ Create Appointment ==============
 
 final class UpdateDateState extends MyAppointmentsState {
   final DateTime selectedDate;
