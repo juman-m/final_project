@@ -8,9 +8,11 @@ environment:
 
 dependencies:
   glass: ^1.0.2+1
+  http: ^1.1.2
   supabase_flutter: ^2.0.2
   crystal_navigation_bar: ^1.0.0
   dot_navigation_bar: ^1.0.2
+  carousel_slider: ^4.2.1
   icons_plus: ^5.0.0
   image_picker: ^1.0.5
   toggle_switch: ^2.1.0
