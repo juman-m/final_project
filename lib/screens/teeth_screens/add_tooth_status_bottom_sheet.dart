@@ -1,6 +1,7 @@
 import 'package:final_project/blocs/add_tooth_status_bloc/add_tooth_status_bloc.dart';
+import 'package:final_project/blocs/date_picker_bloc/date_piker_bloc.dart';
 import 'package:final_project/blocs/status_chip_bloc/status_chip_bloc.dart';
-import 'package:final_project/screens/teeth_screens/date_piker_widget.dart';
+import 'package:final_project/screens/teeth_screens/date_picker.dart';
 import 'package:final_project/screens/teeth_screens/status_chip_widget.dart';
 import 'package:final_project/style/size.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +18,11 @@ class AddToothStatusBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String selectedStatus = "جراحة و دواعم";
+    final chipStatusBloc = context.read<StatusChipBloc>();
     final TextEditingController hospitalNameController =
         TextEditingController();
     final TextEditingController doctorNameController = TextEditingController();
-
+    String selectedDate = "";
     final List<String> statusList = [
       "جراحة و دواعم",
       "تلبيس",
@@ -128,7 +129,77 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                       ),
                     ),
                     width10(),
-                    const DatePickerContainer(),
+                    Container(
+                      width: 141,
+                      height: 34,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.50, color: Color(0xFFC8C8C8)),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: BlocListener<DatePikerBloc, DatePikerState>(
+                        listener: (context, state) {
+                          if (state is DatePickerUpdated) {
+                            selectedDate =
+                                "${state.pickedDate.year}-${state.pickedDate.month}-${state.pickedDate.day}";
+                          }
+                        },
+                        child: BlocBuilder<DatePikerBloc, DatePikerState>(
+                          builder: (context, state) {
+                            if (state is DatePickerUpdated) {
+                              return InkWell(
+                                onTap: () async {
+                                  displayDate(
+                                      context: context,
+                                      onSelected: (value) {
+                                        if (value != null) {
+                                          context
+                                              .read<DatePikerBloc>()
+                                              .add(DatePicked(value));
+                                        }
+                                      });
+                                },
+                                child: Center(
+                                    child: Text(
+                                  "${state.pickedDate.year}-${state.pickedDate.month}-${state.pickedDate.day}",
+                                  style: const TextStyle(
+                                    color: Color(0xFFC5C5C5),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                )),
+                              );
+                            } else {
+                              return InkWell(
+                                onTap: () {
+                                  displayDate(
+                                      context: context,
+                                      onSelected: (value) {
+                                        if (value != null) {
+                                          context
+                                              .read<DatePikerBloc>()
+                                              .add(DatePicked(value));
+                                        }
+                                      });
+                                },
+                                child: const Center(
+                                  child: Text(
+                                    'DD/MM/YY',
+                                    style: TextStyle(
+                                      color: Color(0xFFC5C5C5),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 height14(),
@@ -146,7 +217,7 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                           context
                               .read<StatusChipBloc>()
                               .add(SelectChipEvent(statusList[index]));
-                          selectedStatus = statusList[index];
+                          chipStatusBloc.selectedStatus = statusList[index];
                         },
                         child: BlocBuilder<StatusChipBloc, StatusChipState>(
                           builder: (context, state) {
@@ -154,10 +225,12 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                               return StatusChip(
                                 title: statusList[index],
                                 color: statusColorList[index],
-                                background: selectedStatus == statusList[index]
+                                background: chipStatusBloc.selectedStatus ==
+                                        statusList[index]
                                     ? const Color.fromARGB(255, 154, 154, 154)
                                     : const Color(0xFFEEEEEE),
-                                text: selectedStatus == statusList[index]
+                                text: chipStatusBloc.selectedStatus ==
+                                        statusList[index]
                                     ? Colors.white
                                     : Colors.black,
                               );
@@ -165,10 +238,12 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                             return StatusChip(
                               title: statusList[index],
                               color: statusColorList[index],
-                              background: selectedStatus == statusList[index]
+                              background: chipStatusBloc.selectedStatus ==
+                                      statusList[index]
                                   ? const Color.fromARGB(255, 154, 154, 154)
                                   : const Color(0xFFEEEEEE),
-                              text: selectedStatus == statusList[index]
+                              text: chipStatusBloc.selectedStatus ==
+                                      statusList[index]
                                   ? Colors.white
                                   : Colors.black,
                             );
@@ -338,38 +413,84 @@ class AddToothStatusBottomSheet extends StatelessWidget {
           ),
           height20(),
           Center(
-            child: InkWell(
-              onTap: () {
-                final supabase = Supabase.instance.client;
-                final userid = supabase.auth.currentUser!.id;
-                context.read<AddToothStatusBloc>().add(AddToothStatusEvent(
-                    userid,
-                    toothNum,
-                    selectedStatus,
-                    hospitalNameController.text,
-                    doctorNameController.text,
-                    "prescription",
-                    "xray",
-                    "report",
-                    ""));
+            child: BlocListener<AddToothStatusBloc, AddToothStatusState>(
+              listener: (context, state) {
+                if (state is AddStatusLoadingState) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const Center(
+                      child: CircularProgressIndicator(
+                        color: Color(0xff018CDD),
+                      ),
+                    ),
+                  );
+                }
+                if (state is ToothStatusErrorState) {
+                  Navigator.pop(context);
+                  showErrorDialog(context, state.error, "خطأ");
+                  // ScaffoldMessenger.of(context).showSnackBar(
+                  //   SnackBar(
+                  //       behavior: SnackBarBehavior.floating,
+                  //       margin: EdgeInsets.only(
+                  //         bottom: MediaQuery.of(context).size.height - 200,
+                  //         left: 10,
+                  //         right: 10,
+                  //       ),
+                  //       content: Text(
+                  //         state.error,
+                  //         style: const TextStyle(fontWeight: FontWeight.bold),
+                  //       ),
+                  //       backgroundColor: const Color(0xff018CDD)),
+                  // );
+                }
+                if (state is ToothStatusAddedState) {
+                  Navigator.pop(context);
+
+                  Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        dismissDirection: DismissDirection.up,
+                        content: Text(
+                          "تم إضافة الحالة بنجاح",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Color(0xff018CDD)),
+                  );
+                }
               },
-              child: Container(
-                width: 243.61,
-                height: 47.88,
-                decoration: ShapeDecoration(
-                  color: const Color(0xFF008BDB),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.02),
+              child: InkWell(
+                onTap: () {
+                  final userId = Supabase.instance.client.auth.currentUser!.id;
+
+                  context.read<AddToothStatusBloc>().add(AddToothStatusEvent(
+                      userId,
+                      toothNum,
+                      chipStatusBloc.selectedStatus,
+                      hospitalNameController.text,
+                      doctorNameController.text,
+                      "prescription",
+                      "xray",
+                      "report",
+                      selectedDate));
+                },
+                child: Container(
+                  width: 243.61,
+                  height: 47.88,
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFF008BDB),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.02),
+                    ),
                   ),
-                ),
-                child: const Center(
-                  child: Text(
-                    'حفظ',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
+                  child: const Center(
+                    child: Text(
+                      'حفظ',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
@@ -380,4 +501,26 @@ class AddToothStatusBottomSheet extends StatelessWidget {
       ),
     );
   }
+}
+
+void showErrorDialog(BuildContext context, String errorMessage, String title) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(
+          title,
+          style: const TextStyle(
+              fontWeight: FontWeight.bold, color: Color(0xff018CDD)),
+        ),
+        content: Text(errorMessage),
+        backgroundColor: Colors.white,
+      );
+    },
+  );
+
+  // Close the dialog automatically after two seconds
+  Future.delayed(const Duration(seconds: 1), () {
+    Navigator.of(context).pop();
+  });
 }

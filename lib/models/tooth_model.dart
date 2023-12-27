@@ -1,5 +1,5 @@
 class Tooth {
-  String? id;
+  int? id;
   String? userId;
   String? toothNo;
   String? toothStatus;
@@ -23,7 +23,6 @@ class Tooth {
       this.date});
 
   Tooth.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
     userId = json['user_id'];
     toothNo = json['tooth_no'];
     toothStatus = json['tooth_status'];

@@ -1,8 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:final_project/screens/teeth_screens/add_tooth_status_bottom_sheet.dart';
 import 'package:final_project/screens/teeth_screens/display_tooth_status_bottom_sheet.dart';
 import 'package:final_project/screens/teeth_screens/status_preview.dart';
+import 'package:final_project/services/supabase_teeth_request.dart';
 import 'package:final_project/style/size.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class TeethScreen extends StatelessWidget {
   const TeethScreen({
@@ -88,21 +92,10 @@ class TeethScreen extends StatelessWidget {
                               ),
                             ),
                             InkWell(
-                              onTap: () {
-                                showModalBottomSheet(
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(42),
-                                      topRight: Radius.circular(42),
-                                    ),
-                                  ),
-                                  isScrollControlled: true,
+                              onTap: () async {
+                                bottomSheetWidget(
+                                  ToothNo: "1",
                                   context: context,
-                                  builder: (context) {
-                                    return const DisplayToothStatusBottomSheet(
-                                      toothNum: '1',
-                                    );
-                                  },
                                 );
                               },
                               child: Stack(
@@ -141,20 +134,9 @@ class TeethScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                showModalBottomSheet(
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(42),
-                                      topRight: Radius.circular(42),
-                                    ),
-                                  ),
-                                  isScrollControlled: true,
+                                bottomSheetWidget(
+                                  ToothNo: "2",
                                   context: context,
-                                  builder: (context) {
-                                    return const AddToothStatusBottomSheet(
-                                      toothNum: '2',
-                                    );
-                                  },
                                 );
                               },
                               child: Stack(
@@ -196,21 +178,29 @@ class TeethScreen extends StatelessWidget {
                                 height10()
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth3_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[2],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth3.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "3",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth3_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[2],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth3.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -234,21 +224,29 @@ class TeethScreen extends StatelessWidget {
                                 height14()
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth4_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[3],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth4.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "4",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth4_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[3],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth4.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -272,21 +270,29 @@ class TeethScreen extends StatelessWidget {
                                 height30()
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth5_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[4],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth5.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "5",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth5_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[4],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth5.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -310,21 +316,29 @@ class TeethScreen extends StatelessWidget {
                                 width30(),
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth6_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[5],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth6.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "6",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth6_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[5],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth6.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -348,21 +362,29 @@ class TeethScreen extends StatelessWidget {
                                 width30(),
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth7_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[6],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth7.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "7",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth7_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[6],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth7.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -382,21 +404,29 @@ class TeethScreen extends StatelessWidget {
                               ),
                             ),
                             height4(),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth8_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[7],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth8.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "8",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth8_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[7],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth8.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -416,21 +446,29 @@ class TeethScreen extends StatelessWidget {
                               ),
                             ),
                             height4(),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth9_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[8],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth9.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "9",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth9_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[8],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth9.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -454,21 +492,29 @@ class TeethScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth10_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[9],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth10.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "10",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth10_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[9],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth10.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -492,21 +538,29 @@ class TeethScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth11_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[10],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth11.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "11",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth11_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[10],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth11.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -530,21 +584,29 @@ class TeethScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth12_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[11],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth12.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "12",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth12_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[11],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth12.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -554,21 +616,29 @@ class TeethScreen extends StatelessWidget {
                         top: 124,
                         child: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth13_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[12],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth13.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "13",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth13_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[12],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth13.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             Column(
                               children: [
@@ -592,21 +662,29 @@ class TeethScreen extends StatelessWidget {
                         top: 150,
                         child: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth14_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[13],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth14.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "14",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth14_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[13],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth14.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             Column(
                               children: [
@@ -630,21 +708,29 @@ class TeethScreen extends StatelessWidget {
                         top: 180,
                         child: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth15_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[14],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth15.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "15",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth15_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[14],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth15.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             const Text(
                               '15',
@@ -663,21 +749,29 @@ class TeethScreen extends StatelessWidget {
                         top: 213,
                         child: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth16_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[15],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth16.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "16",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth16_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[15],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth16.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             const Text(
                               '16',
@@ -707,21 +801,29 @@ class TeethScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                Stack(
-                                  children: [
-                                    Image.asset(
-                                      "assets/images/tooth32_background.png",
-                                      height: 38,
-                                      fit: BoxFit.cover,
-                                      color: teethColors[31],
-                                    ),
-                                    Image.asset(
-                                      "assets/images/tooth32.png",
-                                      height: 38,
-                                      color: Colors.black,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ],
+                                InkWell(
+                                  onTap: () {
+                                    bottomSheetWidget(
+                                      ToothNo: "32",
+                                      context: context,
+                                    );
+                                  },
+                                  child: Stack(
+                                    children: [
+                                      Image.asset(
+                                        "assets/images/tooth32_background.png",
+                                        height: 38,
+                                        fit: BoxFit.cover,
+                                        color: teethColors[31],
+                                      ),
+                                      Image.asset(
+                                        "assets/images/tooth32.png",
+                                        height: 38,
+                                        color: Colors.black,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -742,21 +844,29 @@ class TeethScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth31_background.png",
-                                  height: 38,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[30],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth31.png",
-                                  height: 38,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "31",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth31_background.png",
+                                    height: 38,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[30],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth31.png",
+                                    height: 38,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -780,21 +890,29 @@ class TeethScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth30_background.png",
-                                  height: 38,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[29],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth30.png",
-                                  height: 38,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "30",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth30_background.png",
+                                    height: 38,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[29],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth30.png",
+                                    height: 38,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -818,21 +936,29 @@ class TeethScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth29_background.png",
-                                  height: 38,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[28],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth29.png",
-                                  height: 38,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "29",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth29_background.png",
+                                    height: 38,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[28],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth29.png",
+                                    height: 38,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -856,21 +982,29 @@ class TeethScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth28_background.png",
-                                  height: 36,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[27],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth28.png",
-                                  height: 36,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "28",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth28_background.png",
+                                    height: 36,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[27],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth28.png",
+                                    height: 36,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -894,21 +1028,29 @@ class TeethScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth27_background.png",
-                                  height: 31,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[26],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth27.png",
-                                  height: 31,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "27",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth27_background.png",
+                                    height: 31,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[26],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth27.png",
+                                    height: 31,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),
@@ -918,21 +1060,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 39.5,
                         child: Column(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth26_background.png",
-                                  height: 33,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[25],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth26.png",
-                                  height: 33,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "26",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth26_background.png",
+                                    height: 33,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[25],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth26.png",
+                                    height: 33,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             Row(
                               children: [
@@ -956,21 +1106,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 29,
                         child: Column(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth25_background.png",
-                                  height: 29,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[24],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth25.png",
-                                  height: 29,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "25",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth25_background.png",
+                                    height: 29,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[24],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth25.png",
+                                    height: 29,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             height4(),
                             const Text(
@@ -990,21 +1148,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 26,
                         child: Column(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth24_background.png",
-                                  height: 29,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[23],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth24.png",
-                                  height: 29,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "24",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth24_background.png",
+                                    height: 29,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[23],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth24.png",
+                                    height: 29,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             height4(),
                             const Text(
@@ -1024,21 +1190,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 35,
                         child: Column(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth23_background.png",
-                                  height: 32,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[22],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth23.png",
-                                  height: 32,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "23",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth23_background.png",
+                                    height: 32,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[22],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth23.png",
+                                    height: 32,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             Row(
                               children: [
@@ -1062,21 +1236,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 49,
                         child: Column(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth22_background.png",
-                                  height: 32,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[21],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth22.png",
-                                  height: 32,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "22",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth22_background.png",
+                                    height: 32,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[21],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth22.png",
+                                    height: 32,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             Row(
                               children: [
@@ -1100,21 +1282,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 81,
                         child: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth21_background.png",
-                                  height: 38,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[20],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth21.png",
-                                  height: 38,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "21",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth21_background.png",
+                                    height: 38,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[20],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth21.png",
+                                    height: 38,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             Column(
                               children: [
@@ -1138,21 +1328,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 114,
                         child: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth20_background.png",
-                                  height: 38,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[19],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth20.png",
-                                  height: 38,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "20",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth20_background.png",
+                                    height: 38,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[19],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth20.png",
+                                    height: 38,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             Column(
                               children: [
@@ -1176,21 +1374,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 146,
                         child: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth19_background.png",
-                                  height: 40,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[18],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth19.png",
-                                  height: 40,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "19",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth19_background.png",
+                                    height: 40,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[18],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth19.png",
+                                    height: 40,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             Column(
                               children: [
@@ -1214,21 +1420,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 178,
                         child: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth18_background.png",
-                                  height: 39,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[17],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth18.png",
-                                  height: 39,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "18",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth18_background.png",
+                                    height: 39,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[17],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth18.png",
+                                    height: 39,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             const Text(
                               '18',
@@ -1247,21 +1461,29 @@ class TeethScreen extends StatelessWidget {
                         bottom: 215,
                         child: Row(
                           children: [
-                            Stack(
-                              children: [
-                                Image.asset(
-                                  "assets/images/tooth17_background.png",
-                                  height: 39,
-                                  fit: BoxFit.cover,
-                                  color: teethColors[16],
-                                ),
-                                Image.asset(
-                                  "assets/images/tooth17.png",
-                                  height: 39,
-                                  color: Colors.black,
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                bottomSheetWidget(
+                                  ToothNo: "17",
+                                  context: context,
+                                );
+                              },
+                              child: Stack(
+                                children: [
+                                  Image.asset(
+                                    "assets/images/tooth17_background.png",
+                                    height: 39,
+                                    fit: BoxFit.cover,
+                                    color: teethColors[16],
+                                  ),
+                                  Image.asset(
+                                    "assets/images/tooth17.png",
+                                    height: 39,
+                                    color: Colors.black,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ],
+                              ),
                             ),
                             const Text(
                               '17',
@@ -1334,5 +1556,45 @@ class TeethScreen extends StatelessWidget {
             ],
           ),
         ));
+  }
+}
+
+bottomSheetWidget(
+    {required BuildContext context, required String ToothNo}) async {
+  final userId = Supabase.instance.client.auth.currentUser!.id;
+  final tooth = await getToothStatus(userId, ToothNo);
+  if (tooth != null) {
+    
+    showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(42),
+          topRight: Radius.circular(42),
+        ),
+      ),
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return DisplayToothStatusBottomSheet(
+          tooth: tooth,
+        );
+      },
+    );
+  } else {
+    showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(42),
+          topRight: Radius.circular(42),
+        ),
+      ),
+      isScrollControlled: true,
+      context: context,
+      builder: (context) {
+        return AddToothStatusBottomSheet(
+          toothNum: ToothNo,
+        );
+      },
+    );
   }
 }

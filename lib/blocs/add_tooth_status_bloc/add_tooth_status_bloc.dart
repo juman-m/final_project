@@ -9,7 +9,9 @@ class AddToothStatusBloc
     extends Bloc<AddToothStatusEvent, AddToothStatusState> {
   AddToothStatusBloc() : super(AddToothStatusInitial()) {
     on<AddToothStatusEvent>((event, emit) async {
+      print("heere");
       emit(AddStatusLoadingState());
+      print("heere2");
       try {
         if (event.date.isNotEmpty &&
             event.hospitalName.isNotEmpty &&
@@ -18,9 +20,10 @@ class AddToothStatusBloc
             event.userId.isNotEmpty &&
             event.toothStatus.isNotEmpty) {
           final supabase = Supabase.instance.client;
-          final userid = supabase.auth.currentUser!.id;
+          final userId = supabase.auth.currentUser!.id;
+
           await addToothStatus({
-            "user_id": userid,
+            "user_id": userId,
             "tooth_no": event.toothNo,
             "tooth_status": event.toothStatus,
             "hospital_name": event.hospitalName,
@@ -30,12 +33,15 @@ class AddToothStatusBloc
             "report": event.report,
             "date": event.date
           });
+          print("heere3");
           emit(ToothStatusAddedState());
         } else {
-          emit(ToothStatusErrorState("أدخل جميع الحقول"));
+           print("heere4");
+          emit(ToothStatusErrorState("الرجاء إدخال جميع الحقول"));
         }
       } catch (e) {
         emit(ToothStatusErrorState("حدث خطأ ما !"));
+        print(e);
       }
     });
   }
