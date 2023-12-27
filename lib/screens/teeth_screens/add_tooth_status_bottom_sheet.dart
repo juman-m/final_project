@@ -1,6 +1,7 @@
 import 'package:final_project/blocs/add_tooth_status_bloc/add_tooth_status_bloc.dart';
 import 'package:final_project/blocs/date_picker_bloc/date_piker_bloc.dart';
 import 'package:final_project/blocs/status_chip_bloc/status_chip_bloc.dart';
+import 'package:final_project/blocs/teeth_screen_bloc/teeth_screen_bloc.dart';
 import 'package:final_project/screens/teeth_screens/date_picker.dart';
 import 'package:final_project/screens/teeth_screens/status_chip_widget.dart';
 import 'package:final_project/style/size.dart';
@@ -432,6 +433,7 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                 if (state is ToothStatusAddedState) {
                   Navigator.pop(context);
                   Navigator.pop(context);
+                  context.read<TeethScreenBloc>().add(TeethScreenColorsEvent());
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                         dismissDirection: DismissDirection.up,

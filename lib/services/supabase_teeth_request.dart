@@ -11,7 +11,7 @@ updateToothStatus({required Map body, required String id}) async {
   await supabase.from('teeth_status').update(body).eq("id", id);
 }
 
-Future<Tooth?> getToothStatus(String userId, String toothNo) async {
+Future<Tooth?> getToothStatusById(String userId, String toothNo) async {
   final supabase = Supabase.instance.client;
   final response = await supabase
       .from("teeth_status")
@@ -23,4 +23,15 @@ Future<Tooth?> getToothStatus(String userId, String toothNo) async {
   } else {
     return null;
   }
+}
+
+Future<List<Tooth>> getToothStatus(String userId) async {
+  final supabase = Supabase.instance.client;
+  final response =
+      await supabase.from("teeth_status").select('*').eq('user_id', userId);
+  List<Tooth> toothList = [];
+  for (var element in response) {
+    toothList.add(Tooth.fromJson(element));
+  }
+  return toothList;
 }
