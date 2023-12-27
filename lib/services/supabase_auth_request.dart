@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

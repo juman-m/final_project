@@ -1,3 +1,4 @@
+import 'package:final_project/models/tooth_model.dart';
 import 'package:final_project/screens/teeth_screens/display_image_widget.dart';
 import 'package:final_project/style/size.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +6,15 @@ import 'package:flutter/material.dart';
 class DisplayToothStatusBottomSheet extends StatelessWidget {
   const DisplayToothStatusBottomSheet({
     super.key,
-    required this.toothNum,
+    required this.tooth,
   });
-  final String toothNum;
+  final Tooth tooth;
   @override
   Widget build(BuildContext context) {
+    final TextEditingController hospitalNameController =
+        TextEditingController(text: tooth.hospitalName);
+    final TextEditingController doctorNameController =
+        TextEditingController(text: tooth.doctorName);
     return Container(
       decoration: const ShapeDecoration(
         color: Colors.white,
@@ -79,16 +84,16 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'رقم السن $toothNum',
+                        'رقم السن ${tooth.toothNo}',
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      const Text(
-                        '2022-9-10',
-                        style: TextStyle(
+                      Text(
+                        '${tooth.date}',
+                        style: const TextStyle(
                           color: Color(0xFF868585),
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
@@ -112,6 +117,7 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
                   width: 325,
                   height: 38,
                   child: TextField(
+                    controller: doctorNameController,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
@@ -144,6 +150,7 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
                   width: 325,
                   height: 38,
                   child: TextField(
+                    controller: hospitalNameController,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
