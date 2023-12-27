@@ -1,5 +1,6 @@
 import 'package:final_project/blocs/Auth_bloc/auth_bloc.dart';
 import 'package:final_project/blocs/date_picker_bloc/date_piker_bloc.dart';
+import 'package:final_project/blocs/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:final_project/blocs/status_chip_bloc/status_chip_bloc.dart';
 
 import 'package:final_project/screens/welcome_screen.dart';
@@ -31,6 +32,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => StatusChipBloc(),
+        ),
+        BlocProvider(
+          create: (context) => MyAppointmentsBloc(),
         ),
       ],
       child: MaterialApp(
