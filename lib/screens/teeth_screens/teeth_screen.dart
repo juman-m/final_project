@@ -1,6 +1,6 @@
 import 'package:final_project/screens/teeth_screens/add_tooth_status_bottom_sheet.dart';
-import 'package:final_project/screens/teeth_screens/dispaly_tooth_status_bottom_sheet.dart';
-import 'package:final_project/screens/teeth_screens/status_previwe.dart';
+import 'package:final_project/screens/teeth_screens/display_tooth_status_bottom_sheet.dart';
+import 'package:final_project/screens/teeth_screens/status_preview.dart';
 import 'package:final_project/style/size.dart';
 import 'package:flutter/material.dart';
 
