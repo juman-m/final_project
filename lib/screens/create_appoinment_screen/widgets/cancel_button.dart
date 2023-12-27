@@ -1,4 +1,7 @@
+import 'package:final_project/blocs/my_appointments_bloc/my_appointments_bloc.dart';
+import 'package:final_project/blocs/my_appointments_bloc/my_appointments_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CancelButton extends StatelessWidget {
@@ -10,6 +13,7 @@ class CancelButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        context.read<MyAppointmentsBloc>().add(GetAppointmentsEvent());
         Navigator.pop(context);
       },
       child: Container(

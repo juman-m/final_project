@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ScreenAppBar extends StatelessWidget {
-  const ScreenAppBar({
-    super.key,
-  });
-
+  ScreenAppBar({super.key, required this.title, required this.onPressed});
+  final String title;
+  Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,9 +28,7 @@ class ScreenAppBar extends StatelessWidget {
                   top: 8,
                 ),
                 child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                  onPressed: onPressed,
                   icon: const Icon(
                     Icons.arrow_back_ios_new_rounded,
                     size: 26,

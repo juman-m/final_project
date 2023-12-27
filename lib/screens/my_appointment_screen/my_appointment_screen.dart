@@ -26,7 +26,11 @@ class MyAppointmentScreen extends StatelessWidget {
         physics: NeverScrollableScrollPhysics(),
         child: Column(
           children: [
-            const ScreenAppBar(),
+            ScreenAppBar(
+                title: 'مواعيدي',
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
             ElevatedButton(
                 onPressed: () async {
                   // remainingDays();
