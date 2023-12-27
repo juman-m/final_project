@@ -6,6 +6,8 @@ final class AddToothStatusInitial extends AddToothStatusState {}
 
 final class ToothStatusAddedState extends AddToothStatusState {}
 
+final class AddStatusLoadingState extends AddToothStatusState {}
+
 final class ToothStatusErrorState extends AddToothStatusState {
   final String error;
 

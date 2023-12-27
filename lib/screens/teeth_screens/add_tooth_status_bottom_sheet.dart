@@ -1,9 +1,11 @@
+import 'package:final_project/blocs/add_tooth_status_bloc/add_tooth_status_bloc.dart';
 import 'package:final_project/blocs/status_chip_bloc/status_chip_bloc.dart';
 import 'package:final_project/screens/teeth_screens/date_piker_widget.dart';
 import 'package:final_project/screens/teeth_screens/status_chip_widget.dart';
 import 'package:final_project/style/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 class AddToothStatusBottomSheet extends StatelessWidget {
@@ -16,6 +18,10 @@ class AddToothStatusBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String selectedStatus = "جراحة و دواعم";
+    final TextEditingController hospitalNameController =
+        TextEditingController();
+    final TextEditingController doctorNameController = TextEditingController();
+
     final List<String> statusList = [
       "جراحة و دواعم",
       "تلبيس",
@@ -190,6 +196,7 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                   width: 330,
                   height: 38,
                   child: TextField(
+                    controller: hospitalNameController,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
@@ -227,6 +234,7 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                   width: 330,
                   height: 38,
                   child: TextField(
+                    controller: doctorNameController,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
@@ -331,7 +339,20 @@ class AddToothStatusBottomSheet extends StatelessWidget {
           height20(),
           Center(
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                final supabase = Supabase.instance.client;
+                final userid = supabase.auth.currentUser!.id;
+                context.read<AddToothStatusBloc>().add(AddToothStatusEvent(
+                    userid,
+                    toothNum,
+                    selectedStatus,
+                    hospitalNameController.text,
+                    doctorNameController.text,
+                    "prescription",
+                    "xray",
+                    "report",
+                    ""));
+              },
               child: Container(
                 width: 243.61,
                 height: 47.88,
