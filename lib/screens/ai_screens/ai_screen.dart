@@ -8,9 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AIScreen extends StatelessWidget {
   final TextEditingController messageController = TextEditingController();
 
+  AIScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final aiCubit = context.read<AiCubit>();
+    context.read<AiCubit>();
 
     return Scaffold(
       body: SafeArea(
@@ -23,28 +25,28 @@ class AIScreen extends StatelessWidget {
                 children: [
                   Container(
                     width: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: const Color.fromARGB(255, 215, 214, 214),
+                      color: Color.fromARGB(255, 215, 214, 214),
                     ),
-                    padding: EdgeInsets.all(5.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: InkWell(
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.close,
                         size: 20,
                       ),
                     ),
                   ),
-                  SizedBox(width: 16.0),
+                  const SizedBox(width: 16.0),
                   Image.asset(
                     "assets/AI (2).png",
                     width: 50.0,
                   ),
-                  SizedBox(width: 16.0),
-                  Text(
+                  const SizedBox(width: 16.0),
+                  const Text(
                     "AI",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                   ),
@@ -55,7 +57,7 @@ class AIScreen extends StatelessWidget {
               child: BlocBuilder<AiCubit, AiState>(
                 builder: (context, state) {
                   if (state.isLoading) {
-                    return Center(
+                    return const Center(
                       child:
                           CircularProgressIndicator(color: Color(0xff018CDD)),
                     );
