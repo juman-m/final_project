@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-
-
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
 
@@ -45,13 +43,13 @@ class FrontScreen extends StatelessWidget {
     );
 
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
@@ -79,79 +77,84 @@ class FrontScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 100, left: 100),
-              child: CustomButton(
-                text: ' اسأل AI',
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AIScreen(),
-                    ),
-                  );
-                },
-                leftImage: Image.asset(
-                  'assets/AI.png',
-                  width: 25,
+              Padding(
+                padding: const EdgeInsets.only(right: 100, left: 100),
+                child: CustomButton(
+                  text: ' اسأل AI',
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AIScreen(),
+                      ),
+                    );
+                  },
+                  leftImage: Image.asset(
+                    'assets/AI.png',
+                    width: 25,
+                  ),
                 ),
               ),
-            ),
-            carouselSlider,
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: Text(
-                "الخدمات",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-              ),
-            ),
-            SizedBox(
-              height: 9,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ServiceSquareContainer(
-                    imagePath: 'assets/cont1.png',
-                    serviceName: 'سجلي',
-                    onPressed: () {}),
-                ServiceSquareContainer(
-                    imagePath: 'assets/cont2.png',
-                    serviceName: 'مواعيدي',
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyAppointmentScreen(),
-                        ),
-                      );
-                    }),
-                ServiceSquareContainer(
-                    imagePath: 'assets/cont3.png',
-                    serviceName: 'أسناني',
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TeethScreen(),
-                        ),
-                      );
-                    }),
-              ],
-            ),
-            SizedBox(
-              height: 9,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 20.0),
-              child: Text("العيادات القريبة مني",
+              carouselSlider,
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Text(
+                  "الخدمات",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
-                      color: Colors.black)),
-            )
-          ],
+                      color: Colors.black),
+                ),
+              ),
+              SizedBox(
+                height: 9,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ServiceSquareContainer(
+                      imagePath: 'assets/cont1.png',
+                      serviceName: 'سجلي',
+                      onPressed: () {}),
+                  ServiceSquareContainer(
+                      imagePath: 'assets/cont2.png',
+                      serviceName: 'مواعيدي',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MyAppointmentScreen(),
+                          ),
+                        );
+                      }),
+                  ServiceSquareContainer(
+                      imagePath: 'assets/cont3.png',
+                      serviceName: 'أسناني',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TeethScreen(),
+                          ),
+                        );
+                      }),
+                ],
+              ),
+              SizedBox(
+                height: 11,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: Text("العيادات القريبة مني",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                        color: Colors.black)),
+              )
+            ],
+          ),
         ),
       ),
       // floatingActionButton: Container(

@@ -17,16 +17,16 @@ class ServiceSquareContainer extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        width: 120,
-        height: 110,
+        width: 113.40,
+        height: 100,
         decoration: BoxDecoration(
           color: Color.fromRGBO(242, 249, 254, 1),
           borderRadius: BorderRadius.circular(10.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 2,
-              blurRadius: 5,
+              color: Color(0x3F898989),
+              spreadRadius: 0,
+              blurRadius: 8,
               offset: Offset(0, 2),
             ),
           ],
@@ -36,16 +36,18 @@ class ServiceSquareContainer extends StatelessWidget {
           children: [
             Image.asset(
               imagePath,
-              width: 70,
-              height: 70,
+              width: 40,
+              height: 40,
             ),
             // SizedBox(height: 8),
             Text(
+              textAlign: TextAlign.center,
               serviceName,
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 14,
                   color: Colors.black,
-                  fontWeight: FontWeight.w600),
+                  fontWeight: FontWeight.w500,
+                  height: 0),
             ),
           ],
         ),
