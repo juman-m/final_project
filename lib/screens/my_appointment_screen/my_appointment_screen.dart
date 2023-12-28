@@ -1,13 +1,15 @@
 import 'dart:developer';
+
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_event.dart';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_state.dart';
 import 'package:final_project/functions/check_expiration.dart';
-import 'package:final_project/functions/calculate_time_difference.dart';
 import 'package:final_project/functions/formatDate.dart';
 import 'package:final_project/functions/is_same_day.dart';
 import 'package:final_project/functions/remaining_days.dart';
 import 'package:final_project/screens/edit_appoinment_screen/edit_appoinment_screen.dart';
+import 'package:final_project/screens/my_appointment_screen/testing_screen_with_bloc.dart';
+import 'package:final_project/screens/my_appointment_screen/widgets/RescheduleDialog.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/appointment_card.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/screen_app_bar.dart';
@@ -32,21 +34,10 @@ class MyAppointmentScreen extends StatelessWidget {
                 }),
             ElevatedButton(
                 onPressed: () async {
-                  log(TimeOfDay(hour: 01, minute: 5).toString());
-
-                  // log(TimeOfDay.now().hour.toString());
-                  // TimeOfDay time = TimeOfDay(hour: 7, minute: 30);
-                  // calculateTimeDifference(
-                  //     const TimeOfDay(hour: 11, minute: 40), TimeOfDay.now());
-                  // time.
-                  // remainingDays();
-                  // DateTime date1 = DateTime.now();
-                  // DateTime date2 = DateTime(2024, 1, 1);
-                  // Duration difference = date2.difference(date1);
-                  // log(difference.inDays.toString());
-                  // log(DateFormat.MMMMEEEEd('ar')
-                  //     .format(DateTime.parse('2023-12-27'))
-                  //     .replaceAll('،', ''));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => TestingScreenWithBloc()));
                 },
                 child: const Text('TEST')),
             BlocBuilder<MyAppointmentsBloc, MyAppointmentsState>(
@@ -76,9 +67,11 @@ class MyAppointmentScreen extends StatelessWidget {
                                 false
                             ? () {}
                             : () {
-                                //Reschedule
-
-                                log('EDIT${state.listOfAppointments[i].id}');
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => RescheduleDialog(
+                                        appointmentId:
+                                            state.listOfAppointments[i].id!));
                               },
                         isTime: isSameDay(
                             state.listOfAppointments[i].date.toString()),
@@ -94,7 +87,7 @@ class MyAppointmentScreen extends StatelessWidget {
                         time: state.listOfAppointments[i].time!.format(context),
                         remaining: isSameDay(
                                 state.listOfAppointments[i].date.toString())
-                            ? '216:01:29'
+                            ? '05:01:29'
                             : remainingDays(
                                 state.listOfAppointments[i].date.toString()),
                       );

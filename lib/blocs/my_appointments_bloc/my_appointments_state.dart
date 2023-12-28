@@ -30,6 +30,12 @@ final class UpdateTimeState extends MyAppointmentsState {
 
 final class SuccessSubmitState extends MyAppointmentsState {}
 
+final class SuccessEditState extends MyAppointmentsState {}
+
+final class SuccessRescheduleState extends MyAppointmentsState {}
+
+class SuccessDeleteState extends MyAppointmentsState {}
+
 final class ErrorState extends MyAppointmentsState {
   final String message;
   ErrorState({required this.message});

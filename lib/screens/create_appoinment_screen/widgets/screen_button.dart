@@ -11,7 +11,7 @@ class ScreenButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 50,
-        width: 250,
+        width: 270,
         decoration: BoxDecoration(
           color: const Color(0xff008CDC),
           borderRadius: BorderRadius.circular(10),

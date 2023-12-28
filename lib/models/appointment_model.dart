@@ -8,6 +8,7 @@ class AppointmentModel {
   String? description;
   String? date;
   TimeOfDay? time;
+  String? timeAsString;
 
   AppointmentModel(
       {this.id,
@@ -24,6 +25,7 @@ class AppointmentModel {
     description = json['description'];
     date = json['date'];
     time = stringToTimeOfDay(json['time']);
+    timeAsString = json['time'];
   }
 
   Map<String, dynamic> toJson() {

@@ -39,3 +39,36 @@ class SubmitEvent extends MyAppointmentsEvent {
     this.selectedTime,
   });
 }
+
+class EditEvent extends MyAppointmentsEvent {
+  final int id;
+  final int selectedCategory;
+  final String description;
+  final DateTime selectedDate;
+  final TimeOfDay? selectedTime;
+  EditEvent({
+    required this.id,
+    required this.selectedCategory,
+    required this.description,
+    required this.selectedDate,
+    this.selectedTime,
+  });
+}
+
+class DeleteEvent extends MyAppointmentsEvent {
+  final int id;
+
+  DeleteEvent({required this.id});
+}
+
+class RescheduleEvent extends MyAppointmentsEvent {
+  final int id;
+
+  final DateTime selectedDate;
+  final TimeOfDay? selectedTime;
+  RescheduleEvent({
+    required this.id,
+    required this.selectedDate,
+    required this.selectedTime,
+  });
+}

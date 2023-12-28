@@ -51,4 +51,19 @@ class SupabaseFunctions {
     }
     return listOfObjects;
   }
+
+  Future editAppointment(Map body) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('appointments').update(body).eq('id', body['id']);
+  }
+
+  Future rescheduleAppointment(Map body) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('appointments').update(body).eq('id', body['id']);
+  }
+
+  Future deleteAppointment(int id) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('appointments').delete().eq('id', id);
+  }
 }
