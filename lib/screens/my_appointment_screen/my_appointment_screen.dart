@@ -14,7 +14,6 @@ import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/screen_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 
 class MyAppointmentScreen extends StatelessWidget {
   const MyAppointmentScreen({super.key});
@@ -32,7 +31,7 @@ class MyAppointmentScreen extends StatelessWidget {
         },
       ),
       body: SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         child: Column(
           children: [
             ScreenAppBar(

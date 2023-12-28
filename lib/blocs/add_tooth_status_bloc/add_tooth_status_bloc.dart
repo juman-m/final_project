@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:final_project/services/supabase_teeth_request.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'add_tooth_status_event.dart';
@@ -8,7 +11,7 @@ part 'add_tooth_status_state.dart';
 class AddToothStatusBloc
     extends Bloc<AddToothStatusEvent, AddToothStatusState> {
   AddToothStatusBloc() : super(AddToothStatusInitial()) {
-    on<AddToothStatusEvent>((event, emit) async {
+    on<CreateToothStatusEvent>((event, emit) async {
       emit(AddStatusLoadingState());
       try {
         if (event.date.isNotEmpty &&
@@ -41,5 +44,23 @@ class AddToothStatusBloc
         print(e);
       }
     });
+
+    on<AddImageEvent>((event, emit) async {
+      final String? image = await getImage();
+      emit(ImageAddedState(image));
+    });
   }
+}
+
+Future<String?> getImage() async {
+  File? imageFile;
+  final ImagePicker picker = ImagePicker();
+  XFile? image = await picker.pickImage(source: ImageSource.gallery);
+
+  if (image != null) {
+    imageFile = File(image.path);
+
+    return imageFile.path;
+  }
+  return null;
 }

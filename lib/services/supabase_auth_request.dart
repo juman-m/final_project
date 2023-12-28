@@ -6,7 +6,7 @@ class SupabaseFunctions {
   Future<void> getUsers() async {
     try {
       final supabase = Supabase.instance.client;
-      final List<dynamic> data = (await supabase.from('users').select('*'));
+      (await supabase.from('users').select('*'));
 
       // print(data);
     } catch (error) {
