@@ -378,6 +378,9 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                 labels: const ['أشعة سينية', 'تقرير', 'وصفة طبية'],
                 onToggle: (index) {
                   selectedFileCategory = index!;
+                  context
+                      .read<AddToothStatusBloc>()
+                      .add(ChangeCategoryFileEvent());
                   // print('switched to: $index');
                 },
               ),
@@ -405,6 +408,47 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                     right: 27.0,
                   ),
                   child: InkWell(
+                      onTap: () async {
+                        context.read<AddToothStatusBloc>().add(AddImageEvent());
+                      },
+                      child: Container(
+                        width: 330,
+                        height: 111,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.50, color: Color(0xFFC8C8C8)),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: selectedFileCategory == 0
+                            ? xRayImagePath == null
+                                ? const EmptyImageWidget()
+                                : Image.file(
+                                    File(xRayImagePath!),
+                                    fit: BoxFit.cover,
+                                  )
+                            : selectedFileCategory == 1
+                                ? reportImagePath == null
+                                    ? const EmptyImageWidget()
+                                    : Image.file(
+                                        File(reportImagePath!),
+                                        fit: BoxFit.cover,
+                                      )
+                                : prescriptionImagePath == null
+                                    ? const EmptyImageWidget()
+                                    : Image.file(
+                                        File(prescriptionImagePath!),
+                                        fit: BoxFit.cover,
+                                      ),
+                      )),
+                );
+              } else {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    right: 27.0,
+                  ),
+                  child: InkWell(
                     onTap: () async {
                       context.read<AddToothStatusBloc>().add(AddImageEvent());
                     },
@@ -422,45 +466,23 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                           ? xRayImagePath == null
                               ? const EmptyImageWidget()
                               : Image.file(
-                                  File(state.image!),
+                                  File(xRayImagePath!),
                                   fit: BoxFit.cover,
                                 )
                           : selectedFileCategory == 1
                               ? reportImagePath == null
                                   ? const EmptyImageWidget()
                                   : Image.file(
-                                      File(state.image!),
+                                      File(reportImagePath!),
                                       fit: BoxFit.cover,
                                     )
                               : prescriptionImagePath == null
                                   ? const EmptyImageWidget()
                                   : Image.file(
-                                      File(state.image!),
+                                      File(prescriptionImagePath!),
                                       fit: BoxFit.cover,
                                     ),
                     ),
-                  ),
-                );
-              } else {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    right: 27.0,
-                  ),
-                  child: InkWell(
-                    onTap: () async {
-                      context.read<AddToothStatusBloc>().add(AddImageEvent());
-                    },
-                    child: Container(
-                        width: 330,
-                        height: 111,
-                        decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                                width: 0.50, color: Color(0xFFC8C8C8)),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: const EmptyImageWidget()),
                   ),
                 );
               }

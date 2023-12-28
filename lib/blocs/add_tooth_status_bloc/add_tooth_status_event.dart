@@ -26,3 +26,5 @@ final class CreateToothStatusEvent extends AddToothStatusEvent {
 }
 
 final class AddImageEvent extends AddToothStatusEvent {}
+
+final class ChangeCategoryFileEvent extends AddToothStatusEvent {}
