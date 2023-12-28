@@ -1,3 +1,4 @@
+import 'package:final_project/models/tooth_model.dart';
 import 'package:final_project/style/size.dart';
 import 'package:flutter/material.dart';
 
@@ -5,8 +6,10 @@ class DisplayImageWidget extends StatelessWidget {
   const DisplayImageWidget({
     super.key,
     required this.title,
+    required this.tooth,
   });
   final String title;
+  final Tooth tooth;
 
   @override
   Widget build(BuildContext context) {
@@ -39,23 +42,112 @@ class DisplayImageWidget extends StatelessWidget {
             ),
           ),
           height16(),
-          Container(
-            width: 75,
-            height: 81,
-            decoration: const BoxDecoration(color: Color(0xFFF8F8F8)),
-            child: const Center(
-              child: Text(
-                'لا يوجد',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFFD6D6D6),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ),
-          ),
+          title == 'وصفة طبية'
+              ? tooth.prescription != ""
+                  ? InkWell(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => Center(
+                              child: SizedBox(
+                            height: 500,
+                            width: 480,
+                            child: Image.network(
+                              tooth.prescription!,
+                              fit: BoxFit.contain,
+                            ),
+                          )),
+                        );
+                      },
+                      child: SizedBox(
+                          width: 90,
+                          height: 90,
+                          child: Image.network(
+                            tooth.prescription!,
+                            fit: BoxFit.contain,
+                          )),
+                    )
+                  : const EmptyImage()
+              : title == 'تقرير'
+                  ? tooth.report != ""
+                      ? InkWell(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => Center(
+                                  child: SizedBox(
+                                height: 500,
+                                width: 480,
+                                child: Image.network(
+                                  tooth.report!,
+                                  fit: BoxFit.contain,
+                                ),
+                              )),
+                            );
+                          },
+                          child: SizedBox(
+                              width: 90,
+                              height: 81,
+                              child: Image.network(
+                                tooth.report!,
+                                fit: BoxFit.contain,
+                              )),
+                        )
+                      : const EmptyImage()
+                  : title == 'أشعة سينية'
+                      ? tooth.xray != ""
+                          ? InkWell(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => Center(
+                                      child: SizedBox(
+                                    height: 500,
+                                    width: 480,
+                                    child: Image.network(
+                                      tooth.xray!,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  )),
+                                );
+                              },
+                              child: SizedBox(
+                                  width: 90,
+                                  height: 81,
+                                  child: Image.network(
+                                    tooth.xray!,
+                                    fit: BoxFit.contain,
+                                  )),
+                            )
+                          : const EmptyImage()
+                      : const EmptyImage(),
         ],
+      ),
+    );
+  }
+}
+
+class EmptyImage extends StatelessWidget {
+  const EmptyImage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 75,
+      height: 81,
+      decoration: const BoxDecoration(color: Color(0xFFF8F8F8)),
+      child: const Center(
+        child: Text(
+          'لا يوجد',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Color(0xFFD6D6D6),
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
     );
   }
