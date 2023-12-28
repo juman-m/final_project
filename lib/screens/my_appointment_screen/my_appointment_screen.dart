@@ -7,6 +7,7 @@ import 'package:final_project/functions/check_expiration.dart';
 import 'package:final_project/functions/formatDate.dart';
 import 'package:final_project/functions/is_same_day.dart';
 import 'package:final_project/functions/remaining_days.dart';
+import 'package:final_project/screens/create_appoinment_screen/create_appoinment_screen.dart';
 import 'package:final_project/screens/edit_appoinment_screen/edit_appoinment_screen.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/appointment_card.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
@@ -20,7 +21,15 @@ class MyAppointmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<MyAppointmentsBloc>().add(GetAppointmentsEvent());
     return Scaffold(
-      floatingActionButton: const FAB(),
+      floatingActionButton: FloatinCustomm(
+        imageUrl: "assets/Vector.png",
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CreateAppointmentScreen()),
+          );
+        },
+      ),
       body: SingleChildScrollView(
         physics: const NeverScrollableScrollPhysics(),
         child: Column(
