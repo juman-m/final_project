@@ -12,5 +12,10 @@ final class ToothStatusErrorState extends AddToothStatusState {
   final String error;
 
   ToothStatusErrorState(this.error);
-  
+}
+
+final class ImageAddedState extends AddToothStatusState {
+  final String? image;
+
+  ImageAddedState(this.image);
 }

@@ -43,6 +43,12 @@
 	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Can &quot;أسناني&quot; access to your photos?</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Can &quot;أسناني&quot; access to your camera?</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Can &quot;أسناني&quot; access to your microphone?</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 </dict>

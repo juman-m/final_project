@@ -1,5 +1,5 @@
 import 'package:final_project/models/tooth_model.dart';
-import 'package:final_project/screens/teeth_screens/display_image_widget.dart';
+import 'package:final_project/screens/teeth_screens/teeth_widgets/display_image_widget.dart';
 import 'package:final_project/style/size.dart';
 import 'package:flutter/material.dart';
 
