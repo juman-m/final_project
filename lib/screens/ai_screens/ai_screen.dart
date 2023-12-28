@@ -1,6 +1,7 @@
 import 'package:final_project/cubits/cubit/ai_cubit.dart';
 import 'package:final_project/cubits/cubit/ai_state.dart';
-import 'package:final_project/screens/ai_widget.dart';
+import 'package:final_project/screens/ai_screens/widgets/ai2_widget.dart';
+import 'package:final_project/screens/ai_screens/widgets/ai_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -55,7 +56,8 @@ class AIScreen extends StatelessWidget {
                 builder: (context, state) {
                   if (state.isLoading) {
                     return Center(
-                      child: CircularProgressIndicator(),
+                      child:
+                          CircularProgressIndicator(color: Color(0xff018CDD)),
                     );
                   } else {
                     return ListView.builder(
@@ -75,8 +77,11 @@ class AIScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomSheet: AITextField(
-        controller: messageController,
+      bottomSheet: Container(
+        color: Colors.white,
+        child: AITextField(
+          controller: messageController,
+        ),
       ),
     );
   }
