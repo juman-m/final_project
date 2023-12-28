@@ -3,6 +3,7 @@ import 'package:final_project/screens/ai_screens/ai_screen.dart';
 import 'package:final_project/screens/auth_screens/widget/button_widget.dart';
 import 'package:final_project/screens/front_screens/widgets/contener_widget.dart';
 import 'package:final_project/screens/my_appointment_screen/my_appointment_screen.dart';
+import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -54,13 +55,26 @@ class FrontScreen extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      ClipOval(
-                        child: Image.asset(
-                          'assets/image_user.png',
-                          height: 44,
-                          width: 44,
+                      Container(
+                        width: 44,
+                        height: 44,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Color(0xff018CDD)),
+                        child: Center(
+                          child: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                            size: 36,
+                          ),
                         ),
                       ),
+                      // ClipOval(
+                      //   child: Image.asset(
+                      //     'assets/image_user.png',
+                      //     height: 44,
+                      //     width: 44,
+                      //   ),
+                      // ),
                       const SizedBox(width: 8),
                       Text(
                         'مرحبا,${currentUser!.username}',
@@ -161,30 +175,14 @@ class FrontScreen extends StatelessWidget {
       //   margin: const EdgeInsets.only(top: 16, left: 16),
 
       // body: const SizedBox(height: 20),
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(top: 50, left: 16),
-        child: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const TeethScreen(),
-              ),
-            );
-          },
-          backgroundColor: const Color(0xff018CDD),
-          elevation: 2,
-          shape: const CircleBorder(),
-          child: Image.asset(
-            'assets/flot.png',
-            height: 80,
-            width: 80,
-          ),
-
-          // backgroundColor: const Color(0xff018CDD),
-          // elevation: 2,
-          // shape: const CircleBorder(),
-        ),
+      floatingActionButton: FloatinCustomm(
+        imageUrl: "assets/flot.png",
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TeethScreen()),
+          );
+        },
       ),
     );
   }

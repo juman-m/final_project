@@ -39,10 +39,42 @@ class AIScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 16.0),
-                  Image.asset(
-                    "assets/AI (2).png",
-                    width: 50.0,
+                  Stack(
+                    children: [
+                      Container(
+                        width: 46,
+                        height: 46,
+                        decoration: ShapeDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(0.00, -1.00),
+                            end: Alignment(0, 1),
+                            colors: [Color(0xFF008BDB), Color(0xFF00E2D5)],
+                          ),
+                          shape: CircleBorder(),
+                        ),
+                      ),
+                      Positioned(
+                        top: 5,
+                        left: 5,
+                        child: ClipOval(
+                          child: Container(
+                            width: 37,
+                            height: 37,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage("assets/AI.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+
+                  // Image.asset(
+                  //   "assets/AI (2).png",
+                  //   width: 50.0,
+                  // ),
                   SizedBox(width: 16.0),
                   Text(
                     "AI",

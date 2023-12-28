@@ -1,11 +1,11 @@
 import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 import 'package:final_project/screens/front_screens/front_screen.dart';
 
-
 import 'package:final_project/screens/my_appointment_screen/my_appointment_screen.dart';
 
 import 'package:final_project/screens/test.screen.dart';
 import 'package:flutter/material.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class AppNavigationBar extends StatefulWidget {
   const AppNavigationBar({super.key});
@@ -47,7 +47,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
             selectedColor: const Color(0xFF008CDC),
           ),
           CrystalNavigationBarItem(
-            icon: Icons.people,
+            icon: (FontAwesome.users_solid),
             selectedColor: const Color(0xFF008CDC),
           ),
         ],
