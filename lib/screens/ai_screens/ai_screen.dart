@@ -77,8 +77,11 @@ class AIScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomSheet: AITextField(
-        controller: messageController,
+      bottomSheet: Container(
+        color: Colors.white,
+        child: AITextField(
+          controller: messageController,
+        ),
       ),
     );
   }
