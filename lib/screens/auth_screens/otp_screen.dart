@@ -1,9 +1,9 @@
 import 'package:final_project/blocs/Auth_bloc/auth_bloc.dart';
 import 'package:final_project/blocs/Auth_bloc/auth_event.dart';
 import 'package:final_project/blocs/Auth_bloc/auth_state.dart';
-import 'package:final_project/screens/auth_screens/button_widget.dart';
-import 'package:final_project/screens/auth_screens/text_filed.dart';
-import 'package:final_project/screens/nav_bar.dart';
+import 'package:final_project/screens/auth_screens/widget/button_widget.dart';
+import 'package:final_project/screens/auth_screens/widget/text_filed.dart';
+import 'package:final_project/screens/front_screens/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

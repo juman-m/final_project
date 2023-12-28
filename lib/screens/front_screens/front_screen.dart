@@ -1,14 +1,13 @@
 import 'package:final_project/globals/global.dart';
-import 'package:final_project/screens/ai_screen.dart';
-import 'package:final_project/screens/auth_screens/button_widget.dart';
-import 'package:final_project/screens/contener_widget.dart';
+import 'package:final_project/screens/ai_screens/ai_screen.dart';
+import 'package:final_project/screens/auth_screens/widget/button_widget.dart';
+import 'package:final_project/screens/front_screens/widgets/contener_widget.dart';
 import 'package:final_project/screens/my_appointment_screen/my_appointment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
-import 'package:flutter/material.dart';
+
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
