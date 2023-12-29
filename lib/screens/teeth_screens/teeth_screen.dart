@@ -4,7 +4,7 @@ import 'package:final_project/blocs/teeth_screen_bloc/teeth_screen_bloc.dart';
 import 'package:final_project/models/tooth_model.dart';
 import 'package:final_project/screens/teeth_screens/add_tooth_status_bottom_sheet.dart';
 import 'package:final_project/screens/teeth_screens/display_tooth_status_bottom_sheet.dart';
-import 'package:final_project/screens/teeth_screens/status_preview.dart';
+import 'package:final_project/screens/teeth_screens/teeth_widgets/status_preview.dart';
 import 'package:final_project/services/supabase_teeth_request.dart';
 import 'package:final_project/style/size.dart';
 import 'package:flutter/material.dart';

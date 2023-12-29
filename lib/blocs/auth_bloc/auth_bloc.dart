@@ -34,18 +34,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthStates> {
                 emit(SuccessSignUpState());
               } else {
                 emit(ErrorSignUpState(
-                    "Phone number must start with zero and be 10 digits"));
+                    "يجب أن يبدأ رقم الهاتف بالصفر ويكون عبارة عن 10 أرقام"));
               }
             } else {
-              emit(ErrorSignUpState("Kindly provide the correct email"));
+              emit(ErrorSignUpState("يرجى تقديم البريد الإلكتروني الصحيح "));
             }
           } else {
             emit(ErrorSignUpState(
-                "Passwords don't match. Match them for access"));
+                "كلمات المرور غير متطابقة, يرجى التطابق للوصول"));
           }
         } else {
-          emit(ErrorSignUpState(
-              "Complete all fields. Your entry is missing critical information"));
+          emit(ErrorSignUpState("يرجى ملء جميع الحقول"));
         }
       } catch (authException) {
         if (authException is AuthException) {
@@ -53,7 +52,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthStates> {
           emit(ErrorSignUpState(authException.message));
         } else {
           print("Unexpected error: $authException");
-          emit(ErrorSignUpState("Unexpected error occurred"));
+          emit(ErrorSignUpState("حدث خطأ غير متوقع"));
         }
       }
     });
@@ -72,18 +71,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthStates> {
             emit(SuccessSignInState());
           } else {
             emit(ErrorSignInState(
-                "Incorrect email or password. Please verify your entry"));
+                "البريد الإلكتروني أو كلمة المرور غير صحيحة, يرجى التحقق من إدخالك"));
           }
           currentUser = await SupabaseFunctions().getUser();
           emit(SuccessSignInState());
         } else {
-          emit(ErrorSignInState(
-              "Complete all fields. Your entry is missing critical information"));
+          emit(ErrorSignInState("يرجى ملء جميع الحقول"));
         }
       } catch (e) {
         print(e);
         emit(ErrorSignInState(
-            "Error signing in. Double-check your credentials and try again"));
+            "حدث خطأ أثناء تسجيل الدخول, يرجى التحقق مرة أخرى من بيانات الاعتماد الخاصة بك والمحاولة مرة أخرى."));
       }
     });
 
@@ -108,11 +106,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthStates> {
           currentUser = await SupabaseFunctions().getUser();
           emit(SuccessOtpState());
         } else {
-          emit(ErrorOtpState("Kindly enter the OTP to proceed"));
+          emit(ErrorOtpState("يرجى إدخال رمز التحقق للمتابعة"));
         }
       } catch (e) {
         print(e);
-        emit(ErrorOtpState("Something went wrong. Please wait and try again"));
+        emit(ErrorOtpState("حدث خطأ ما. يرجى الانتظار والمحاولة مرة أخرى"));
       }
     });
   }

@@ -1,5 +1,5 @@
 import 'package:final_project/models/tooth_model.dart';
-import 'package:final_project/screens/teeth_screens/display_image_widget.dart';
+import 'package:final_project/screens/teeth_screens/teeth_widgets/display_image_widget.dart';
 import 'package:final_project/style/size.dart';
 import 'package:flutter/material.dart';
 
@@ -169,20 +169,14 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
                   ),
                 ),
                 height34(),
-                const Padding(
-                  padding: EdgeInsets.only(right: 10.0, left: 37),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0, left: 37),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      DisplayImageWidget(
-                        title: 'وصفة طبية',
-                      ),
-                      DisplayImageWidget(
-                        title: 'تقرير',
-                      ),
-                      DisplayImageWidget(
-                        title: 'أشعة سينية',
-                      ),
+                      DisplayImageWidget(title: 'وصفة طبية', tooth: tooth),
+                      DisplayImageWidget(title: 'تقرير', tooth: tooth),
+                      DisplayImageWidget(title: 'أشعة سينية', tooth: tooth),
                     ],
                   ),
                 )

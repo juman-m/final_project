@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:final_project/blocs/add_tooth_status_bloc/add_tooth_status_bloc.dart';
 import 'package:final_project/blocs/date_picker_bloc/date_piker_bloc.dart';
 import 'package:final_project/blocs/status_chip_bloc/status_chip_bloc.dart';
 import 'package:final_project/blocs/teeth_screen_bloc/teeth_screen_bloc.dart';
-import 'package:final_project/screens/teeth_screens/date_picker.dart';
-import 'package:final_project/screens/teeth_screens/status_chip_widget.dart';
+import 'package:final_project/screens/teeth_screens/teeth_widgets/date_picker.dart';
+import 'package:final_project/screens/teeth_screens/teeth_widgets/empty_image_widget.dart';
+import 'package:final_project/screens/teeth_screens/teeth_widgets/status_chip_widget.dart';
 import 'package:final_project/style/size.dart';
 import 'package:final_project/widgets/show_dialog.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +49,11 @@ class AddToothStatusBottomSheet extends StatelessWidget {
       const Color(0xFF9B6771),
       const Color(0xFF0D7E77),
     ];
+    String? xRayImagePath;
+    String? reportImagePath;
+    String? prescriptionImagePath;
+    int selectedFileCategory = 0;
+
     return Container(
       decoration: const ShapeDecoration(
         color: Colors.white,
@@ -369,48 +377,116 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                 totalSwitches: 3,
                 labels: const ['أشعة سينية', 'تقرير', 'وصفة طبية'],
                 onToggle: (index) {
-                  print('switched to: $index');
+                  selectedFileCategory = index!;
+                  context
+                      .read<AddToothStatusBloc>()
+                      .add(ChangeCategoryFileEvent());
+                  // print('switched to: $index');
                 },
               ),
             ),
           ),
           height14(),
-          Padding(
-            padding: const EdgeInsets.only(
-              right: 27.0,
-            ),
-            child: InkWell(
-              onTap: () {},
-              child: Container(
-                width: 330,
-                height: 111,
-                decoration: ShapeDecoration(
-                  shape: RoundedRectangleBorder(
-                    side:
-                        const BorderSide(width: 0.50, color: Color(0xFFC8C8C8)),
-                    borderRadius: BorderRadius.circular(10),
+          BlocConsumer<AddToothStatusBloc, AddToothStatusState>(
+            listener: (context, state) {
+              if (state is ImageAddedState) {
+                if (state.image != null) {
+                  if (selectedFileCategory == 0) {
+                    xRayImagePath = state.image;
+                  } else if (selectedFileCategory == 1) {
+                    reportImagePath = state.image;
+                  } else if (selectedFileCategory == 2) {
+                    prescriptionImagePath = state.image;
+                  }
+                }
+              }
+            },
+            builder: (context, state) {
+              if (state is ImageAddedState) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    right: 27.0,
                   ),
-                ),
-                child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.add,
-                        color: Color(0xffC7C7C8),
-                      ),
-                      Text(
-                        'تحميل الصورة',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          color: Color(0xFFC6C7C7),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
+                  child: InkWell(
+                      onTap: () async {
+                        context.read<AddToothStatusBloc>().add(AddImageEvent());
+                      },
+                      child: Container(
+                        width: 330,
+                        height: 111,
+                        decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                            side: const BorderSide(
+                                width: 0.50, color: Color(0xFFC8C8C8)),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: selectedFileCategory == 0
+                            ? xRayImagePath == null
+                                ? const EmptyImageWidget()
+                                : Image.file(
+                                    File(xRayImagePath!),
+                                    fit: BoxFit.cover,
+                                  )
+                            : selectedFileCategory == 1
+                                ? reportImagePath == null
+                                    ? const EmptyImageWidget()
+                                    : Image.file(
+                                        File(reportImagePath!),
+                                        fit: BoxFit.cover,
+                                      )
+                                : prescriptionImagePath == null
+                                    ? const EmptyImageWidget()
+                                    : Image.file(
+                                        File(prescriptionImagePath!),
+                                        fit: BoxFit.cover,
+                                      ),
+                      )),
+                );
+              } else {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    right: 27.0,
+                  ),
+                  child: InkWell(
+                    onTap: () async {
+                      context.read<AddToothStatusBloc>().add(AddImageEvent());
+                    },
+                    child: Container(
+                      width: 330,
+                      height: 111,
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              width: 0.50, color: Color(0xFFC8C8C8)),
+                          borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                    ]),
-              ),
-            ),
+                      child: selectedFileCategory == 0
+                          ? xRayImagePath == null
+                              ? const EmptyImageWidget()
+                              : Image.file(
+                                  File(xRayImagePath!),
+                                  fit: BoxFit.cover,
+                                )
+                          : selectedFileCategory == 1
+                              ? reportImagePath == null
+                                  ? const EmptyImageWidget()
+                                  : Image.file(
+                                      File(reportImagePath!),
+                                      fit: BoxFit.cover,
+                                    )
+                              : prescriptionImagePath == null
+                                  ? const EmptyImageWidget()
+                                  : Image.file(
+                                      File(prescriptionImagePath!),
+                                      fit: BoxFit.cover,
+                                    ),
+                    ),
+                  ),
+                );
+              }
+            },
           ),
           height20(),
           Center(
@@ -448,15 +524,15 @@ class AddToothStatusBottomSheet extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   final userId = Supabase.instance.client.auth.currentUser!.id;
-                  context.read<AddToothStatusBloc>().add(AddToothStatusEvent(
+                  context.read<AddToothStatusBloc>().add(CreateToothStatusEvent(
                       userId,
                       toothNum,
                       selectedStatus,
                       hospitalNameController.text,
                       doctorNameController.text,
-                      "prescription",
-                      "xray",
-                      "report",
+                      prescriptionImagePath ?? "",
+                      xRayImagePath ?? "",
+                      reportImagePath ?? "",
                       selectedDate));
                 },
                 child: Container(

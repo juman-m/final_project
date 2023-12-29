@@ -1,6 +1,8 @@
 part of 'add_tooth_status_bloc.dart';
 
-final class AddToothStatusEvent {
+abstract class AddToothStatusEvent {}
+
+final class CreateToothStatusEvent extends AddToothStatusEvent {
   final String userId;
   final String toothNo;
   final String toothStatus;
@@ -11,7 +13,7 @@ final class AddToothStatusEvent {
   final String report;
   final String date;
 
-  AddToothStatusEvent(
+  CreateToothStatusEvent(
       this.userId,
       this.toothNo,
       this.toothStatus,
@@ -22,3 +24,7 @@ final class AddToothStatusEvent {
       this.report,
       this.date);
 }
+
+final class AddImageEvent extends AddToothStatusEvent {}
+
+final class ChangeCategoryFileEvent extends AddToothStatusEvent {}

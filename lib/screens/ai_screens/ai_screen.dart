@@ -1,15 +1,18 @@
 import 'package:final_project/cubits/cubit/ai_cubit.dart';
 import 'package:final_project/cubits/cubit/ai_state.dart';
-import 'package:final_project/screens/ai_widget.dart';
+import 'package:final_project/screens/ai_screens/widgets/ai2_widget.dart';
+import 'package:final_project/screens/ai_screens/widgets/ai_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AIScreen extends StatelessWidget {
   final TextEditingController messageController = TextEditingController();
 
+  AIScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final aiCubit = context.read<AiCubit>();
+    context.read<AiCubit>();
 
     return Scaffold(
       body: SafeArea(
@@ -22,26 +25,58 @@ class AIScreen extends StatelessWidget {
                 children: [
                   Container(
                     width: 40,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: const Color.fromARGB(255, 215, 214, 214),
+                      color: Color.fromARGB(255, 215, 214, 214),
                     ),
-                    padding: EdgeInsets.all(5.0),
+                    padding: const EdgeInsets.all(5.0),
                     child: InkWell(
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.close,
                         size: 20,
                       ),
                     ),
                   ),
                   SizedBox(width: 16.0),
-                  Image.asset(
-                    "assets/AI (2).png",
-                    width: 50.0,
+                  Stack(
+                    children: [
+                      Container(
+                        width: 46,
+                        height: 46,
+                        decoration: ShapeDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment(0.00, -1.00),
+                            end: Alignment(0, 1),
+                            colors: [Color(0xFF008BDB), Color(0xFF00E2D5)],
+                          ),
+                          shape: CircleBorder(),
+                        ),
+                      ),
+                      Positioned(
+                        top: 5,
+                        left: 5,
+                        child: ClipOval(
+                          child: Container(
+                            width: 37,
+                            height: 37,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage("assets/AI.png"),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+
+                  // Image.asset(
+                  //   "assets/AI (2).png",
+                  //   width: 50.0,
+                  // ),
                   SizedBox(width: 16.0),
                   Text(
                     "AI",
@@ -54,8 +89,9 @@ class AIScreen extends StatelessWidget {
               child: BlocBuilder<AiCubit, AiState>(
                 builder: (context, state) {
                   if (state.isLoading) {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    return const Center(
+                      child:
+                          CircularProgressIndicator(color: Color(0xff018CDD)),
                     );
                   } else {
                     return ListView.builder(
@@ -75,8 +111,11 @@ class AIScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomSheet: AITextField(
-        controller: messageController,
+      bottomSheet: Container(
+        color: Colors.white,
+        child: AITextField(
+          controller: messageController,
+        ),
       ),
     );
   }
