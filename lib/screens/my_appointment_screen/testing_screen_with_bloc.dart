@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:final_project/blocs/timer_bloc/timer_bloc.dart';
 import 'package:final_project/blocs/timer_bloc/timer_event.dart';
 import 'package:final_project/blocs/timer_bloc/timer_state.dart';
@@ -7,13 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ignore: must_be_immutable
 class TestingScreenWithBloc extends StatelessWidget {
-  TestingScreenWithBloc({super.key});
-
+  const TestingScreenWithBloc({super.key});
   @override
   Widget build(BuildContext context) {
     context
         .read<TimerBloc>()
-        .add(CountDownEvent(deadline: DateTime.parse('2023-12-28 09:20')));
+        .add(CountDownEvent(deadline: DateTime.parse('2023-12-28 10:55')));
     return Scaffold(
       appBar: AppBar(),
       body: Row(

@@ -2,16 +2,20 @@ import 'package:final_project/screens/create_appoinment_screen/widgets/custom_ch
 import 'package:flutter/material.dart';
 
 class AppointmentCategory extends StatelessWidget {
-  const AppointmentCategory(
-      {super.key,
-      this.selectedChoice = const ['تقويم', 'مراجعة', 'أخرى'],
-      required this.selected,
-      required this.onTap});
+  AppointmentCategory({
+    super.key,
+    this.selectedChoice = const ['تقويم', 'مراجعة', 'أخرى'],
+    required this.selected,
+    required this.onTap,
+  });
 
   final List<String> selectedChoice;
   final int selected;
-
-  final Function() onTap;
+  int i = -1;
+  final Function(int) onTap;
+  void triggerCallbackWithValue() {
+    onTap(i);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,10 @@ class AppointmentCategory extends StatelessWidget {
                   : index == 1
                       ? const Color(0xff9747FF)
                       : const Color(0xffFFB8B8),
-              onTap: onTap,
+              onTap: () {
+                i = index;
+                triggerCallbackWithValue();
+              },
             ),
             const SizedBox(width: 8),
           ],

@@ -13,6 +13,9 @@ class MyAppointmentsBloc
   List? formattedTime;
 
   MyAppointmentsBloc() : super(MyAppointmentsInitial()) {
+    on<SelectCategoryEvent>((event, emit) {
+      emit(UpdateCategoryState(selectedCategory: event.index));
+    });
     on<SelectDateEvent>((event, emit) {
       selectedDate = event.date;
       emit(UpdateDateState(selectedDate: selectedDate));
@@ -24,7 +27,7 @@ class MyAppointmentsBloc
     on<SubmitEvent>((event, emit) async {
       final supabase = Supabase.instance.client;
       final userId = supabase.auth.currentUser!.id;
-     
+
       if (event.selectedCategory < 0) {
         emit(ErrorState(message: 'يجب إختيار تصنيف'));
       } else if (event.description.isEmpty) {
@@ -54,7 +57,7 @@ class MyAppointmentsBloc
 
     on<EditEvent>((event, emit) async {
       final supabase = Supabase.instance.client;
-       
+
       if (event.selectedCategory < 0) {
         emit(ErrorState(message: 'يجب إختيار تصنيف'));
       } else if (event.description.isEmpty) {
@@ -82,7 +85,6 @@ class MyAppointmentsBloc
     });
 
     on<RescheduleEvent>((event, emit) async {
-       
       final supabase = Supabase.instance.client;
       if (event.selectedTime == null) {
         emit(ErrorState(message: 'يجب إختيار الوقت'));

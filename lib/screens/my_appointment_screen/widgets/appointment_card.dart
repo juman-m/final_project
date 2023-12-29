@@ -50,7 +50,9 @@ class AppointmentCard extends StatelessWidget {
               height: 96,
               width: 355,
               decoration: BoxDecoration(
-                  color: const Color.fromARGB(22, 129, 198, 232),
+                  color: isEnded
+                      ? const Color.fromARGB(64, 105, 105, 105)
+                      : const Color.fromARGB(22, 129, 198, 232),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: const Color(0xff0086D3))),
               child: Padding(

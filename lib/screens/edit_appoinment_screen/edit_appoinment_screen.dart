@@ -46,7 +46,9 @@ class EditAppoinment extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: AppointmentCategory(
                   selected: int.parse(appoinment.category!),
-                  onTap: () {},
+                  onTap: (i) {
+                    log(i.toString());
+                  },
                 ),
               ),
               const SizedBox(height: 24),

@@ -18,6 +18,11 @@ class LoadinAppointmentsState extends MyAppointmentsState {}
 
 /// ================ Create Appointment ==============
 
+final class UpdateCategoryState extends MyAppointmentsState {
+  final int selectedCategory;
+  UpdateCategoryState({required this.selectedCategory});
+}
+
 final class UpdateDateState extends MyAppointmentsState {
   final DateTime selectedDate;
   UpdateDateState({required this.selectedDate});

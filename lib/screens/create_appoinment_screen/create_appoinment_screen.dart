@@ -44,7 +44,10 @@ class CreateAppointmentScreen extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: AppointmentCategory(
                   selected: selectedCategory,
-                  onTap: () {},
+                  onTap: (i) {
+                    
+                    log(i.toString());
+                  },
                 ),
               ),
               const SizedBox(height: 24),
@@ -163,7 +166,7 @@ class CreateAppointmentScreen extends StatelessWidget {
                   child: ScreenButton(
                     text: 'ضبط الموعد',
                     onTap: () {
-                       context.read<MyAppointmentsBloc>().add(SubmitEvent(
+                      context.read<MyAppointmentsBloc>().add(SubmitEvent(
                             selectedCategory: selectedCategory,
                             description: descriptionController.text.trim(),
                             selectedDate: selectedDate,
