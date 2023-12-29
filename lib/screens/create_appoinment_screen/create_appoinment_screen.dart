@@ -17,7 +17,7 @@ import 'package:table_calendar/table_calendar.dart';
 class CreateAppointmentScreen extends StatelessWidget {
   CreateAppointmentScreen({super.key});
 
-  int selectedCategory = 1;
+  int selectedCategory = -1;
   TextEditingController descriptionController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   List? formattedTime;
@@ -42,11 +42,24 @@ class CreateAppointmentScreen extends StatelessWidget {
               const SizedBox(height: 24),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: AppointmentCategory(
-                  selected: selectedCategory,
-                  onTap: (i) {
-                    
-                    log(i.toString());
+                child: BlocBuilder<MyAppointmentsBloc, MyAppointmentsState>(
+                  buildWhen: (oldState, newState) {
+                    if (newState is UpdateCategoryState) {
+                      selectedCategory = newState.selectedCategory;
+                      return true;
+                    }
+                    return false;
+                  },
+                  builder: (context, state) {
+                    return AppointmentCategory(
+                      selected: selectedCategory,
+                      onTap: (i) {
+                        context
+                            .read<MyAppointmentsBloc>()
+                            .add(SelectCategoryEvent(index: i));
+                        log(i.toString());
+                      },
+                    );
                   },
                 ),
               ),
@@ -156,7 +169,7 @@ class CreateAppointmentScreen extends StatelessWidget {
                     } else if (state is SuccessSubmitState) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           duration: Duration(seconds: 2),
-                          backgroundColor: Colors.green,
+                          backgroundColor: Color(0xff018CDD),
                           content: Text(
                             'تم إضافة الموعد',
                             style: TextStyle(color: Colors.white),

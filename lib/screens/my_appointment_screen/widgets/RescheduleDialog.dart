@@ -134,7 +134,7 @@ class RescheduleDialog extends StatelessWidget {
                   } else if (state is SuccessSubmitState) {
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         duration: Duration(seconds: 2),
-                        backgroundColor: Colors.green,
+                        backgroundColor: Color(0xff018CDD),
                         content: Text(
                           'تمت إعادة ضبط الموعد',
                           style: TextStyle(color: Colors.white),

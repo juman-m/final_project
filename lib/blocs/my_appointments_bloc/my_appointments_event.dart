@@ -4,10 +4,8 @@ abstract class MyAppointmentsEvent {}
 
 class TestEvent extends MyAppointmentsEvent {}
 
-/// ================ Get Appointment ==============
 class GetAppointmentsEvent extends MyAppointmentsEvent {}
 
-/// ================ Create Appointment ==============
 class SelectCategoryEvent extends MyAppointmentsEvent {
   final int index;
   SelectCategoryEvent({required this.index});
@@ -57,13 +55,11 @@ class EditEvent extends MyAppointmentsEvent {
 
 class DeleteEvent extends MyAppointmentsEvent {
   final int id;
-
   DeleteEvent({required this.id});
 }
 
 class RescheduleEvent extends MyAppointmentsEvent {
   final int id;
-
   final DateTime selectedDate;
   final TimeOfDay? selectedTime;
   RescheduleEvent({

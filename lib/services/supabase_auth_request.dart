@@ -42,7 +42,7 @@ class SupabaseFunctions {
         .from('appointments')
         .select()
         .eq('user_id', userId)
-        .order('date');
+        .order('date', ascending: true);
 
     List<AppointmentModel> listOfObjects = [];
 

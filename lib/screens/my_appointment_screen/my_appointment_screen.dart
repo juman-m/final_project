@@ -15,7 +15,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyAppointmentScreen extends StatelessWidget {
-  const MyAppointmentScreen({super.key});
+  MyAppointmentScreen({super.key, this.isFromHome = false});
+
+  final bool isFromHome;
   @override
   Widget build(BuildContext context) {
     context.read<MyAppointmentsBloc>().add(GetAppointmentsEvent());
@@ -34,6 +36,7 @@ class MyAppointmentScreen extends StatelessWidget {
         child: Column(
           children: [
             ScreenAppBar(
+                isFromHome: isFromHome,
                 title: 'مواعيدي',
                 onPressed: () {
                   Navigator.pop(context);
@@ -125,7 +128,8 @@ class MyAppointmentScreen extends StatelessWidget {
                               state.listOfAppointments[i].time!.format(context),
                           remaining: isSameDay(
                                   state.listOfAppointments[i].date.toString())
-                              ? '05:01:29'
+                              ? state.listOfAppointments[i].time!
+                                  .format(context)
                               : remainingDays(
                                   state.listOfAppointments[i].date.toString()),
                         );

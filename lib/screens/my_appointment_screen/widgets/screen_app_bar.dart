@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ScreenAppBar extends StatelessWidget {
-  ScreenAppBar({super.key, required this.title, required this.onPressed});
+  ScreenAppBar(
+      {super.key,
+      required this.title,
+      required this.onPressed,
+      this.isFromHome = false});
   final String title;
   Function() onPressed;
+  final bool isFromHome;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,17 +28,20 @@ class ScreenAppBar extends StatelessWidget {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 88,
+                padding: EdgeInsets.only(
+                  left: isFromHome == true ? 88 : 136,
                   right: 8,
                   top: 8,
                 ),
-                child: IconButton(
-                  onPressed: onPressed,
-                  icon: const Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    size: 26,
-                    color: Colors.white,
+                child: Visibility(
+                  visible: isFromHome == true ? true : false,
+                  child: IconButton(
+                    onPressed: onPressed,
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 26,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

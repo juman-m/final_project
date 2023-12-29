@@ -139,7 +139,8 @@ class FrontScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MyAppointmentScreen(),
+                            builder: (context) =>
+                                MyAppointmentScreen(isFromHome: true),
                           ),
                         );
                       }),

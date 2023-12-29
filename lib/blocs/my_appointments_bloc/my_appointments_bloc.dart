@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_event.dart';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_state.dart';
 import 'package:final_project/models/appointment_model.dart';
@@ -8,7 +7,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class MyAppointmentsBloc
     extends Bloc<MyAppointmentsEvent, MyAppointmentsState> {
-  /// ================ Create Appointment Variables ==============
   DateTime selectedDate = DateTime.now();
   List? formattedTime;
 
@@ -35,7 +33,7 @@ class MyAppointmentsBloc
       } else if (event.selectedTime == null) {
         emit(ErrorState(message: 'يجب إختيار الوقت'));
       } else {
-        // {id: 2, user_id: 0570deee-e1a3-402a-9b95-0879e4626187, category: 1, description: علاج عصب, date: 2023-12-27, time: 18:30:52}
+        formattedTime = null;
         final body = {
           "user_id": userId,
           "category": event.selectedCategory,
@@ -56,8 +54,6 @@ class MyAppointmentsBloc
     });
 
     on<EditEvent>((event, emit) async {
-      final supabase = Supabase.instance.client;
-
       if (event.selectedCategory < 0) {
         emit(ErrorState(message: 'يجب إختيار تصنيف'));
       } else if (event.description.isEmpty) {
@@ -85,7 +81,6 @@ class MyAppointmentsBloc
     });
 
     on<RescheduleEvent>((event, emit) async {
-      final supabase = Supabase.instance.client;
       if (event.selectedTime == null) {
         emit(ErrorState(message: 'يجب إختيار الوقت'));
       } else {

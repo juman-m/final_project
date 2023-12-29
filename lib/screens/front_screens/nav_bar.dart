@@ -17,7 +17,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   int selected = 1;
 
   List<Widget> screens = [
-    const MyAppointmentScreen(),
+    MyAppointmentScreen(),
     const FrontScreen(),
     const MyWidget(),
   ];

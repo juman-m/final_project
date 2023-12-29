@@ -10,9 +10,10 @@ import 'package:final_project/screens/create_appoinment_screen/widgets/screen_bu
 import 'package:final_project/screens/create_appoinment_screen/widgets/screen_textfield.dart';
 import 'package:final_project/screens/create_appoinment_screen/widgets/screen_title.dart';
 import 'package:final_project/screens/create_appoinment_screen/widgets/time_row.dart';
+import 'package:final_project/screens/edit_appoinment_screen/widgets/bottom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 // ignore: must_be_immutable
@@ -44,10 +45,24 @@ class EditAppoinment extends StatelessWidget {
               const SizedBox(height: 24),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: AppointmentCategory(
-                  selected: int.parse(appoinment.category!),
-                  onTap: (i) {
-                    log(i.toString());
+                child: BlocBuilder<MyAppointmentsBloc, MyAppointmentsState>(
+                  buildWhen: (oldState, newState) {
+                    if (newState is UpdateCategoryState) {
+                      selectedCategory = newState.selectedCategory;
+                      return true;
+                    }
+                    return false;
+                  },
+                  builder: (context, state) {
+                    return AppointmentCategory(
+                      selected: selectedCategory,
+                      onTap: (i) {
+                        context
+                            .read<MyAppointmentsBloc>()
+                            .add(SelectCategoryEvent(index: i));
+                        log(i.toString());
+                      },
+                    );
                   },
                 ),
               ),
@@ -151,7 +166,7 @@ class EditAppoinment extends StatelessWidget {
                     } else if (state is SuccessSubmitState) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           duration: Duration(seconds: 2),
-                          backgroundColor: Colors.green,
+                          backgroundColor: Color(0xff018CDD),
                           content: Text(
                             'تم تعديل الموعد',
                             style: TextStyle(color: Colors.white),
@@ -159,7 +174,7 @@ class EditAppoinment extends StatelessWidget {
                     } else if (state is SuccessDeleteState) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           duration: Duration(seconds: 2),
-                          backgroundColor: Colors.green,
+                          backgroundColor: Color(0xff018CDD),
                           content: Text(
                             'تم حذف الموعد',
                             style: TextStyle(color: Colors.white),
