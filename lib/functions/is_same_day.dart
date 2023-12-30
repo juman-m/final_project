@@ -1,6 +1,7 @@
 bool isSameDay(String date) {
-  Duration difference = DateTime.parse(date).difference(DateTime.now());
-  if (difference.inDays == 0) {
+  final today =
+      '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
+  if (today == date) {
     return true;
   } else {
     return false;

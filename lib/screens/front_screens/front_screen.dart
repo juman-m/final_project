@@ -7,8 +7,8 @@ import 'package:final_project/screens/auth_screens/widget/button_widget.dart';
 import 'package:final_project/screens/front_screens/notfication_screen.dart';
 import 'package:final_project/screens/front_screens/profile_screen.dart';
 import 'package:final_project/screens/front_screens/widgets/contener_widget.dart';
-import 'package:final_project/screens/my_appointment_screen/my_appointment_screen.dart';
-import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
+import 'package:final_project/screens/my_appointment_screens/my_appointment_screen.dart';
+import 'package:final_project/screens/my_appointment_screens/widgets/fab.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:flutter/material.dart';
@@ -172,7 +172,8 @@ class FrontScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const MyAppointmentScreen(),
+                            builder: (context) =>
+                                MyAppointmentScreen(isFromHome: true),
                           ),
                         );
                       }),

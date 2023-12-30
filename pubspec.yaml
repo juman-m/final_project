@@ -24,6 +24,7 @@ dependencies:
   table_calendar: ^3.0.9
   intl:
   flutter_svg: ^2.0.9
+  timer_count_down: ^2.2.2
 
 
 dev_dependencies:

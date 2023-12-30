@@ -169,20 +169,14 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
                   ),
                 ),
                 height34(),
-                const Padding(
-                  padding: EdgeInsets.only(right: 10.0, left: 37),
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0, left: 37),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      DisplayImageWidget(
-                        title: 'وصفة طبية',
-                      ),
-                      DisplayImageWidget(
-                        title: 'تقرير',
-                      ),
-                      DisplayImageWidget(
-                        title: 'أشعة سينية',
-                      ),
+                      DisplayImageWidget(title: 'وصفة طبية', tooth: tooth),
+                      DisplayImageWidget(title: 'تقرير', tooth: tooth),
+                      DisplayImageWidget(title: 'أشعة سينية', tooth: tooth),
                     ],
                   ),
                 )

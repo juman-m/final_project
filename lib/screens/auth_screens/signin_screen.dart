@@ -4,9 +4,9 @@ import 'package:final_project/blocs/Auth_bloc/auth_state.dart';
 import 'package:final_project/screens/auth_screens/widget/button_widget.dart';
 import 'package:final_project/screens/auth_screens/signup_screen.dart';
 import 'package:final_project/screens/auth_screens/widget/text_filed.dart';
-import 'package:final_project/screens/front_screens/front_screen.dart';
+
 import 'package:final_project/screens/front_screens/nav_bar.dart';
-import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

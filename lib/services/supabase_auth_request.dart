@@ -57,7 +57,7 @@ class SupabaseFunctions {
         .from('appointments')
         .select()
         .eq('user_id', userId)
-        .order('date');
+        .order('date', ascending: true);
 
     List<AppointmentModel> listOfObjects = [];
 
@@ -65,5 +65,20 @@ class SupabaseFunctions {
       listOfObjects.add(AppointmentModel.fromJson(appointment));
     }
     return listOfObjects;
+  }
+
+  Future editAppointment(Map body) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('appointments').update(body).eq('id', body['id']);
+  }
+
+  Future rescheduleAppointment(Map body) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('appointments').update(body).eq('id', body['id']);
+  }
+
+  Future deleteAppointment(int id) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('appointments').delete().eq('id', id);
   }
 }

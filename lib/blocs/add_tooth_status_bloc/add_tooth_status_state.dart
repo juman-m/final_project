@@ -19,3 +19,5 @@ final class ImageAddedState extends AddToothStatusState {
 
   ImageAddedState(this.image);
 }
+
+final class ChangeCategoryFileState extends AddToothStatusState {}
