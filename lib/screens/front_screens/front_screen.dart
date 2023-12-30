@@ -1,13 +1,18 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:final_project/globals/global.dart';
 import 'package:final_project/screens/ai_screens/ai_screen.dart';
+import 'package:final_project/screens/auth_screens/signin_screen.dart';
+import 'package:final_project/screens/auth_screens/signup_screen.dart';
 import 'package:final_project/screens/auth_screens/widget/button_widget.dart';
+import 'package:final_project/screens/front_screens/notfication_screen.dart';
+import 'package:final_project/screens/front_screens/profile_screen.dart';
 import 'package:final_project/screens/front_screens/widgets/contener_widget.dart';
 import 'package:final_project/screens/my_appointment_screen/my_appointment_screen.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
@@ -62,10 +67,20 @@ class FrontScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Color(0xff018CDD)),
                         child: Center(
-                          child: Icon(
-                            Icons.person,
-                            color: Colors.white,
-                            size: 36,
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ProfileScreen(),
+                                ),
+                              );
+                            },
+                            child: Icon(
+                              Icons.person,
+                              color: Colors.white,
+                              size: 36,
+                            ),
                           ),
                         ),
                       ),
@@ -84,10 +99,28 @@ class FrontScreen extends StatelessWidget {
                     ],
                   ),
                   ClipOval(
-                    child: Image.asset(
-                      'assets/اشعارات.png',
-                      height: 44,
-                      width: 44,
+                    child: InkWell(
+                      onTap: () {
+                        // final supabase = Supabase.instance.client;
+                        // supabase.auth.signOut();
+                        // currentUser = null;
+                        // Navigator.pushAndRemoveUntil(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const SignInScreen()),
+                        //     (route) => false);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => NotficationScreen(),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'assets/اشعارات.png',
+                        height: 44,
+                        width: 44,
+                      ),
                     ),
                   ),
                 ],
