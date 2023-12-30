@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 bool checkExpiration(String date, TimeOfDay time) {
   Duration difference = DateTime.parse(date).difference(DateTime.now());
-  final today =
-      '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
+  final todayDate = DateTime.now();
+  final today = '${todayDate.year}-${todayDate.month}-${todayDate.day}';
   TimeOfDay now = TimeOfDay.now();
   if (difference.inDays == 0) {
     if (date == today) {
