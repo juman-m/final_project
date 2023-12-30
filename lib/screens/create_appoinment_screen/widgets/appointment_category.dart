@@ -1,6 +1,7 @@
 import 'package:final_project/screens/create_appoinment_screen/widgets/custom_chip.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AppointmentCategory extends StatelessWidget {
   AppointmentCategory({
     super.key,
