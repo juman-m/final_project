@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/models/community_model.dart';
 import 'package:final_project/models/user_model.dart';
@@ -100,6 +103,18 @@ class SupabaseFunctions {
         .select()
         .eq("user_id", supabase.auth.currentUser!.id);
     for (var element in community) {
+      communityObjectsList.add(CommunityModel.fromJson(element));
+    }
+    return communityObjectsList;
+  }
+
+  Future<List<CommunityModel>> searchForParticipation(String text) async {
+    final supabase = Supabase.instance.client;
+    final List<CommunityModel> communityObjectsList = [];
+    final body =
+        await supabase.from('community').select().ilike('content', '%$text%');
+
+    for (var element in body) {
       communityObjectsList.add(CommunityModel.fromJson(element));
     }
     return communityObjectsList;

@@ -1,13 +1,14 @@
-import 'dart:developer';
 import 'package:final_project/blocs/community_bloc/community_bloc.dart';
 import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:final_project/blocs/community_bloc/community_state.dart';
+import 'package:final_project/screens/comment_screen/comment_screen.dart';
 import 'package:final_project/screens/community_screens/widgets/community_card.dart';
 import 'package:final_project/screens/community_screens/widgets/screen_app_bar.dart';
 import 'package:final_project/screens/community_screens/widgets/top_row.dart';
 import 'package:final_project/screens/create_participation_screen/create_participation_screen.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
 import 'package:final_project/screens/my_participation_screen/my_participation_screen.dart';
+import 'package:final_project/services/supabase_auth_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,6 +35,11 @@ class CommunityScreen extends StatelessWidget {
           children: [
             const ScreenAppBar(),
             const SizedBox(height: 24),
+            ElevatedButton(
+                onPressed: () {
+                  SupabaseFunctions().searchForParticipation('مستشفى');
+                },
+                child: const Text('TEST')),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -45,7 +51,7 @@ class CommunityScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    MyParticipationsScreen()));
+                                    const MyParticipationsScreen()));
                       }),
                   const SizedBox(height: 24),
                   BlocBuilder<CommunityBloc, CommunityState>(
@@ -71,7 +77,12 @@ class CommunityScreen extends StatelessWidget {
                                     .format(context),
                                 content: state.communityObjectsList[i].content!,
                                 onTap: () {
-                                  log('MEOW');
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => CommentScreen(
+                                              community: state
+                                                  .communityObjectsList[i])));
                                 },
                               );
                             },
