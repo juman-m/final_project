@@ -11,3 +11,23 @@ final class TeethScreenColorsState extends TeethScreenState {
 
   TeethScreenColorsState(this.teethColors);
 }
+
+final class TeethStatusDeleteState extends TeethScreenState {}
+
+final class TeethStatusUpdateState extends TeethScreenState {}
+
+final class TeethDeleteLoadingState extends TeethScreenState {}
+
+final class TeethUpdateLoadingState extends TeethScreenState {}
+
+final class ToothDeleteErrorState extends TeethScreenState {
+  final String error;
+
+  ToothDeleteErrorState(this.error);
+}
+
+final class ToothUpdateErrorState extends TeethScreenState {
+  final String error;
+
+  ToothUpdateErrorState(this.error);
+}
