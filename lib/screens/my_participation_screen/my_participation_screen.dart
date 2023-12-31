@@ -1,62 +1,42 @@
-import 'dart:developer';
 import 'package:final_project/blocs/community_bloc/community_bloc.dart';
 import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:final_project/blocs/community_bloc/community_state.dart';
 import 'package:final_project/screens/community_screens/widgets/community_card.dart';
-import 'package:final_project/screens/community_screens/widgets/screen_app_bar.dart';
-import 'package:final_project/screens/community_screens/widgets/top_row.dart';
-import 'package:final_project/screens/create_participation_screen/create_participation_screen.dart';
-import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
-import 'package:final_project/screens/my_participation_screen/my_participation_screen.dart';
+import 'package:final_project/screens/my_participation_screen/widgets/screen_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// ignore: must_be_immutable
-class CommunityScreen extends StatelessWidget {
-  CommunityScreen({super.key});
+class MyParticipationsScreen extends StatelessWidget {
+  const MyParticipationsScreen({super.key});
 
-  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    context.read<CommunityBloc>().add(GetCommunitiesEvent());
+    context.read<CommunityBloc>().add(GetMyParticipationsEvent());
     return Scaffold(
-      floatingActionButton: FloatinCustomm(
-        imageUrl: "assets/Vector.png",
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => CreateParticipationScreen()));
-        },
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const ScreenAppBar(),
+            ScreenAppBar(
+              title: 'مشاركاتي',
+              onPressed: () {
+                context.read<CommunityBloc>().add(GetCommunitiesEvent());
+                Navigator.pop(context);
+              },
+            ),
             const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
-                  TopRow(
-                      controller: controller,
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    MyParticipationsScreen()));
-                      }),
-                  const SizedBox(height: 24),
                   BlocBuilder<CommunityBloc, CommunityState>(
                     builder: (context, state) {
-                      if (state is EmptyCommunitiesState) {
+                      if (state is EmptyMyParticipationsState) {
                         return const Text(
-                          'لا يوجد مشاركات حاليا',
+                          'لا يوجد لديك مشاركات',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 24),
                         );
-                      } else if (state is GetCommunitiesState) {
+                      } else if (state is GetMyParticipationsState) {
                         return SizedBox(
                           height: MediaQuery.sizeOf(context).height,
                           child: ListView.separated(
@@ -70,9 +50,7 @@ class CommunityScreen extends StatelessWidget {
                                 time: state.communityObjectsList[i].time!
                                     .format(context),
                                 content: state.communityObjectsList[i].content!,
-                                onTap: () {
-                                  log('MEOW');
-                                },
+                                onTap: () {},
                               );
                             },
                             separatorBuilder: (context, i) {

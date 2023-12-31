@@ -1,5 +1,3 @@
-import 'package:final_project/models/appointment_model.dart';
-
 abstract class TimerEvent {}
 
 // final class CountDownEvent extends TimerEvent {

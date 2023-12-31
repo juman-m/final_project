@@ -1,4 +1,5 @@
 import 'package:final_project/models/appointment_model.dart';
+import 'package:final_project/models/community_model.dart';
 import 'package:final_project/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -65,5 +66,42 @@ class SupabaseFunctions {
   Future deleteAppointment(int id) async {
     final supabase = Supabase.instance.client;
     await supabase.from('appointments').delete().eq('id', id);
+  }
+
+  Future publishParticipation(Map body) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('community').insert(body);
+  }
+
+  Future currentUserInfo() async {
+    final supabase = Supabase.instance.client;
+    await supabase
+        .from('users')
+        .select()
+        .eq("id", supabase.auth.currentUser!.id);
+  }
+
+  Future<List<CommunityModel>> getCommuinties(String city) async {
+    final supabase = Supabase.instance.client;
+    final List<CommunityModel> communityObjectsList = [];
+    final community =
+        await supabase.from('community').select().eq("city", city.trim());
+    for (var element in community) {
+      communityObjectsList.add(CommunityModel.fromJson(element));
+    }
+    return communityObjectsList;
+  }
+
+  getMyParticipations() async {
+    final supabase = Supabase.instance.client;
+    final List<CommunityModel> communityObjectsList = [];
+    final community = await supabase
+        .from('community')
+        .select()
+        .eq("user_id", supabase.auth.currentUser!.id);
+    for (var element in community) {
+      communityObjectsList.add(CommunityModel.fromJson(element));
+    }
+    return communityObjectsList;
   }
 }

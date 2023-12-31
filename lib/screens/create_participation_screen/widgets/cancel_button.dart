@@ -1,3 +1,5 @@
+import 'package:final_project/blocs/community_bloc/community_bloc.dart';
+import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,7 +11,7 @@ class CancelButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // context.read<MyAppointmentsBloc>().add(GetAppointmentsEvent());
+        context.read<CommunityBloc>().add(GetCommunitiesEvent());
         Navigator.pop(context);
       },
       child: Container(

@@ -1,5 +1,5 @@
-import 'package:final_project/screens/my_appointment_screens/widgets/conut_down_container.dart';
-import 'package:final_project/screens/my_appointment_screens/widgets/reschedule_container.dart';
+import 'package:final_project/screens/my_appointment_screen/widgets/conut_down_container.dart';
+import 'package:final_project/screens/my_appointment_screen/widgets/reschedule_container.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
