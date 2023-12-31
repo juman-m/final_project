@@ -6,43 +6,14 @@ addToothStatus(Map body) async {
   await supabase.from('teeth_status').insert(body);
 }
 
-updateToothStatus({required Map body, required String id}) async {
+updateToothStatus(
+    {required Map body, required String id, required String toothNo}) async {
   final supabase = Supabase.instance.client;
-  await supabase.from('teeth_status').update(body).eq("id", id);
+  await supabase
+      .from('teeth_status')
+      .update(body)
+      .match({'user_id': id, "tooth_no": toothNo});
 }
-
-// deleteToothStatus({required String toothNum}) async {
-//   final supabase = Supabase.instance.client;
-//   final userId = supabase.auth.currentUser!.id;
-
-//   final response = await supabase
-//       .from("teeth_status")
-//       .select('*')
-//       .match({'user_id': userId, "tooth_no": toothNum});
-
-//   final Tooth tooth = Tooth.fromJson(response[0]);
-//   if (tooth.report != "") {
-//     await supabase.storage
-//         .from('ToothImage')
-//         .remove(['$userId@$toothNum@report.png']);
-//   }
-
-//   if (tooth.prescription != "") {
-//     await supabase.storage
-//         .from('ToothImage/prescription')
-//         .remove(['$userId@$toothNum@prescription.png']);
-//   }
-//   if (tooth.xray != "") {
-//     await supabase.storage
-//         .from('ToothImage')
-//         .remove(['$userId@$toothNum@xRay.png']);
-//   }
-
-//   await supabase
-//       .from('teeth_status')
-//       .delete()
-//       .match({'user_id': userId, "tooth_no": toothNum});
-// }
 
 Future<Tooth?> getToothStatusById(String userId, String toothNo) async {
   final supabase = Supabase.instance.client;

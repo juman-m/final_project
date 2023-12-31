@@ -26,7 +26,6 @@ class AddToothStatusBloc
             event.toothStatus.isNotEmpty) {
           final supabase = Supabase.instance.client;
           final userId = supabase.auth.currentUser!.id;
-          // final timestamp = DateTime.now().millisecondsSinceEpoch;
           String xrayImageUrl = "";
           String prescriptionImageUrl = "";
           String reportImageUrl = "";
@@ -38,13 +37,6 @@ class AddToothStatusBloc
                 .upload(imageName, File(event.xray));
             xrayImageUrl =
                 supabase.storage.from("ToothImage").getPublicUrl(imageName);
-            // final imageName = '$userId@${event.toothNo}.png';
-            // await supabase.storage
-            //     .from("ToothImage/xRay")
-            //     .upload(imageName, File(event.xray));
-            // xrayImageUrl = supabase.storage
-            //     .from("ToothImage/xRay")
-            //     .getPublicUrl(imageName);
           }
           if (event.report != "") {
             final imageName = '$userId@${event.toothNo}@report.png';
@@ -87,6 +79,12 @@ class AddToothStatusBloc
     on<AddImageEvent>((event, emit) async {
       final String? image = await getImage();
       emit(ImageAddedState(image));
+    });
+
+    on<UpdateImageEvent>((event, emit) async {
+      final String? image = await getImage();
+      emit(ImageUpdateState(image, event.type == 'تقرير',
+          event.type == 'أشعة سينية', event.type == 'وصفة طبية'));
     });
   }
 }

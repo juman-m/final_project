@@ -11,7 +11,14 @@ final class TeethStatusDeleteEvent extends TeethScreenEvent {
 }
 
 final class TeethStatusUpdateEvent extends TeethScreenEvent {
-  final Tooth tooth;
-
-  TeethStatusUpdateEvent(this.tooth);
+  final String toothNo;
+  final String toothStatus;
+  final String hospitalName;
+  final String doctorName;
+  final String prescription;
+  final String xray;
+  final String report;
+  final String date;
+  TeethStatusUpdateEvent(this.toothNo, this.toothStatus, this.hospitalName,
+      this.doctorName, this.prescription, this.xray, this.report, this.date);
 }

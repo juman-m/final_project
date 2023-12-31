@@ -18,6 +18,7 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
         TextEditingController(text: tooth.hospitalName);
     final TextEditingController doctorNameController =
         TextEditingController(text: tooth.doctorName);
+
     return Container(
       decoration: const ShapeDecoration(
         color: Colors.white,
@@ -177,9 +178,24 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      DisplayImageWidget(title: 'وصفة طبية', tooth: tooth),
-                      DisplayImageWidget(title: 'تقرير', tooth: tooth),
-                      DisplayImageWidget(title: 'أشعة سينية', tooth: tooth),
+                      DisplayImageWidget(
+                          title: 'وصفة طبية',
+                          tooth: tooth,
+                          changePrescription: (value) {
+                            tooth.prescription = value;
+                          }),
+                      DisplayImageWidget(
+                          title: 'تقرير',
+                          tooth: tooth,
+                          changeReport: (value) {
+                            tooth.report = value;
+                          }),
+                      DisplayImageWidget(
+                          title: 'أشعة سينية',
+                          tooth: tooth,
+                          changeXRay: (value) {
+                            tooth.xray = value;
+                          }),
                     ],
                   ),
                 )
@@ -192,23 +208,75 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  width: 243.61,
-                  height: 47.88,
-                  decoration: ShapeDecoration(
-                    color: const Color(0xFF008BDB),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8.02),
-                    ),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'تعديل ',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16.05,
-                        fontWeight: FontWeight.w700,
+                BlocListener<TeethScreenBloc, TeethScreenState>(
+                  listener: (context, state) {
+                    if (state is TeethUpdateLoadingState) {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0xff018CDD),
+                          ),
+                        ),
+                      );
+                    }
+                    if (state is ToothUpdateErrorState) {
+                      Navigator.pop(context);
+                      showErrorDialog(context, state.error, "حدث خطأ ما!");
+                    }
+                    if (state is TeethStatusUpdateState) {
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                      context
+                          .read<TeethScreenBloc>()
+                          .add(TeethScreenColorsEvent());
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            dismissDirection: DismissDirection.up,
+                            content: Text(
+                              "تم تحديث الحالة بنجاح",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            backgroundColor: Color(0xff018CDD)),
+                      );
+                    }
+                  },
+                  child: InkWell(
+                    onTap: () {
+                      // if (context.read<TeethScreenBloc>().isEdit) {
+                        context
+                            .read<TeethScreenBloc>()
+                            .add(TeethStatusUpdateEvent(
+                              tooth.toothNo!,
+                              tooth.toothStatus!,
+                              hospitalNameController.text,
+                              doctorNameController.text,
+                              tooth.prescription ?? "",
+                              tooth.xray ?? "",
+                              tooth.report ?? "",
+                              tooth.date!,
+                            ));
+                      // }
+                    },
+                    child: Container(
+                      width: 243.61,
+                      height: 47.88,
+                      decoration: ShapeDecoration(
+                        color: const Color(0xFF008BDB),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.02),
+                        ),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'تعديل ',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.05,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -228,7 +296,7 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
                     }
                     if (state is ToothDeleteErrorState) {
                       Navigator.pop(context);
-                      showErrorDialog(context, state.error, "خطأ");
+                      showErrorDialog(context, state.error, "حدث خطأ ما!");
                     }
                     if (state is TeethStatusDeleteState) {
                       Navigator.pop(context);

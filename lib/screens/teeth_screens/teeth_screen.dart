@@ -54,6 +54,7 @@ class TeethScreen extends StatelessWidget {
       Colors.white,
     ];
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(

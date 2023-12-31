@@ -20,4 +20,12 @@ final class ImageAddedState extends AddToothStatusState {
   ImageAddedState(this.image);
 }
 
+final class ImageUpdateState extends AddToothStatusState {
+  final String? image;
+  final bool report;
+  final bool xRay;
+  final bool prescription;
+  ImageUpdateState(this.image, this.report, this.xRay, this.prescription);
+}
+
 final class ChangeCategoryFileState extends AddToothStatusState {}
