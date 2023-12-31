@@ -14,15 +14,15 @@ class FloatinCustomm extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Container(
-        height: 69,
-        width: 69,
+        height: 64,
+        width: 64,
         decoration: const BoxDecoration(shape: BoxShape.circle),
         child: FloatingActionButton(
           backgroundColor: const Color(0xff0086D3),
           child: Image.asset(
             imageUrl,
-            height: 32,
-            width: 32,
+            height: 40,
+            width: 40,
           ),
           onPressed: onPressed,
         ),

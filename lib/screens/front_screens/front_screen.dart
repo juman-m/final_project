@@ -1,8 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:final_project/globals/global.dart';
 import 'package:final_project/screens/ai_screens/ai_screen.dart';
-import 'package:final_project/screens/auth_screens/signin_screen.dart';
-import 'package:final_project/screens/auth_screens/signup_screen.dart';
+
 import 'package:final_project/screens/auth_screens/widget/button_widget.dart';
 import 'package:final_project/screens/front_screens/notfication_screen.dart';
 import 'package:final_project/screens/front_screens/profile_screen.dart';
@@ -11,8 +10,6 @@ import 'package:final_project/screens/my_appointment_screens/my_appointment_scre
 import 'package:final_project/screens/my_appointment_screens/widgets/fab.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
@@ -101,14 +98,6 @@ class FrontScreen extends StatelessWidget {
                   ClipOval(
                     child: InkWell(
                       onTap: () {
-                        // final supabase = Supabase.instance.client;
-                        // supabase.auth.signOut();
-                        // currentUser = null;
-                        // Navigator.pushAndRemoveUntil(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const SignInScreen()),
-                        //     (route) => false);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
