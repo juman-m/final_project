@@ -20,12 +20,8 @@ class CustomContainer extends StatelessWidget {
         width: 330,
         height: 60,
         decoration: ShapeDecoration(
-<<<<<<< Updated upstream
-          color: Color.fromARGB(24, 126, 199, 235),
-=======
           color: Color.fromARGB(34, 126, 196, 231),
           // color: Color.fromARGB(65, 93, 184, 230),,
->>>>>>> Stashed changes
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(11),
           ),
@@ -72,4 +68,3 @@ class CustomContainer extends StatelessWidget {
     );
   }
 }
-
