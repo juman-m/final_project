@@ -1,8 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:final_project/globals/global.dart';
 import 'package:final_project/screens/ai_screens/ai_screen.dart';
-
 import 'package:final_project/screens/auth_screens/widget/button_widget.dart';
+import 'package:final_project/screens/documents_screens/documents_screen.dart';
 import 'package:final_project/screens/front_screens/notfication_screen.dart';
 import 'package:final_project/screens/front_screens/profile_screen.dart';
 import 'package:final_project/screens/front_screens/widgets/contener_widget.dart';
@@ -10,6 +10,7 @@ import 'package:final_project/screens/my_appointment_screen/my_appointment_scree
 import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
+
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
@@ -61,7 +62,7 @@ class FrontScreen extends StatelessWidget {
                       Container(
                         width: 44,
                         height: 44,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: Color(0xff018CDD)),
                         child: Center(
                           child: InkWell(
@@ -69,11 +70,11 @@ class FrontScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ProfileScreen(),
+                                  builder: (context) => const ProfileScreen(),
                                 ),
                               );
                             },
-                            child: Icon(
+                            child: const Icon(
                               Icons.person,
                               color: Colors.white,
                               size: 36,
@@ -101,7 +102,7 @@ class FrontScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => NotficationScreen(),
+                            builder: (context) => const NotficationScreen(),
                           ),
                         );
                       },
@@ -153,7 +154,14 @@ class FrontScreen extends StatelessWidget {
                   ServiceSquareContainer(
                       imagePath: 'assets/cont1.png',
                       serviceName: 'سجلي',
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const DocumentsScreen(),
+                          ),
+                        );
+                      }),
                   ServiceSquareContainer(
                       imagePath: 'assets/cont2.png',
                       serviceName: 'مواعيدي',
@@ -162,7 +170,7 @@ class FrontScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                MyAppointmentScreen(isFromHome: true),
+                                const MyAppointmentScreen(isFromHome: true),
                           ),
                         );
                       }),
@@ -204,7 +212,7 @@ class FrontScreen extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => TeethScreen()),
+            MaterialPageRoute(builder: (context) => const TeethScreen()),
           );
         },
       ),
