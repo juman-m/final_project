@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class CustomContainer extends StatelessWidget {
   final IconData leftIcon;
   final String leftText;
-  final VoidCallback? onPressed; 
+  final VoidCallback? onPressed;
 
   const CustomContainer({
     Key? key,
@@ -14,13 +14,13 @@ class CustomContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell( 
-      onTap: onPressed, 
+    return InkWell(
+      onTap: onPressed,
       child: Container(
         width: 330,
         height: 60,
         decoration: ShapeDecoration(
-          color: Color.fromARGB(65, 93, 184, 230),
+          color: Color.fromARGB(24, 126, 199, 235),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(11),
           ),

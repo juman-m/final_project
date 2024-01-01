@@ -10,6 +10,7 @@ import 'package:final_project/blocs/timer_bloc/timer_bloc.dart';
 import 'package:final_project/cubits/cubit/ai_cubit.dart';
 import 'package:final_project/screens/welcome_screen.dart';
 import 'package:final_project/services/supabase_auth_request.dart';
+import 'package:final_project/services/supabase_loctaion_request.dart';
 import 'package:final_project/services/supabase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SupabaseFunctions().getUsers();
+    Supabaseloctaion().getLoction();
     return MultiBlocProvider(
       providers: [
         BlocProvider(
