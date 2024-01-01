@@ -145,8 +145,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Positioned(
+<<<<<<< Updated upstream
               top: 30,
               right: 20,
+=======
+              top: 37,
+              right: 15,
+>>>>>>> Stashed changes
               child: IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
@@ -159,8 +164,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Positioned(
+<<<<<<< Updated upstream
               bottom: 177,
               right: 340,
+=======
+              bottom: 170,
+              right: 350,
+>>>>>>> Stashed changes
               child: IconButton(
                 icon: Icon(
                   Icons.logout_outlined,
