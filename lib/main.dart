@@ -55,7 +55,7 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CommunityBloc(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (context) => EditProfileBloc(),
         ),
       ],

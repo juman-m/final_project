@@ -1,9 +1,12 @@
 import 'dart:developer';
-import 'package:final_project/blocs/community_bloc/community_bloc.dart'; 
+import 'package:final_project/blocs/community_bloc/community_bloc.dart';
+// import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
 import 'package:final_project/screens/comment_screen/widgets/comment_card.dart';
-import 'package:final_project/screens/comment_screen/widgets/screen_app_bar.dart';
-import 'package:final_project/screens/comment_screen/widgets/send_row.dart'; 
+// import 'package:final_project/screens/comment_screen/widgets/screen_app_bar.dart';
+import 'package:final_project/screens/comment_screen/widgets/send_row.dart';
+import 'package:final_project/screens/common_widgets/custom_app_bar.dart';
+// import 'package:final_project/services/supabase_auth_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/community_bloc/community_event.dart';
@@ -17,6 +20,15 @@ class CommentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar('مشاركة', () {
+        if (direction == 'from community') {
+          context.read<CommunityBloc>().add(GetCommunitiesEvent());
+          Navigator.pop(context);
+        } else {
+          context.read<CommunityBloc>().add(GetMyParticipationsEvent());
+          Navigator.pop(context);
+        }
+      }),
       bottomSheet: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
         child: SendRow(
@@ -29,18 +41,18 @@ class CommentScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ScreenAppBar(
-              title: 'مشاركة',
-              onPressed: () {
-                if (direction == 'from community') {
-                  context.read<CommunityBloc>().add(GetCommunitiesEvent());
-                  Navigator.pop(context);
-                } else {
-                  context.read<CommunityBloc>().add(GetMyParticipationsEvent());
-                  Navigator.pop(context);
-                }
-              },
-            ),
+            // ScreenAppBar(
+            //   title: 'مشاركة',
+            //   onPressed: () {
+            //     if (direction == 'from community') {
+            //       context.read<CommunityBloc>().add(GetCommunitiesEvent());
+            //       Navigator.pop(context);
+            //     } else {
+            //       context.read<CommunityBloc>().add(GetMyParticipationsEvent());
+            //       Navigator.pop(context);
+            //     }
+            //   },
+            // ),
             const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -74,6 +86,10 @@ class CommentScreen extends StatelessWidget {
                   //             separatorBuilder: (context, i) =>
                   //                 const SizedBox(height: 16),
                   //           );
+                  //         } else if (!snapshot.hasData) {
+                  //           return const Center(child: Text('لا يوجد ردود'));
+                  //         } else if (snapshot.hasError) {
+                  //           return const Text('ERROR');
                   //         } else {
                   //           return const SizedBox();
                   //         }

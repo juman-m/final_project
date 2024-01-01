@@ -1,3 +1,5 @@
+// import 'dart:developer';
+
 import 'package:final_project/blocs/community_bloc/community_bloc.dart';
 import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:final_project/blocs/community_bloc/community_state.dart';
@@ -14,11 +16,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // ignore: must_be_immutable
 class CommunityScreen extends StatelessWidget {
-  CommunityScreen({super.key});
+  const CommunityScreen({super.key});
 
-  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    TextEditingController controller = TextEditingController();
     context.read<CommunityBloc>().add(GetCommunitiesEvent());
     return Scaffold(
       floatingActionButton: FloatinCustomm(
@@ -38,7 +40,7 @@ class CommunityScreen extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton(
                 onPressed: () async {
-                  SupabaseFunctions().getComments(17).length.asStream();
+                  SupabaseFunctions().getComments(17).toString();
                 },
                 child: const Text('TEST')),
             Padding(

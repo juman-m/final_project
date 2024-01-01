@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
@@ -16,20 +18,18 @@ class SupabaseFunctions {
     }
   }
 
-
 // Future<void> requestPasswordReset(String email) async {
 //   try {
 //     final supabase = Supabase.instance.client;
 
-//    
+//
 //     await supabase.auth.resetPasswordForEmail(email);
 //     print('Password reset email sent successfully');
 //   } catch (error) {
 //     print('Error sending password reset email: $error');
-//   
+//
 //   }
 // }
-
 
   useradd(Map body) async {
     final supabase = Supabase.instance.client;
@@ -133,13 +133,17 @@ class SupabaseFunctions {
     return communityObjectsList;
   }
 
-  Stream getComments(int communityId) {
+  getComments(int communityId) async {
     final supabase = Supabase.instance.client;
+    final comments =
+        await supabase.from('comments').select().eq('community_id', 17);
+    log('===${comments.length.toString()}===');
     final commentsAsStream = supabase
         .from('comments')
         .stream(primaryKey: ['id'])
         .eq('community_id', communityId)
-        .map((item) => item);
+        .map((item) =>
+            item.where((element) => element['community_id'] == communityId));
     final commentsAsStreamModel = commentsAsStream.map(
         (items) => items.map((item) => CommentModel.fromJson(item)).toList());
     return commentsAsStreamModel;

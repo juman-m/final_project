@@ -44,7 +44,7 @@ class MyParticipationsScreen extends StatelessWidget {
                         return SizedBox(
                           height: MediaQuery.sizeOf(context).height,
                           child: ListView.separated(
-                            padding: const EdgeInsets.only(bottom: 430),
+                            padding: const EdgeInsets.only(bottom: 180),
                             shrinkWrap: true,
                             itemCount: state.communityObjectsList.length,
                             itemBuilder: (context, i) {
