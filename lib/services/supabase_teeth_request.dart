@@ -6,9 +6,13 @@ addToothStatus(Map body) async {
   await supabase.from('teeth_status').insert(body);
 }
 
-updateToothStatus({required Map body, required String id}) async {
+updateToothStatus(
+    {required Map body, required String id, required String toothNo}) async {
   final supabase = Supabase.instance.client;
-  await supabase.from('teeth_status').update(body).eq("id", id);
+  await supabase
+      .from('teeth_status')
+      .update(body)
+      .match({'user_id': id, "tooth_no": toothNo});
 }
 
 Future<Tooth?> getToothStatusById(String userId, String toothNo) async {

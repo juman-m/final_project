@@ -26,37 +26,33 @@ class AddToothStatusBloc
             event.toothStatus.isNotEmpty) {
           final supabase = Supabase.instance.client;
           final userId = supabase.auth.currentUser!.id;
-          // final timestamp = DateTime.now().millisecondsSinceEpoch;
           String xrayImageUrl = "";
           String prescriptionImageUrl = "";
           String reportImageUrl = "";
 
           if (event.xray != "") {
-            final imageName = '$userId@${event.toothNo}.png';
+            final imageName = '$userId@${event.toothNo}@xRay.png';
             await supabase.storage
-                .from("ToothImage/xRay")
+                .from("ToothImage")
                 .upload(imageName, File(event.xray));
-            xrayImageUrl = supabase.storage
-                .from("ToothImage/xRay")
-                .getPublicUrl(imageName);
+            xrayImageUrl =
+                supabase.storage.from("ToothImage").getPublicUrl(imageName);
           }
           if (event.report != "") {
-            final imageName = '$userId@${event.toothNo}.png';
+            final imageName = '$userId@${event.toothNo}@report.png';
             await supabase.storage
-                .from("ToothImage/report")
+                .from("ToothImage")
                 .upload(imageName, File(event.report));
-            reportImageUrl = supabase.storage
-                .from("ToothImage/report")
-                .getPublicUrl(imageName);
+            reportImageUrl =
+                supabase.storage.from("ToothImage").getPublicUrl(imageName);
           }
           if (event.prescription != "") {
-            final imageName = '$userId@${event.toothNo}.png';
+            final imageName = '$userId@${event.toothNo}@prescription.png';
             await supabase.storage
-                .from("ToothImage/prescription")
+                .from("ToothImage")
                 .upload(imageName, File(event.prescription));
-            prescriptionImageUrl = supabase.storage
-                .from("ToothImage/prescription")
-                .getPublicUrl(imageName);
+            prescriptionImageUrl =
+                supabase.storage.from("ToothImage").getPublicUrl(imageName);
           }
           await addToothStatus({
             "user_id": userId,
@@ -83,6 +79,12 @@ class AddToothStatusBloc
     on<AddImageEvent>((event, emit) async {
       final String? image = await getImage();
       emit(ImageAddedState(image));
+    });
+
+    on<UpdateImageEvent>((event, emit) async {
+      final String? image = await getImage();
+      emit(ImageUpdateState(image, event.type == 'تقرير',
+          event.type == 'أشعة سينية', event.type == 'وصفة طبية'));
     });
   }
 }
