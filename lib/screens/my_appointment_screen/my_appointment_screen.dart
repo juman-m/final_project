@@ -7,10 +7,10 @@ import 'package:final_project/functions/is_same_day.dart';
 import 'package:final_project/functions/remaining_days.dart';
 import 'package:final_project/screens/create_appoinment_screen/create_appoinment_screen.dart';
 import 'package:final_project/screens/edit_appoinment_screen/edit_appoinment_screen.dart';
-import 'package:final_project/screens/my_appointment_screens/widgets/RescheduleDialog.dart';
-import 'package:final_project/screens/my_appointment_screens/widgets/appointment_card.dart';
-import 'package:final_project/screens/my_appointment_screens/widgets/fab.dart';
-import 'package:final_project/screens/my_appointment_screens/widgets/screen_app_bar.dart';
+import 'package:final_project/screens/my_appointment_screen/widgets/RescheduleDialog.dart';
+import 'package:final_project/screens/my_appointment_screen/widgets/appointment_card.dart';
+import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
+import 'package:final_project/screens/my_appointment_screen/widgets/screen_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

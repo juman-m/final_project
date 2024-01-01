@@ -24,7 +24,6 @@ Future<void> main() async {
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     Supabaseloctaion().getLoction();
@@ -57,7 +56,7 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => CommunityBloc(),
         ),
-          BlocProvider(
+        BlocProvider(
           create: (context) => EditProfileBloc(),
         ),
       ],

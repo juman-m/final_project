@@ -10,7 +10,6 @@ import 'package:final_project/screens/create_appoinment_screen/widgets/screen_bu
 import 'package:final_project/screens/create_appoinment_screen/widgets/screen_textfield.dart';
 import 'package:final_project/screens/create_appoinment_screen/widgets/screen_title.dart';
 import 'package:final_project/screens/create_appoinment_screen/widgets/time_row.dart';
-import 'package:final_project/screens/edit_appoinment_screen/widgets/bottom_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -157,7 +156,6 @@ class EditAppoinment extends StatelessWidget {
                   listener: (context, state) {
                     if (state is ErrorState) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          duration: const Duration(seconds: 2),
                           backgroundColor: Colors.red,
                           content: Text(
                             state.message,
@@ -165,7 +163,6 @@ class EditAppoinment extends StatelessWidget {
                           )));
                     } else if (state is SuccessSubmitState) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          duration: Duration(seconds: 2),
                           backgroundColor: Color(0xff018CDD),
                           content: Text(
                             'تم تعديل الموعد',
@@ -173,7 +170,6 @@ class EditAppoinment extends StatelessWidget {
                           )));
                     } else if (state is SuccessDeleteState) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          duration: Duration(seconds: 2),
                           backgroundColor: Color(0xff018CDD),
                           content: Text(
                             'تم حذف الموعد',

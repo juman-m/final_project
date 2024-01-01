@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:final_project/models/appointment_model.dart';
+import 'package:final_project/models/comments_model.dart';
+import 'package:final_project/models/community_model.dart';
 import 'package:final_project/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -14,20 +18,18 @@ class SupabaseFunctions {
     }
   }
 
-
 // Future<void> requestPasswordReset(String email) async {
 //   try {
 //     final supabase = Supabase.instance.client;
 
-//    
+//
 //     await supabase.auth.resetPasswordForEmail(email);
 //     print('Password reset email sent successfully');
 //   } catch (error) {
 //     print('Error sending password reset email: $error');
-//   
+//
 //   }
 // }
-
 
   useradd(Map body) async {
     final supabase = Supabase.instance.client;
@@ -80,5 +82,70 @@ class SupabaseFunctions {
   Future deleteAppointment(int id) async {
     final supabase = Supabase.instance.client;
     await supabase.from('appointments').delete().eq('id', id);
+  }
+
+  Future publishParticipation(Map body) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('community').insert(body);
+  }
+
+  Future currentUserInfo() async {
+    final supabase = Supabase.instance.client;
+    await supabase
+        .from('users')
+        .select()
+        .eq("id", supabase.auth.currentUser!.id);
+  }
+
+  Future<List<CommunityModel>> getCommuinties(String city) async {
+    final supabase = Supabase.instance.client;
+    final List<CommunityModel> communityObjectsList = [];
+    final community =
+        await supabase.from('community').select().eq("city", city.trim());
+    for (var element in community) {
+      communityObjectsList.add(CommunityModel.fromJson(element));
+    }
+    return communityObjectsList;
+  }
+
+  getMyParticipations() async {
+    final supabase = Supabase.instance.client;
+    final List<CommunityModel> communityObjectsList = [];
+    final community = await supabase
+        .from('community')
+        .select()
+        .eq("user_id", supabase.auth.currentUser!.id);
+    for (var element in community) {
+      communityObjectsList.add(CommunityModel.fromJson(element));
+    }
+    return communityObjectsList;
+  }
+
+  Future<List<CommunityModel>> searchForParticipation(String text) async {
+    final supabase = Supabase.instance.client;
+    final List<CommunityModel> communityObjectsList = [];
+    final body =
+        await supabase.from('community').select().ilike('content', '%$text%');
+
+    for (var element in body) {
+      communityObjectsList.add(CommunityModel.fromJson(element));
+    }
+    return communityObjectsList;
+  }
+
+  getComments(int communityId) async {
+    final supabase = Supabase.instance.client;
+    final comments =
+        await supabase.from('comments').select().eq('community_id', 17);
+    log('===${comments.length.toString()}===');
+    final commentsAsStream = supabase
+        .from('comments')
+        .stream(primaryKey: ['id'])
+        .eq('community_id', communityId)
+        .map((item) =>
+            item.where((element) => element['community_id'] == communityId));
+    final commentsAsStreamModel = commentsAsStream.map(
+        (items) => items.map((item) => CommentModel.fromJson(item)).toList());
+    return commentsAsStreamModel;
   }
 }
