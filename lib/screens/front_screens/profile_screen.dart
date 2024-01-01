@@ -3,6 +3,8 @@ import 'package:final_project/screens/auth_screens/signin_screen.dart';
 import 'package:final_project/screens/front_screens/edit_profile.dart';
 
 import 'package:final_project/screens/front_screens/widget_profile.dart';
+import 'package:final_project/screens/front_screens/widgets/bottomsheet_widget.dart';
+import 'package:final_project/screens/front_screens/widgets/lanagebotoomsheeet_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -143,8 +145,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Positioned(
-              top: 20,
-              right: 10,
+              top: 30,
+              right: 20,
               child: IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
@@ -157,8 +159,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Positioned(
-              bottom: 190,
-              right: 360,
+              bottom: 177,
+              right: 340,
               child: IconButton(
                 icon: Icon(
                   Icons.logout_outlined,
@@ -200,6 +202,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         CustomContainer(
           leftIcon: Icons.notifications_active_outlined,
           leftText: 'الإشعارات',
+          onPressed: () {
+            showModalBottomSheet(
+              backgroundColor: Colors.white,
+              context: context,
+              builder: (context) {
+                return NotificationBottomSheet();
+              },
+            );
+          },
         ),
         SizedBox(
           height: 25,
@@ -207,6 +218,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         CustomContainer(
           leftIcon: Icons.language,
           leftText: 'اللغة',
+          onPressed: () {
+            showModalBottomSheet(
+              backgroundColor: Colors.white,
+              context: context,
+              builder: (BuildContext context) {
+                return LanguageBottomSheet();
+              },
+            );
+          },
         ),
         SizedBox(
           height: 25,

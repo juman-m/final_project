@@ -1,7 +1,7 @@
 import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 import 'package:final_project/screens/community_screens/community_screen.dart';
 import 'package:final_project/screens/front_screens/front_screen.dart';
-import 'package:final_project/screens/my_appointment_screens/my_appointment_screen.dart';
+import 'package:final_project/screens/my_appointment_screen/my_appointment_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:icons_plus/icons_plus.dart';
 
@@ -16,9 +16,9 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   int selected = 1;
 
   List<Widget> screens = [
-    MyAppointmentScreen(),
+    const MyAppointmentScreen(),
     const FrontScreen(),
-    const CommunityScreen(),
+    CommunityScreen(),
   ];
 
   @override

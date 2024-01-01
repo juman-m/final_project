@@ -1,4 +1,3 @@
-
 import 'package:final_project/cubits/cubit/ai_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -15,7 +14,7 @@ class AITextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.only(bottom: 20.0, left: 14, right: 14),
       child: Container(
         decoration: BoxDecoration(
           // color: Colors.white,
