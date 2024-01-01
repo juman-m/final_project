@@ -102,11 +102,7 @@ class FrontScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-<<<<<<< Updated upstream
                             builder: (context) => const NotficationScreen(),
-=======
-                            builder: (context) => Location(),
->>>>>>> Stashed changes
                           ),
                         );
                       },
