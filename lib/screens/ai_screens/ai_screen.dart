@@ -15,6 +15,7 @@ class AIScreen extends StatelessWidget {
     context.read<AiCubit>();
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
