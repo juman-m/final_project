@@ -25,7 +25,9 @@ dependencies:
   intl:
   flutter_svg: ^2.0.9
   timer_count_down: ^2.2.2
-  timelines: ^0.1.0
+  timeline_tile: ^2.0.0
+  dotted_border: ^2.1.0
+
 
 
 dev_dependencies:
