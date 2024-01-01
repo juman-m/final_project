@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
@@ -14,10 +12,6 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-<<<<<<< Updated upstream
-      
-=======
->>>>>>> Stashed changes
       height: 300,
       padding: EdgeInsets.all(16),
       child: Column(
