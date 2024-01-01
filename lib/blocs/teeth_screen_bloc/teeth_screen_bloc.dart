@@ -60,6 +60,7 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
         print(e);
       }
     });
+
     on<TeethStatusUpdateEvent>((event, emit) async {
       emit(TeethUpdateLoadingState());
       try {
@@ -84,6 +85,9 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
               }
             }
             if (isFound) {
+              print("event.xray:${event.xray}");
+
+              print("imageName:$imageName");
               await supabase.storage
                   .from('ToothImage')
                   .update(imageName, File(event.xray));
@@ -97,6 +101,7 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
               xrayImageUrl =
                   supabase.storage.from("ToothImage").getPublicUrl(imageName);
             }
+            isEditXray = false;
           } else {
             xrayImageUrl = event.xray;
           }
@@ -127,6 +132,7 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
               reportImageUrl =
                   supabase.storage.from("ToothImage").getPublicUrl(imageName);
             }
+            isEditReport = false;
           } else {
             reportImageUrl = event.report;
           }
@@ -158,6 +164,7 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
               prescriptionImageUrl =
                   supabase.storage.from("ToothImage").getPublicUrl(imageName);
             }
+            isEditPrescription = false;
           } else {
             prescriptionImageUrl = event.prescription;
           }
