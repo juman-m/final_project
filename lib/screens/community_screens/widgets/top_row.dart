@@ -1,4 +1,7 @@
+import 'package:final_project/blocs/community_bloc/community_bloc.dart';
+import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 // ignore: must_be_immutable
@@ -15,6 +18,9 @@ class TopRow extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 24),
             child: TextField(
+              onChanged: (text) {
+                context.read<CommunityBloc>().add(SearchEvent(text: text));
+              },
               controller: controller,
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(

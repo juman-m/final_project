@@ -1,7 +1,5 @@
-import 'dart:developer';
-
-import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 import 'package:final_project/models/appointment_model.dart';
+import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
 import 'package:final_project/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -118,5 +116,17 @@ class SupabaseFunctions {
       communityObjectsList.add(CommunityModel.fromJson(element));
     }
     return communityObjectsList;
+  }
+
+  Stream getComments(int communityId) {
+    final supabase = Supabase.instance.client;
+    final commentsAsStream = supabase
+        .from('comments')
+        .stream(primaryKey: ['id'])
+        .eq('community_id', communityId)
+        .map((item) => item);
+    final commentsAsStreamModel = commentsAsStream.map(
+        (items) => items.map((item) => CommentModel.fromJson(item)).toList());
+    return commentsAsStreamModel;
   }
 }

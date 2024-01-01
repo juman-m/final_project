@@ -15,3 +15,9 @@ final class PublishEvent extends CommunityEvent {
 final class GetCommunitiesEvent extends CommunityEvent {}
 
 final class GetMyParticipationsEvent extends CommunityEvent {}
+
+final class SearchEvent extends CommunityEvent {
+  final String text;
+
+  SearchEvent({required this.text});
+}

@@ -1,6 +1,7 @@
 import 'package:final_project/blocs/community_bloc/community_bloc.dart';
 import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:final_project/blocs/community_bloc/community_state.dart';
+import 'package:final_project/screens/comment_screen/comment_screen.dart';
 import 'package:final_project/screens/community_screens/widgets/community_card.dart';
 import 'package:final_project/screens/my_participation_screen/widgets/screen_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,9 @@ class MyParticipationsScreen extends StatelessWidget {
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 24),
                         );
+                      }
+                      if (state is LoadingState) {
+                        return const Center(child: CircularProgressIndicator());
                       } else if (state is GetMyParticipationsState) {
                         return SizedBox(
                           height: MediaQuery.sizeOf(context).height,
@@ -50,7 +54,16 @@ class MyParticipationsScreen extends StatelessWidget {
                                 time: state.communityObjectsList[i].time!
                                     .format(context),
                                 content: state.communityObjectsList[i].content!,
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => CommentScreen(
+                                              direction:
+                                                  'from my participations',
+                                              community: state
+                                                  .communityObjectsList[i])));
+                                },
                               );
                             },
                             separatorBuilder: (context, i) {

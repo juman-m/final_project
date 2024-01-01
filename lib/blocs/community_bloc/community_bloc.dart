@@ -36,6 +36,7 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
       emit(PublishState());
     });
     on<GetCommunitiesEvent>((event, emit) async {
+      emit(LoadingState());
       final communityObjectsList =
           await SupabaseFunctions().getCommuinties('الرياض');
       if (communityObjectsList.isNotEmpty) {
@@ -45,6 +46,7 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
       }
     });
     on<GetMyParticipationsEvent>((event, emit) async {
+      emit(LoadingState());
       final communityObjectsList =
           await SupabaseFunctions().getMyParticipations();
       if (communityObjectsList.isNotEmpty) {
@@ -52,6 +54,25 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
             communityObjectsList: communityObjectsList));
       } else {
         emit(EmptyMyParticipationsState());
+      }
+    });
+
+    on<SearchEvent>((event, emit) async {
+      emit(LoadingState());
+      final communityObjectsList =
+          await SupabaseFunctions().getMyParticipations();
+      final searchCommunityObjectsList =
+          await SupabaseFunctions().searchForParticipation(event.text);
+      if (event.text.isEmpty) {
+        emit(GetCommunitiesState(communityObjectsList: communityObjectsList));
+      } else {
+        if (searchCommunityObjectsList.isNotEmpty) {
+          emit(SearchedParticipationsState(
+              communityObjectsList: searchCommunityObjectsList));
+        } else {
+          emit(EmptySearchedParticipationsState(
+              message: 'لايوجد مشاركات تحتوي على\'${event.text}\''));
+        }
       }
     });
   }
