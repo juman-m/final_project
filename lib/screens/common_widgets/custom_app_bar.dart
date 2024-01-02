@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-AppBar CustomAppBar(String title, Function() onPressed) {
+AppBar customAppBar(String title, Function() onPressed, bool isVisable) {
   return AppBar(
     shape: const RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
@@ -10,12 +10,15 @@ AppBar CustomAppBar(String title, Function() onPressed) {
     ),
     backgroundColor: const Color(0xFF0086D3),
     centerTitle: true,
-    leading: IconButton(
-      onPressed: onPressed,
-      icon: const Icon(
-        Icons.arrow_back_ios_new_rounded,
-        size: 26,
-        color: Colors.white,
+    leading: Visibility(
+      visible: isVisable,
+      child: IconButton(
+        onPressed: onPressed,
+        icon: const Icon(
+          Icons.arrow_back_ios_new_rounded,
+          size: 26,
+          color: Colors.white,
+        ),
       ),
     ),
     title: Text(title,

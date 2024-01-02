@@ -189,6 +189,10 @@ class EditAppoinment extends StatelessWidget {
                                 selectedDate: selectedDate,
                                 selectedTime: selectedTime,
                               ));
+                          if (selectedCategory > -1 &&
+                              descriptionController.text.isNotEmpty) {
+                            Navigator.pop(context);
+                          }
                         },
                       ),
                       const SizedBox(width: 16),
@@ -197,9 +201,6 @@ class EditAppoinment extends StatelessWidget {
                           context
                               .read<MyAppointmentsBloc>()
                               .add(DeleteEvent(id: appoinment.id!));
-                          context
-                              .read<MyAppointmentsBloc>()
-                              .add(GetAppointmentsEvent());
                           Navigator.pop(context);
                         },
                         icon: SvgPicture.asset('assets/delete.svg'),

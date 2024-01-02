@@ -9,13 +9,13 @@ class ScreenAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.sizeOf(context).width,
-      height: 140,
+      height: 105,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(24),
-          bottomRight: Radius.circular(24),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
         ),
-        color: Color(0xff0086D3),
+        color: Color(0xFF0086D3),
       ),
       child: const Padding(
         padding: EdgeInsets.only(top: 48),

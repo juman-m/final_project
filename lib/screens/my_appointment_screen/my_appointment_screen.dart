@@ -5,12 +5,12 @@ import 'package:final_project/functions/check_expiration.dart';
 import 'package:final_project/functions/formatDate.dart';
 import 'package:final_project/functions/is_same_day.dart';
 import 'package:final_project/functions/remaining_days.dart';
+import 'package:final_project/screens/common_widgets/custom_app_bar.dart';
 import 'package:final_project/screens/create_appoinment_screen/create_appoinment_screen.dart';
 import 'package:final_project/screens/edit_appoinment_screen/edit_appoinment_screen.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/RescheduleDialog.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/appointment_card.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
-import 'package:final_project/screens/my_appointment_screen/widgets/screen_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,6 +22,7 @@ class MyAppointmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<MyAppointmentsBloc>().add(GetAppointmentsEvent());
     return Scaffold(
+      appBar: customAppBar('مواعيدي', () => null, false),
       floatingActionButton: FloatinCustomm(
         imageUrl: "assets/اضافة موعد.png",
         onPressed: () {
@@ -35,57 +36,20 @@ class MyAppointmentScreen extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         child: Column(
           children: [
-            ScreenAppBar(
-                isFromHome: isFromHome,
-                title: 'مواعيدي',
-                onPressed: () {
-                  Navigator.pop(context);
-                }),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Column(
                 children: [
                   const SizedBox(height: 40),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     ElevatedButton(
-                  //         onPressed: () async {
-                  //           Navigator.push(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                   builder: (context) => TestingScreen()));
-                  //         },
-                  //         child: const Text('Timer')),
-                  //     const SizedBox(width: 8),
-                  //     ElevatedButton(
-                  //         onPressed: () async {
-                  //           Navigator.push(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                   builder: (context) =>
-                  //                       const TestingScreenWithBloc()));
-                  //         },
-                  //         child: const Text('TEST BLoC')),
-                  //     const SizedBox(width: 8),
-                  //     ElevatedButton(
-                  //         onPressed: () async {
-                  //           Navigator.push(
-                  //               context,
-                  //               MaterialPageRoute(
-                  //                   builder: (context) =>
-                  //                       const TestingWithLib(title: 'Meow')));
-                  //         },
-                  //         child: const Text('TEST Lib')),
-                  //   ],
-                  // ),
                   BlocBuilder<MyAppointmentsBloc, MyAppointmentsState>(
                     builder: (context, state) {
                       if (state is EmptyAppointmentsState) {
-                        return const Text(
-                          'لا يوجد مواعيد',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
+                        return const Center(
+                          child: Text(
+                            'لا يوجد مواعيد',
+                            style: TextStyle(
+                                fontSize: 22, color: Color(0xff869096)),
+                          ),
                         );
                       } else if (state is GetAppointmentsState) {
                         return SizedBox(

@@ -183,6 +183,11 @@ class CreateAppointmentScreen extends StatelessWidget {
                             selectedDate: selectedDate,
                             selectedTime: selectedTime,
                           ));
+                      if (selectedCategory > -1 &&
+                          descriptionController.text.isNotEmpty &&
+                          selectedTime != null) {
+                        Navigator.pop(context);
+                      }
                     },
                   ),
                 ),

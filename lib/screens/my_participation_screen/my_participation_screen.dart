@@ -2,8 +2,8 @@ import 'package:final_project/blocs/community_bloc/community_bloc.dart';
 import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:final_project/blocs/community_bloc/community_state.dart';
 import 'package:final_project/screens/comment_screen/comment_screen.dart';
+import 'package:final_project/screens/common_widgets/custom_app_bar.dart';
 import 'package:final_project/screens/community_screens/widgets/community_card.dart';
-import 'package:final_project/screens/my_participation_screen/widgets/screen_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,16 +14,20 @@ class MyParticipationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     context.read<CommunityBloc>().add(GetMyParticipationsEvent());
     return Scaffold(
+      appBar: customAppBar('مشاركاتي', () {
+        context.read<CommunityBloc>().add(GetCommunitiesEvent());
+        Navigator.pop(context);
+      }, true),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ScreenAppBar(
-              title: 'مشاركاتي',
-              onPressed: () {
-                context.read<CommunityBloc>().add(GetCommunitiesEvent());
-                Navigator.pop(context);
-              },
-            ),
+            // ScreenAppBar(
+            //   title: 'مشاركاتي',
+            //   onPressed: () {
+            //     context.read<CommunityBloc>().add(GetCommunitiesEvent());
+            //     Navigator.pop(context);
+            //   },
+            // ),
             const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -32,10 +36,14 @@ class MyParticipationsScreen extends StatelessWidget {
                   BlocBuilder<CommunityBloc, CommunityState>(
                     builder: (context, state) {
                       if (state is EmptyMyParticipationsState) {
-                        return const Text(
-                          'لا يوجد لديك مشاركات',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
+                        return const Center(
+                          child: Text(
+                            'لا يوجد لديك مشاركات',
+                            // style: TextStyle(
+                            //     fontWeight: FontWeight.bold, fontSize: 24),
+                            style: TextStyle(
+                                fontSize: 22, color: Color(0xff869096)),
+                          ),
                         );
                       }
                       if (state is LoadingState) {

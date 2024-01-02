@@ -5,6 +5,7 @@ import 'package:final_project/screens/front_screens/edit_profile.dart';
 import 'package:final_project/screens/front_screens/widget_profile.dart';
 import 'package:final_project/screens/front_screens/widgets/bottomsheet_widget.dart';
 import 'package:final_project/screens/front_screens/widgets/lanagebotoomsheeet_widget.dart';
+import 'package:final_project/screens/my_participation_screen/my_participation_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -185,17 +186,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
           height: 40,
         ),
         CustomContainer(
-          leftIcon: Icons.topic_rounded,
-          leftText: 'مشاركاتي',
-          // onPressed: () {
-          //   Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => NotficationScreen(),
-          //     ),
-          //   );
-          // }
-        ),
+            leftIcon: Icons.topic_rounded,
+            leftText: 'مشاركاتي',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const MyParticipationsScreen(),
+                ),
+              );
+            }),
         SizedBox(
           height: 25,
         ),

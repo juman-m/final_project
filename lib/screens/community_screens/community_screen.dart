@@ -1,5 +1,3 @@
-// import 'dart:developer';
-
 import 'package:final_project/blocs/community_bloc/community_bloc.dart';
 import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:final_project/blocs/community_bloc/community_state.dart';
@@ -10,7 +8,6 @@ import 'package:final_project/screens/community_screens/widgets/top_row.dart';
 import 'package:final_project/screens/create_participation_screen/create_participation_screen.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
 import 'package:final_project/screens/my_participation_screen/my_participation_screen.dart';
-import 'package:final_project/services/supabase_auth_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,6 +20,7 @@ class CommunityScreen extends StatelessWidget {
     TextEditingController controller = TextEditingController();
     context.read<CommunityBloc>().add(GetCommunitiesEvent());
     return Scaffold(
+      // appBar: customAppBar('الرياض', () => null, false, true),
       floatingActionButton: FloatinCustomm(
         imageUrl: "assets/Vector.png",
         onPressed: () {
@@ -38,11 +36,11 @@ class CommunityScreen extends StatelessWidget {
           children: [
             const ScreenAppBar(),
             const SizedBox(height: 24),
-            ElevatedButton(
-                onPressed: () async {
-                  SupabaseFunctions().getComments(17).toString();
-                },
-                child: const Text('TEST')),
+            // ElevatedButton(
+            //     onPressed: () async {
+            //       // final fun = SupabaseFunctions().getComments(17).toString();
+            //     },
+            //     child: const Text('TEST')),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -63,9 +61,13 @@ class CommunityScreen extends StatelessWidget {
                         return const Center(child: CircularProgressIndicator());
                       } else if (state is EmptyCommunitiesState) {
                         return const Center(
-                          child: Text('لا يوجد مشاركات حاليا',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 24)),
+                          child: Text(
+                            'لا يوجد مشاركات حاليا',
+                            // style: TextStyle(
+                            //     fontWeight: FontWeight.bold, fontSize: 24),
+                            style: TextStyle(
+                                fontSize: 22, color: Color(0xff869096)),
+                          ),
                         );
                       } else if (state is EmptySearchedParticipationsState) {
                         return Center(

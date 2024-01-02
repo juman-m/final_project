@@ -11,7 +11,6 @@ class ScreenTextField extends StatelessWidget {
       maxLines: controller.text.length > 28 ? 3 : 1,
       textAlignVertical: const TextAlignVertical(y: 0.8),
       decoration: InputDecoration(
-        hintText: 'أدخل وصف الموعد',
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(
             color: Color(0xffC9C9C9),

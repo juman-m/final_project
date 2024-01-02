@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
@@ -133,11 +131,11 @@ class SupabaseFunctions {
     return communityObjectsList;
   }
 
-  getComments(int communityId) async {
+  Stream getComments(int communityId) {
     final supabase = Supabase.instance.client;
-    final comments =
-        await supabase.from('comments').select().eq('community_id', 17);
-    log('===${comments.length.toString()}===');
+    // final comments =
+    //       supabase.from('comments').select().eq('community_id', 17);
+    // log('===${comments.length.toString()}===');
     final commentsAsStream = supabase
         .from('comments')
         .stream(primaryKey: ['id'])

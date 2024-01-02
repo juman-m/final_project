@@ -1,12 +1,10 @@
 import 'dart:developer';
 import 'package:final_project/blocs/community_bloc/community_bloc.dart';
-// import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
 import 'package:final_project/screens/comment_screen/widgets/comment_card.dart';
-// import 'package:final_project/screens/comment_screen/widgets/screen_app_bar.dart';
+import 'package:final_project/screens/comment_screen/widgets/community_card.dart';
 import 'package:final_project/screens/comment_screen/widgets/send_row.dart';
 import 'package:final_project/screens/common_widgets/custom_app_bar.dart';
-// import 'package:final_project/services/supabase_auth_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/community_bloc/community_event.dart';
@@ -19,8 +17,9 @@ class CommentScreen extends StatelessWidget {
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    // SupabaseFunctions().getComments(17);
     return Scaffold(
-      appBar: CustomAppBar('مشاركة', () {
+      appBar: customAppBar('مشاركة', () {
         if (direction == 'from community') {
           context.read<CommunityBloc>().add(GetCommunitiesEvent());
           Navigator.pop(context);
@@ -28,7 +27,7 @@ class CommentScreen extends StatelessWidget {
           context.read<CommunityBloc>().add(GetMyParticipationsEvent());
           Navigator.pop(context);
         }
-      }),
+      }, true),
       bottomSheet: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
         child: SendRow(
@@ -58,13 +57,29 @@ class CommentScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
-                  CommentCard(
+                  CommunityCard(
                     name: community.participantName!,
                     time: community.time!.format(context),
                     content: community.content!,
+                    onTap: () {},
                   ),
-                  const SizedBox(height: 8),
-                  const Divider(color: Colors.black),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height * 0.6,
+                    child: ListView.separated(
+                      padding: const EdgeInsets.only(top: 8, bottom: 120),
+                      shrinkWrap: true,
+                      itemCount: 10,
+                      itemBuilder: (context, i) => CommentCard(
+                        name: community.participantName!,
+                        time: community.time!.format(context),
+                        content: community.content!,
+                      ),
+                      separatorBuilder: (context, i) =>
+                          const SizedBox(height: 16),
+                    ),
+                  ),
+                  // const Divider(color: Colors.black),
                   // SizedBox(
                   //   height: MediaQuery.sizeOf(context).height * 0.6,
                   //   child: StreamBuilder(
@@ -86,10 +101,6 @@ class CommentScreen extends StatelessWidget {
                   //             separatorBuilder: (context, i) =>
                   //                 const SizedBox(height: 16),
                   //           );
-                  //         } else if (!snapshot.hasData) {
-                  //           return const Center(child: Text('لا يوجد ردود'));
-                  //         } else if (snapshot.hasError) {
-                  //           return const Text('ERROR');
                   //         } else {
                   //           return const SizedBox();
                   //         }

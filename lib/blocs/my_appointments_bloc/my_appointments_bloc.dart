@@ -50,6 +50,7 @@ class MyAppointmentsBloc
         };
         await SupabaseFunctions().createAppointment(body);
         emit(SuccessSubmitState());
+        add(GetAppointmentsEvent());
       }
     });
 
@@ -77,6 +78,7 @@ class MyAppointmentsBloc
         };
         await SupabaseFunctions().editAppointment(body);
         emit(SuccessSubmitState());
+        add(GetAppointmentsEvent());
       }
     });
 
@@ -98,6 +100,7 @@ class MyAppointmentsBloc
         };
         await SupabaseFunctions().rescheduleAppointment(body);
         emit(SuccessRescheduleState());
+        add(GetAppointmentsEvent());
       }
     });
 
@@ -114,6 +117,7 @@ class MyAppointmentsBloc
     on<DeleteEvent>((event, emit) async {
       await await SupabaseFunctions().deleteAppointment(event.id);
       emit(SuccessDeleteState());
+      add(GetAppointmentsEvent());
     });
   }
 }
