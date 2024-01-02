@@ -86,29 +86,68 @@ class AIScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: BlocBuilder<AiCubit, AiState>(
-                builder: (context, state) {
-                  if (state.isLoading) {
-                    return const Center(
-                      child:
-                          CircularProgressIndicator(color: Color(0xff018CDD)),
-                    );
-                  } else {
-                    return ListView.builder(
+            BlocListener<AiCubit, AiState>(
+              listener: (context, state) {
+                if (state.isLoading) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => const Center(
+                      child: CircularProgressIndicator(
+                        color: Color(0xff018CDD),
+                      ),
+                    ),
+                  );
+                } else {
+                  Navigator.of(context, rootNavigator: true).pop();
+                }
+              },
+              child: Builder(
+                builder: (context) {
+                  return Expanded(
+                    child: ListView.builder(
                       padding: const EdgeInsets.only(bottom: 100),
-                      itemCount: state.chatMessages.length,
+                      itemCount:
+                          context.watch<AiCubit>().state.chatMessages.length,
                       itemBuilder: (context, index) {
                         return AIBubble(
-                          isUser: state.chatMessages[index].isUser,
-                          message: state.chatMessages[index].title,
+                          isUser: context
+                              .watch<AiCubit>()
+                              .state
+                              .chatMessages[index]
+                              .isUser,
+                          message: context
+                              .watch<AiCubit>()
+                              .state
+                              .chatMessages[index]
+                              .title,
                         );
                       },
-                    );
-                  }
+                    ),
+                  );
                 },
               ),
             ),
+
+            // BlocBuilder<AiCubit, AiState>(
+            //   builder: (context, state) {
+            //     if (state.isLoading) {
+            //       return const Center(
+            //         child: CircularProgressIndicator(color: Color(0xff018CDD)),
+            //       );
+            //     } else {
+            //       return ListView.builder(
+            //         padding: const EdgeInsets.only(bottom: 100),
+            //         itemCount: state.chatMessages.length,
+            //         itemBuilder: (context, index) {
+            //           return AIBubble(
+            //             isUser: state.chatMessages[index].isUser,
+            //             message: state.chatMessages[index].title,
+            //           );
+            //         },
+            //       );
+            //     }
+            //   },
+            // ),
           ],
         ),
       ),

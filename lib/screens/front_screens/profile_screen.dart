@@ -146,8 +146,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Positioned(
-              top: 30,
-              right: 20,
+              top: 50,
+              right: 30,
               child: IconButton(
                 icon: Icon(
                   Icons.arrow_back_ios,
@@ -160,8 +160,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Positioned(
-              bottom: 177,
-              right: 340,
+              bottom: 160,
+              right: 328,
               child: IconButton(
                 icon: Icon(
                   Icons.logout_outlined,

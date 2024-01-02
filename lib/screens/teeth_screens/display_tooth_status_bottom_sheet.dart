@@ -243,20 +243,18 @@ class DisplayToothStatusBottomSheet extends StatelessWidget {
                   },
                   child: InkWell(
                     onTap: () {
-                      // if (context.read<TeethScreenBloc>().isEdit) {
-                        context
-                            .read<TeethScreenBloc>()
-                            .add(TeethStatusUpdateEvent(
-                              tooth.toothNo!,
-                              tooth.toothStatus!,
-                              hospitalNameController.text,
-                              doctorNameController.text,
-                              tooth.prescription ?? "",
-                              tooth.xray ?? "",
-                              tooth.report ?? "",
-                              tooth.date!,
-                            ));
-                      // }
+                      context
+                          .read<TeethScreenBloc>()
+                          .add(TeethStatusUpdateEvent(
+                            tooth.toothNo!,
+                            tooth.toothStatus!,
+                            hospitalNameController.text,
+                            doctorNameController.text,
+                            tooth.prescription ?? "",
+                            tooth.xray ?? "",
+                            tooth.report ?? "",
+                            tooth.date!,
+                          ));
                     },
                     child: Container(
                       width: 243.61,

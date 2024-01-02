@@ -80,14 +80,9 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
             for (var element in list) {
               if (element.name == imageName) {
                 isFound = true;
-                // print(element.name);
-                // print(imageName);
               }
             }
             if (isFound) {
-              print("event.xray:${event.xray}");
-
-              print("imageName:$imageName");
               await supabase.storage
                   .from('ToothImage')
                   .update(imageName, File(event.xray));
@@ -124,7 +119,6 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
               reportImageUrl =
                   supabase.storage.from("ToothImage").getPublicUrl(imageName);
               isFound = false;
-              print("is change");
             } else {
               await supabase.storage
                   .from("ToothImage")
@@ -145,8 +139,6 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
             for (var element in list) {
               if (element.name == imageName) {
                 isFound = true;
-                // print(element.name);
-                // print(imageName);
               }
             }
             if (isFound) {
@@ -157,7 +149,6 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
                   supabase.storage.from("ToothImage").getPublicUrl(imageName);
               isFound = false;
             } else {
-              print("add new");
               await supabase.storage
                   .from("ToothImage")
                   .upload(imageName, File(event.prescription));

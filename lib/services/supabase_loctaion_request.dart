@@ -1,16 +1,24 @@
+import 'package:final_project/models/location_model.dart';
+
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class Supabaseloctaion {
+class SupabaseLocation {
   final supabase = Supabase.instance.client;
 
-  getLoction() async {
-    final locationdate = await supabase.from("loctaion").select();
-    print(locationdate);
+  Future<List<LocationModel>> getLocations() async {
+    List<LocationModel> locations = [];
 
-    // for (var element in locationdate) {
+    try {
+      final locationData = await supabase.from("location").select();
 
-    // locations.add()
+      for (var element in locationData) {
+        locations.add(LocationModel.fromJson(element));
+      }
 
-    // }
+      return locations;
+    } catch (error) {
+      print("Error fetching locations: $error");
+      throw error;
+    }
   }
 }
