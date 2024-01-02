@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
 import 'package:final_project/models/notification_model.dart';
 import 'package:final_project/models/user_model.dart';
-import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseFunctions {
