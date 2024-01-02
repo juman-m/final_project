@@ -57,167 +57,169 @@ class FrontScreen extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 44,
-                        height: 44,
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Color(0xff018CDD)),
-                        child: Center(
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const ProfileScreen(),
-                                ),
-                              );
-                            },
-                            child: const Icon(
-                              Icons.person,
-                              color: Colors.white,
-                              size: 36,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 44,
+                          height: 44,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle, color: Color(0xff018CDD)),
+                          child: Center(
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const ProfileScreen(),
+                                  ),
+                                );
+                              },
+                              child: const Icon(
+                                Icons.person,
+                                color: Colors.white,
+                                size: 36,
+                              ),
                             ),
                           ),
                         ),
+                        // ClipOval(
+                        //   child: Image.asset(
+                        //     'assets/image_user.png',
+                        //     height: 44,
+                        //     width: 44,
+                        //   ),
+                        // ),
+                        const SizedBox(width: 8),
+                        Text(
+                          'مرحبا,${currentUser!.username}',
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                    ClipOval(
+                      child: BlocBuilder<NotificationsBloc, NotificationsState>(
+                        builder: (context, state) {
+                          if (state is GetNotificationsState) {
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NotificationsScreen(
+                                        notifications:
+                                            state.notificationsObjectsList),
+                                  ),
+                                );
+                              },
+                              child: Image.asset(
+                                'assets/اشعارات.png',
+                                height: 44,
+                                width: 44,
+                              ),
+                            );
+                          } else {
+                            return const SizedBox();
+                          }
+                        },
                       ),
-                      // ClipOval(
-                      //   child: Image.asset(
-                      //     'assets/image_user.png',
-                      //     height: 44,
-                      //     width: 44,
-                      //   ),
-                      // ),
-                      const SizedBox(width: 8),
-                      Text(
-                        'مرحبا,${currentUser!.username}',
-                        style: const TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  ClipOval(
-                    child: BlocBuilder<NotificationsBloc, NotificationsState>(
-                      builder: (context, state) {
-                        if (state is GetNotificationsState) {
-                          return InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => NotificationsScreen(
-                                      notifications:
-                                          state.notificationsObjectsList),
-                                ),
-                              );
-                            },
-                            child: Image.asset(
-                              'assets/اشعارات.png',
-                              height: 44,
-                              width: 44,
-                            ),
-                          );
-                        } else {
-                          return const SizedBox();
-                        }
-                      },
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 100, left: 100),
+                  child: CustomButton(
+                    text: ' اسأل AI',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AIScreen(),
+                        ),
+                      );
+                    },
+                    leftImage: Image.asset(
+                      'assets/AI.png',
+                      width: 25,
                     ),
                   ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 100, left: 100),
-                child: CustomButton(
-                  text: ' اسأل AI',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => AIScreen(),
-                      ),
-                    );
-                  },
-                  leftImage: Image.asset(
-                    'assets/AI.png',
-                    width: 25,
-                  ),
                 ),
-              ),
-              carouselSlider,
-              const Padding(
-                padding: EdgeInsets.only(right: 20),
-                child: Text(
-                  "الخدمات",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: Colors.black),
-                ),
-              ),
-              const SizedBox(
-                height: 9,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ServiceSquareContainer(
-                      imagePath: 'assets/cont1.png',
-                      serviceName: 'سجلي',
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const DocumentsScreen(),
-                          ),
-                        );
-                      }),
-                  ServiceSquareContainer(
-                      imagePath: 'assets/cont2.png',
-                      serviceName: 'مواعيدي',
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                const MyAppointmentScreen(isFromHome: true),
-                          ),
-                        );
-                      }),
-                  ServiceSquareContainer(
-                      imagePath: 'assets/cont3.png',
-                      serviceName: 'أسناني',
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const TeethScreen(),
-                          ),
-                        );
-                      }),
-                ],
-              ),
-              const SizedBox(
-                height: 11,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(right: 20),
-                child: Text("العيادات القريبة مني",
-                    textAlign: TextAlign.right,
+                carouselSlider,
+                const Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: Text(
+                    "الخدمات",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
-                        color: Colors.black)),
-              ),
-              Container(
-                height: 120,
-                child: ListView(
+                        color: Colors.black),
+                  ),
+                ),
+                const SizedBox(
+                  height: 9,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ServiceSquareContainer(
+                        imagePath: 'assets/cont1.png',
+                        serviceName: 'سجلي',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const DocumentsScreen(),
+                            ),
+                          );
+                        }),
+                    ServiceSquareContainer(
+                        imagePath: 'assets/cont2.png',
+                        serviceName: 'مواعيدي',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  const MyAppointmentScreen(isFromHome: true),
+                            ),
+                          );
+                        }),
+                    ServiceSquareContainer(
+                        imagePath: 'assets/cont3.png',
+                        serviceName: 'أسناني',
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const TeethScreen(),
+                            ),
+                          );
+                        }),
+                  ],
+                ),
+                const SizedBox(
+                  height: 11,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(right: 20),
+                  child: Text("العيادات القريبة مني",
+                      textAlign: TextAlign.right,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: Colors.black)),
+                ),
+                Container(
+                  height: 120,
+                  child: ListView(
+                    padding: EdgeInsets.only(bottom: 40),
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
@@ -225,7 +227,7 @@ class FrontScreen extends StatelessWidget {
                       Row(
                         children: [
                           LocationItemWidget(
-                              imagePath: 'assets/5e4baeefe3879 1.png'),
+                              imagePath: 'assets/5e4baeefe38791.png'),
                           SizedBox(
                             width: 40,
                           ),
@@ -238,9 +240,11 @@ class FrontScreen extends StatelessWidget {
                               imagePath: 'assets/2022-05-16 (1).jpg')
                         ],
                       ),
-                    ]),
-              )
-            ],
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
