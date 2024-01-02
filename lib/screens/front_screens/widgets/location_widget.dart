@@ -1,30 +1,12 @@
 import 'package:flutter/material.dart';
 
-class Location extends StatefulWidget {
-  const Location({Key? key}) : super(key: key);
+class LocationItemWidget extends StatelessWidget {
+  final String imagePath;
 
-  @override
-  State<Location> createState() => _LocationState();
-}
+  const LocationItemWidget({Key? key, required this.imagePath}) : super(key: key);
 
-class _LocationState extends State<Location> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          children: [
-            buildLocationItem('assets/5e4baeefe3879 1.png'),
-            SizedBox(height: 16),
-            buildLocationItem('assets/5e4baeefe3879 1.png'),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildLocationItem(String imagePath) {
     return Container(
       width: 240,
       height: 100,

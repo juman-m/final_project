@@ -25,6 +25,8 @@ class WelcomeScreen extends StatelessWidget {
           await supabaseClint.auth
               .setSession(supabaseClint.auth.currentSession!.refreshToken!);
         }
+         
+
 
         currentUser = await SupabaseFunctions().getUser();
 

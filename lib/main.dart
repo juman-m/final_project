@@ -26,7 +26,7 @@ class MainApp extends StatelessWidget {
   const MainApp({super.key});
   @override
   Widget build(BuildContext context) {
-    Supabaseloctaion().getLoction();
+   
     return MultiBlocProvider(
       providers: [
         BlocProvider(
