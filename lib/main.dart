@@ -4,6 +4,7 @@ import 'package:final_project/blocs/community_bloc/community_bloc.dart';
 import 'package:final_project/blocs/date_picker_bloc/date_piker_bloc.dart';
 import 'package:final_project/blocs/edit_profile_bloc/edit_profile_bloc.dart';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_bloc.dart';
+import 'package:final_project/blocs/notifications_bloc/notifications_bloc.dart';
 import 'package:final_project/blocs/status_chip_bloc/status_chip_bloc.dart';
 import 'package:final_project/blocs/teeth_screen_bloc/teeth_screen_bloc.dart';
 import 'package:final_project/blocs/timer_bloc/timer_bloc.dart';
@@ -58,6 +59,9 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => EditProfileBloc(),
+        ),
+        BlocProvider(
+          create: (context) => NotificationsBloc(),
         ),
       ],
       child: MaterialApp(

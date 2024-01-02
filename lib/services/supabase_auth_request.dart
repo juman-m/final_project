@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
+import 'package:final_project/models/notification_model.dart';
 import 'package:final_project/models/user_model.dart';
+import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseFunctions {
@@ -145,5 +149,18 @@ class SupabaseFunctions {
     final commentsAsStreamModel = commentsAsStream.map(
         (items) => items.map((item) => CommentModel.fromJson(item)).toList());
     return commentsAsStreamModel;
+  }
+
+  Future<List<NotificationsModel>> getNotifications() async {
+    final supabase = Supabase.instance.client;
+    final notifications = await supabase
+        .from('notifications')
+        .select()
+        .eq('user_id', supabase.auth.currentUser!.id);
+    final List<NotificationsModel> notificationObjectsList = [];
+    for (var element in notifications) {
+      notificationObjectsList.add(NotificationsModel.fromJson(element));
+    }
+    return notificationObjectsList;
   }
 }

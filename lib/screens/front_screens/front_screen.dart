@@ -1,22 +1,26 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:final_project/blocs/notifications_bloc/notifications_bloc.dart';
+import 'package:final_project/blocs/notifications_bloc/notifications_event.dart';
+import 'package:final_project/blocs/notifications_bloc/notifications_state.dart';
 import 'package:final_project/globals/global.dart';
 import 'package:final_project/screens/ai_screens/ai_screen.dart';
 import 'package:final_project/screens/auth_screens/widget/button_widget.dart';
 import 'package:final_project/screens/documents_screens/documents_screen.dart';
-import 'package:final_project/screens/front_screens/notfication_screen.dart';
 import 'package:final_project/screens/front_screens/profile_screen.dart';
 import 'package:final_project/screens/front_screens/widgets/contener_widget.dart';
 import 'package:final_project/screens/my_appointment_screen/my_appointment_screen.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
+import 'package:final_project/screens/notifications_screen/notifications_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FrontScreen extends StatelessWidget {
   const FrontScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    context.read<NotificationsBloc>().add(GetNotificationsEvent());
     final List<String> imgList = [
       'assets/front1.png',
       'assets/front2.png',
@@ -97,20 +101,30 @@ class FrontScreen extends StatelessWidget {
                     ],
                   ),
                   ClipOval(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const NotficationScreen(),
-                          ),
-                        );
+                    child: BlocBuilder<NotificationsBloc, NotificationsState>(
+                      builder: (context, state) {
+                        if (state is GetNotificationsState) {
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => NotificationsScreen(
+                                      notifications:
+                                          state.notificationsObjectsList),
+                                ),
+                              );
+                            },
+                            child: Image.asset(
+                              'assets/اشعارات.png',
+                              height: 44,
+                              width: 44,
+                            ),
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
                       },
-                      child: Image.asset(
-                        'assets/اشعارات.png',
-                        height: 44,
-                        width: 44,
-                      ),
                     ),
                   ),
                 ],
