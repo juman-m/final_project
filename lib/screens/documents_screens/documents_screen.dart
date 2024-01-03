@@ -90,42 +90,46 @@ class DocumentsScreen extends StatelessWidget {
                   if (selectedType == 'وصفة طبية') {
                     teethList = state.teethListPrescription;
                   }
-                  return SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.75,
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: teethList.length,
-                        itemBuilder: (context, index) {
-                          return TimelineTile(
-                            axis: TimelineAxis.vertical,
-                            beforeLineStyle: const LineStyle(thickness: 1),
-                            alignment: TimelineAlign.start,
-                            endChild: DocumentsWidget(
-                                tooth: teethList[index], type: selectedType),
-                            indicatorStyle: IndicatorStyle(
-                              indicator: DottedBorder(
-                                color: const Color(0xFFD9D9D9),
-                                strokeWidth: 1,
-                                borderType: BorderType.Circle,
-                                child: Center(
-                                  child: Container(
-                                    width: 9,
-                                    height: 9,
-                                    decoration: const ShapeDecoration(
-                                      color: Color(0xFFD9D9D9),
-                                      shape: OvalBorder(),
+                  return teethList.isNotEmpty
+                      ? SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.75,
+                          width: MediaQuery.of(context).size.width,
+                          child: ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: teethList.length,
+                              itemBuilder: (context, index) {
+                                return TimelineTile(
+                                  axis: TimelineAxis.vertical,
+                                  beforeLineStyle:
+                                      const LineStyle(thickness: 1),
+                                  alignment: TimelineAlign.start,
+                                  endChild: DocumentsWidget(
+                                      tooth: teethList[index],
+                                      type: selectedType),
+                                  indicatorStyle: IndicatorStyle(
+                                    indicator: DottedBorder(
+                                      color: const Color(0xFFD9D9D9),
+                                      strokeWidth: 1,
+                                      borderType: BorderType.Circle,
+                                      child: Center(
+                                        child: Container(
+                                          width: 9,
+                                          height: 9,
+                                          decoration: const ShapeDecoration(
+                                            color: Color(0xFFD9D9D9),
+                                            shape: OvalBorder(),
+                                          ),
+                                        ),
+                                      ),
                                     ),
+                                    color: const Color(0xFFD9D9D9),
                                   ),
-                                ),
-                              ),
-                              color: const Color(0xFFD9D9D9),
-                            ),
-                            isFirst: index == 0,
-                            isLast: index == teethList.length - 1,
-                          );
-                        }),
-                  );
+                                  isFirst: index == 0,
+                                  isLast: index == teethList.length - 1,
+                                );
+                              }),
+                        )
+                      : const Center(child: Text("لا يوجد سجلات"));
                 }
                 return const SizedBox();
               },

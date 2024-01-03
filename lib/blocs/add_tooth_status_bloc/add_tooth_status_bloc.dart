@@ -29,9 +29,10 @@ class AddToothStatusBloc
           String xrayImageUrl = "";
           String prescriptionImageUrl = "";
           String reportImageUrl = "";
+          final timestamp = DateTime.now().millisecondsSinceEpoch;
 
           if (event.xray != "") {
-            final imageName = '$userId@${event.toothNo}@xRay.png';
+            final imageName = '$userId@${event.toothNo}@xRay$timestamp.png';
             await supabase.storage
                 .from("ToothImage")
                 .upload(imageName, File(event.xray));
@@ -39,7 +40,7 @@ class AddToothStatusBloc
                 supabase.storage.from("ToothImage").getPublicUrl(imageName);
           }
           if (event.report != "") {
-            final imageName = '$userId@${event.toothNo}@report.png';
+            final imageName = '$userId@${event.toothNo}@report$timestamp.png';
             await supabase.storage
                 .from("ToothImage")
                 .upload(imageName, File(event.report));
@@ -47,7 +48,7 @@ class AddToothStatusBloc
                 supabase.storage.from("ToothImage").getPublicUrl(imageName);
           }
           if (event.prescription != "") {
-            final imageName = '$userId@${event.toothNo}@prescription.png';
+            final imageName = '$userId@${event.toothNo}@prescription$timestamp.png';
             await supabase.storage
                 .from("ToothImage")
                 .upload(imageName, File(event.prescription));
