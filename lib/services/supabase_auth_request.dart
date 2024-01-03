@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
@@ -48,7 +50,10 @@ class SupabaseFunctions {
 
   Future createAppointment(Map body) async {
     final supabase = Supabase.instance.client;
-    await supabase.from('appointments').insert(body);
+    final List rowId =
+        await supabase.from('appointments').insert(body).select();
+    log('===${rowId.first['id']}');
+    return rowId.first['id'];
   }
 
   Future<List<AppointmentModel>> getAppointments() async {
@@ -159,5 +164,23 @@ class SupabaseFunctions {
       notificationObjectsList.add(NotificationsModel.fromJson(element));
     }
     return notificationObjectsList;
+  }
+
+  addAppointmentNoti(Map body) async {
+    await Supabase.instance.client.from('notifications').insert(body);
+  }
+
+  updateAppointmentNoti(Map body) async {
+    await Supabase.instance.client
+        .from('notifications')
+        .update(body)
+        .eq('appointment_id', body['appointment_id']);
+  }
+
+  deleteAppointmentNoti(int id) async {
+    await Supabase.instance.client
+        .from('notifications')
+        .delete()
+        .eq('appointment_id', id);
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:final_project/blocs/notifications_bloc/notifications_event.dart';
 import 'package:final_project/blocs/notifications_bloc/notifications_state.dart';
 import 'package:final_project/services/supabase_auth_request.dart';

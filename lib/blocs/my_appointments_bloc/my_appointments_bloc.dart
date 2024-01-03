@@ -25,7 +25,6 @@ class MyAppointmentsBloc
     on<SubmitEvent>((event, emit) async {
       final supabase = Supabase.instance.client;
       final userId = supabase.auth.currentUser!.id;
-
       if (event.selectedCategory < 0) {
         emit(ErrorState(message: 'يجب إختيار تصنيف'));
       } else if (event.description.isEmpty) {
@@ -48,9 +47,25 @@ class MyAppointmentsBloc
                       ? "${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
                       : "${event.selectedTime!.hour}:${event.selectedTime!.minute}"
         };
-        await SupabaseFunctions().createAppointment(body);
+        final rowId = await SupabaseFunctions().createAppointment(body);
         emit(SuccessSubmitState());
         add(GetAppointmentsEvent());
+        Map notiBody = {
+          "appointment_id": rowId,
+          "user_id": userId,
+          "content": event.description,
+          "date": event.selectedDate.toString(),
+          "type": "0",
+          "time": event.selectedTime!.hour < 10 &&
+                  event.selectedTime!.minute < 10
+              ? "0${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
+              : event.selectedTime!.hour < 10
+                  ? "0${event.selectedTime!.hour}:${event.selectedTime!.minute}"
+                  : event.selectedTime!.minute < 10
+                      ? "${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
+                      : "${event.selectedTime!.hour}:${event.selectedTime!.minute}"
+        };
+        await SupabaseFunctions().addAppointmentNoti(notiBody);
       }
     });
 
@@ -79,6 +94,21 @@ class MyAppointmentsBloc
         await SupabaseFunctions().editAppointment(body);
         emit(SuccessSubmitState());
         add(GetAppointmentsEvent());
+
+        Map notiBody = {
+          "appointment_id": event.id,
+          "content": event.description,
+          "date": event.selectedDate.toString(),
+          "time": event.selectedTime!.hour < 10 &&
+                  event.selectedTime!.minute < 10
+              ? "0${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
+              : event.selectedTime!.hour < 10
+                  ? "0${event.selectedTime!.hour}:${event.selectedTime!.minute}"
+                  : event.selectedTime!.minute < 10
+                      ? "${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
+                      : "${event.selectedTime!.hour}:${event.selectedTime!.minute}"
+        };
+        await SupabaseFunctions().updateAppointmentNoti(notiBody);
       }
     });
 
@@ -101,6 +131,19 @@ class MyAppointmentsBloc
         await SupabaseFunctions().rescheduleAppointment(body);
         emit(SuccessRescheduleState());
         add(GetAppointmentsEvent());
+        Map notiBody = {
+          "appointment_id": event.id,
+          "date": event.selectedDate.toString(),
+          "time": event.selectedTime!.hour < 10 &&
+                  event.selectedTime!.minute < 10
+              ? "0${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
+              : event.selectedTime!.hour < 10
+                  ? "0${event.selectedTime!.hour}:${event.selectedTime!.minute}"
+                  : event.selectedTime!.minute < 10
+                      ? "${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
+                      : "${event.selectedTime!.hour}:${event.selectedTime!.minute}"
+        };
+        await SupabaseFunctions().updateAppointmentNoti(notiBody);
       }
     });
 
@@ -118,6 +161,7 @@ class MyAppointmentsBloc
       await await SupabaseFunctions().deleteAppointment(event.id);
       emit(SuccessDeleteState());
       add(GetAppointmentsEvent());
+      await SupabaseFunctions().deleteAppointmentNoti(event.id);
     });
   }
 }
