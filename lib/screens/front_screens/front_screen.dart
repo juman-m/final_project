@@ -9,12 +9,11 @@ import 'package:final_project/screens/documents_screens/documents_screen.dart';
 import 'package:final_project/screens/front_screens/profile_screen.dart';
 import 'package:final_project/screens/front_screens/widgets/contener_widget.dart';
 import 'package:final_project/screens/front_screens/widgets/location_widget.dart';
-
 import 'package:final_project/screens/my_appointment_screen/my_appointment_screen.dart';
 import 'package:final_project/screens/my_appointment_screen/widgets/fab.dart';
 import 'package:final_project/screens/notifications_screen/notifications_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:final_project/screens/teeth_screens/teeth_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FrontScreen extends StatelessWidget {
@@ -98,7 +97,7 @@ class FrontScreen extends StatelessWidget {
                         // ),
                         const SizedBox(width: 8),
                         Text(
-                          'مرحبا,${currentUser!.username}',
+                          'مرحبا, ${currentUser!.username}',
                           style: const TextStyle(fontSize: 16),
                         ),
                       ],
@@ -216,14 +215,14 @@ class FrontScreen extends StatelessWidget {
                           fontSize: 18,
                           color: Colors.black)),
                 ),
-                Container(
+                SizedBox(
                   height: 120,
                   child: ListView(
-                    padding: EdgeInsets.only(bottom: 40),
+                    padding: const EdgeInsets.only(bottom: 40),
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
-                    physics: ClampingScrollPhysics(),
-                    children: [
+                    physics: const ClampingScrollPhysics(),
+                    children: const [
                       Row(
                         children: [
                           LocationItemWidget(

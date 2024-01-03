@@ -66,11 +66,11 @@ class EditProfile extends StatelessWidget {
                     child: Container(
                       width: 80,
                       height: 89,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.white,
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.person,
                         color: Color(0xff0086D3),
                         size: 75,
@@ -93,11 +93,11 @@ class EditProfile extends StatelessWidget {
                   ),
                   Positioned(
                     top: 200,
-                    right: 170,
+                    right: 165,
                     child: Text(
                       '${currentUser!.username}',
                       textAlign: TextAlign.right,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontSize: 20,
                         fontFamily: 'Cairo',
@@ -142,12 +142,12 @@ class EditProfile extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 20,
+                    top: 60,
                     right: 10,
                     child: IconButton(
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        size: 21,
+                      icon: const Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: 28,
                         color: Colors.white,
                       ),
                       onPressed: () {
@@ -157,22 +157,22 @@ class EditProfile extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Column(
                 children: [
-                  TextWidget(
+                  const TextWidget(
                     text: "اسم المستخدم",
                   ),
                   Padding(
-                    padding: EdgeInsets.all(19.0),
+                    padding: const EdgeInsets.all(19.0),
                     child: TextField(
                       controller: nameController,
                       decoration: InputDecoration(
-                        fillColor: Color(0x1481C5E8),
+                        fillColor: const Color(0x1481C5E8),
                         filled: true,
-                        contentPadding: EdgeInsets.all(16),
+                        contentPadding: const EdgeInsets.all(16),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(11),
                           borderSide: BorderSide.none,
@@ -180,7 +180,7 @@ class EditProfile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  TextWidget(
+                  const TextWidget(
                     text: "رقم الجوال",
                   ),
                   Padding(
@@ -188,9 +188,9 @@ class EditProfile extends StatelessWidget {
                     child: TextField(
                       controller: phoneController,
                       decoration: InputDecoration(
-                        fillColor: Color(0x1481C5E8),
+                        fillColor: const Color(0x1481C5E8),
                         filled: true,
-                        contentPadding: EdgeInsets.all(16),
+                        contentPadding: const EdgeInsets.all(16),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(11),
                           borderSide: BorderSide.none,
@@ -198,7 +198,7 @@ class EditProfile extends StatelessWidget {
                       ),
                     ),
                   ),
-                  TextWidget(
+                  const TextWidget(
                     text: " الايميل",
                   ),
                   Padding(
@@ -206,9 +206,9 @@ class EditProfile extends StatelessWidget {
                     child: TextField(
                       controller: emailController,
                       decoration: InputDecoration(
-                        fillColor: Color(0x1481C5E8),
+                        fillColor: const Color(0x1481C5E8),
                         filled: true,
-                        contentPadding: EdgeInsets.all(16),
+                        contentPadding: const EdgeInsets.all(16),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(11),
                           borderSide: BorderSide.none,
@@ -233,17 +233,17 @@ class EditProfile extends StatelessWidget {
                     width: 265,
                     height: 59,
                     decoration: ShapeDecoration(
-                      color: Color(0xFF0086D3),
+                      color: const Color(0xFF0086D3),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(7),
                       ),
                     ),
                     child: Center(
                       child: state is LoadingState
-                          ? CircularProgressIndicator(
+                          ? const CircularProgressIndicator(
                               color: Color(0xff018CDD),
                             )
-                          : Text(
+                          : const Text(
                               " حفظ",
                               style: TextStyle(
                                 color: Colors.white,
