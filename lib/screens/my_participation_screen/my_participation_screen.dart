@@ -38,7 +38,10 @@ class MyParticipationsScreen extends StatelessWidget {
                         );
                       }
                       if (state is LoadingState) {
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(
+                            child: CircularProgressIndicator(
+                          color: Color(0xFF0086D3),
+                        ));
                       } else if (state is GetMyParticipationsState) {
                         return SizedBox(
                           height: MediaQuery.sizeOf(context).height,

@@ -38,7 +38,7 @@ class AppointmentCategory extends StatelessWidget {
                 triggerCallbackWithValue();
               },
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 16),
           ],
         ),
       ),

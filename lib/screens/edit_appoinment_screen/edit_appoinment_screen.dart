@@ -83,7 +83,6 @@ class EditAppoinment extends StatelessWidget {
                   },
                   builder: (context, state) {
                     return TableCalendar(
-                      locale: "ar",
                       headerStyle: const HeaderStyle(
                         formatButtonVisible: false,
                         titleCentered: true,

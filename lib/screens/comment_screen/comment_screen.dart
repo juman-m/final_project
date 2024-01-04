@@ -66,7 +66,9 @@ class CommentScreen extends StatelessWidget {
                   BlocBuilder<CommunityBloc, CommunityState>(
                     builder: (context, state) {
                       if (state is LoadingCommentsState) {
-                        return const CircularProgressIndicator();
+                        return const CircularProgressIndicator(
+                          color: Color(0xFF0086D3),
+                        );
                       } else if (state is GetCommentState) {
                         commentsList = state.commentsList;
                         return state.commentsList.isEmpty

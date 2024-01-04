@@ -65,8 +65,8 @@ class CreateAppointmentScreen extends StatelessWidget {
               ScreenTitle(title: 'وصف الموعد'),
               const SizedBox(height: 24),
               SizedBox(
-                height: descriptionController.text.length > 28 ? 64 : 44,
-                width: MediaQuery.sizeOf(context).width * 0.60,
+                height: 40,
+                width: 237,
                 child: ScreenTextField(controller: descriptionController),
               ),
               const SizedBox(height: 24),

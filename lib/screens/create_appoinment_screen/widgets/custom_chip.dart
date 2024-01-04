@@ -19,8 +19,8 @@ class CustomChip extends StatelessWidget {
       radius: 20,
       onTap: onTap,
       child: Container(
-        height: 38,
-        width: 104,
+        height: 33,
+        width: 103,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
             color:
@@ -30,8 +30,8 @@ class CustomChip extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 24,
-              width: 24,
+              height: 19,
+              width: 19,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: color,
@@ -41,7 +41,7 @@ class CustomChip extends StatelessWidget {
             Text(
               text,
               style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 16,
                   color: isSelected ? Colors.white : Colors.black),
             ),
           ],
