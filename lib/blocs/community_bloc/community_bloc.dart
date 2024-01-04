@@ -2,7 +2,8 @@ import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:final_project/blocs/community_bloc/community_state.dart';
 import 'package:final_project/globals/global.dart';
 import 'package:final_project/models/comments_model.dart';
-import 'package:final_project/services/supabase_auth_request.dart';
+import 'package:final_project/services/supabase_community_request.dart';
+import 'package:final_project/services/supabase_notifications_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -34,13 +35,12 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
                     ? "${now.hour}:0${now.minute}"
                     : "${now.hour}:${now.minute}",
       };
-      await SupabaseFunctions().publishParticipation(body);
+      await publishParticipation(body);
       emit(PublishState());
     });
     on<GetCommunitiesEvent>((event, emit) async {
       emit(LoadingState());
-      final communityObjectsList =
-          await SupabaseFunctions().getCommuinties('الرياض');
+      final communityObjectsList = await getCommuinties('الرياض');
       if (communityObjectsList.isNotEmpty) {
         emit(GetCommunitiesState(communityObjectsList: communityObjectsList));
       } else {
@@ -49,8 +49,7 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
     });
     on<GetMyParticipationsEvent>((event, emit) async {
       emit(LoadingState());
-      final communityObjectsList =
-          await SupabaseFunctions().getMyParticipations();
+      final communityObjectsList = await getMyParticipations();
       if (communityObjectsList.isNotEmpty) {
         emit(GetMyParticipationsState(
             communityObjectsList: communityObjectsList));
@@ -61,10 +60,9 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
 
     on<SearchEvent>((event, emit) async {
       emit(LoadingState());
-      final communityObjectsList =
-          await SupabaseFunctions().getMyParticipations();
+      final communityObjectsList = await getMyParticipations();
       final searchCommunityObjectsList =
-          await SupabaseFunctions().searchForParticipation(event.text);
+          await searchForParticipation(event.text);
       if (event.text.isEmpty) {
         emit(GetCommunitiesState(communityObjectsList: communityObjectsList));
       } else {
@@ -80,8 +78,7 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
 
     on<GetCommentEvent>((event, emit) async {
       emit(LoadingCommentsState());
-      final List<CommentModel> commentsList =
-          await SupabaseFunctions().getComments(event.id);
+      final List<CommentModel> commentsList = await getComments(event.id);
       emit(GetCommentState(commentsList: commentsList));
     });
 
@@ -108,7 +105,7 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
                     ? "${now.hour}:0${now.minute}"
                     : "${now.hour}:${now.minute}",
       };
-      await SupabaseFunctions().addComment(body);
+      await addComment(body);
       Map notiBody = {
         "community_id": event.communityId,
         "user_id": event.communityParticipantId,
@@ -124,7 +121,7 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
                     ? "${now.hour}:0${now.minute}"
                     : "${now.hour}:${now.minute}"
       };
-      await SupabaseFunctions().addNoti(notiBody);
+      await addNoti(notiBody);
     });
   }
 }
