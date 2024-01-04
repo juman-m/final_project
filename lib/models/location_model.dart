@@ -1,12 +1,12 @@
 
 
-import 'dart:ffi';
+
 
 class LocationModel {
   int? id;
   String? name;
-  Float? latitude;
-  Float? longitude;
+  double? latitude;
+  double? longitude;
 
   LocationModel({this.id, this.name, this.latitude, this.longitude});
 
