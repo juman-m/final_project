@@ -38,17 +38,17 @@ class DisplayImageWidget extends StatelessWidget {
                   tooth.xray = state.image;
                   xRay = state.xRay;
                   context.read<TeethScreenBloc>().isEditXray = true;
-                  // changeXRay!(state.image!);
+           
                 } else if (state.report == true) {
                   tooth.report = state.image;
                   report = state.report;
                   context.read<TeethScreenBloc>().isEditReport = true;
-                  // changeReport!(state.image!);
+          
                 } else if (state.prescription == true) {
                   tooth.prescription = state.image;
                   prescription = state.prescription;
                   context.read<TeethScreenBloc>().isEditPrescription = true;
-                  // changePrescription!(state.image!);
+             
                 }
               }
             }

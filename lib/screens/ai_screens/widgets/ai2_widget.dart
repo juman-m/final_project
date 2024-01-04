@@ -17,7 +17,7 @@ class AITextField extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 20.0, left: 14, right: 14),
       child: Container(
         decoration: BoxDecoration(
-          // color: Colors.white,
+      
           border: Border.all(
             color: Colors.grey,
             width: 2.0,
@@ -44,8 +44,7 @@ class AITextField extends StatelessWidget {
               child: TextField(
                 controller: controller,
                 decoration: InputDecoration(
-                  // filled: true,
-                  // fillColor: Colors.white,
+              
                   hintText: 'اكتب الرسالة',
                   border: InputBorder.none,
                 ),

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:final_project/models/location_model.dart';
 import 'package:final_project/services/supabase_loctaion_request.dart';
-import 'package:geolocator/geolocator.dart';
+
 import 'package:meta/meta.dart';
 
 part 'location_event.dart';
