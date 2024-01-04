@@ -33,21 +33,31 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
             .match({'user_id': userId, "tooth_no": event.toothNum});
 
         final Tooth tooth = Tooth.fromJson(response[0]);
+        List<FileObject> list =
+            await supabase.storage.from('ToothImage').list(path: '');
+
         if (tooth.report != "") {
-          await supabase.storage
-              .from('ToothImage')
-              .remove(['$userId@${event.toothNum}@report.png']);
+          for (var element in list) {
+            if (element.name.startsWith("$userId@${event.toothNum}@report")) {
+              await supabase.storage.from('ToothImage').remove([element.name]);
+            }
+          }
         }
 
         if (tooth.prescription != "") {
-          await supabase.storage
-              .from('ToothImage')
-              .remove(['$userId@${event.toothNum}@prescription.png']);
+          for (var element in list) {
+            if (element.name
+                .startsWith("$userId@${event.toothNum}@prescription")) {
+              await supabase.storage.from('ToothImage').remove([element.name]);
+            }
+          }
         }
         if (tooth.xray != "") {
-          await supabase.storage
-              .from('ToothImage')
-              .remove(['$userId@${event.toothNum}@xRay.png']);
+          for (var element in list) {
+            if (element.name.startsWith("$userId@${event.toothNum}@xRay")) {
+              await supabase.storage.from('ToothImage').remove([element.name]);
+            }
+          }
         }
 
         await supabase
@@ -70,91 +80,74 @@ class TeethScreenBloc extends Bloc<TeethScreenEvent, TeethScreenState> {
           String xrayImageUrl = "";
           String prescriptionImageUrl = "";
           String reportImageUrl = "";
+          final timestamp = DateTime.now().millisecondsSinceEpoch;
 
           if (event.xray != "" && isEditXray) {
-            final imageName = '$userId@${event.toothNo}@xRay.png';
-            bool isFound = false;
+            final imageName = '$userId@${event.toothNo}@xRay$timestamp.png';
+
             List<FileObject> list =
                 await supabase.storage.from('ToothImage').list(path: '');
 
             for (var element in list) {
-              if (element.name == imageName) {
-                isFound = true;
+              if (element.name.startsWith("$userId@${event.toothNo}@xRay")) {
+                await supabase.storage
+                    .from('ToothImage')
+                    .remove([element.name]);
               }
             }
-            if (isFound) {
-              await supabase.storage
-                  .from('ToothImage')
-                  .update(imageName, File(event.xray));
-              xrayImageUrl =
-                  supabase.storage.from("ToothImage").getPublicUrl(imageName);
-              isFound = false;
-            } else {
-              await supabase.storage
-                  .from("ToothImage")
-                  .upload(imageName, File(event.xray));
-              xrayImageUrl =
-                  supabase.storage.from("ToothImage").getPublicUrl(imageName);
-            }
+
+            await supabase.storage
+                .from("ToothImage")
+                .upload(imageName, File(event.xray));
+            xrayImageUrl =
+                supabase.storage.from("ToothImage").getPublicUrl(imageName);
             isEditXray = false;
           } else {
             xrayImageUrl = event.xray;
           }
           if (event.report != "" && isEditReport) {
-            final imageName = '$userId@${event.toothNo}@report.png';
-            bool isFound = false;
+            final imageName = '$userId@${event.toothNo}@report$timestamp.png';
             List<FileObject> list =
                 await supabase.storage.from('ToothImage').list(path: '');
 
             for (var element in list) {
-              if (element.name == imageName) {
-                isFound = true;
+              if (element.name.startsWith("$userId@${event.toothNo}@report")) {
+                await supabase.storage
+                    .from('ToothImage')
+                    .remove([element.name]);
               }
             }
+            await supabase.storage
+                .from("ToothImage")
+                .upload(imageName, File(event.report));
+            reportImageUrl =
+                supabase.storage.from("ToothImage").getPublicUrl(imageName);
 
-            if (isFound) {
-              await supabase.storage
-                  .from('ToothImage')
-                  .update(imageName, File(event.report));
-              reportImageUrl =
-                  supabase.storage.from("ToothImage").getPublicUrl(imageName);
-              isFound = false;
-            } else {
-              await supabase.storage
-                  .from("ToothImage")
-                  .upload(imageName, File(event.report));
-              reportImageUrl =
-                  supabase.storage.from("ToothImage").getPublicUrl(imageName);
-            }
             isEditReport = false;
           } else {
             reportImageUrl = event.report;
           }
           if (event.prescription != "" && isEditPrescription) {
-            final imageName = '$userId@${event.toothNo}@prescription.png';
-            bool isFound = false;
+            final imageName =
+                '$userId@${event.toothNo}@prescription$timestamp.png';
             List<FileObject> list =
                 await supabase.storage.from('ToothImage').list(path: '');
 
             for (var element in list) {
-              if (element.name == imageName) {
-                isFound = true;
+              if (element.name
+                  .startsWith("$userId@${event.toothNo}@prescription")) {
+                await supabase.storage
+                    .from('ToothImage')
+                    .remove([element.name]);
               }
             }
-            if (isFound) {
-              await supabase.storage
-                  .from('ToothImage')
-                  .update(imageName, File(event.prescription));
-              prescriptionImageUrl =
-                  supabase.storage.from("ToothImage").getPublicUrl(imageName);
-              isFound = false;
-            } else {
-              await supabase.storage
-                  .from("ToothImage")
-                  .upload(imageName, File(event.prescription));
-              prescriptionImageUrl =
-                  supabase.storage.from("ToothImage").getPublicUrl(imageName);
-            }
+
+            await supabase.storage
+                .from("ToothImage")
+                .upload(imageName, File(event.prescription));
+            prescriptionImageUrl =
+                supabase.storage.from("ToothImage").getPublicUrl(imageName);
+
             isEditPrescription = false;
           } else {
             prescriptionImageUrl = event.prescription;

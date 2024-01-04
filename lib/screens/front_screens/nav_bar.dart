@@ -18,7 +18,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   List<Widget> screens = [
     const MyAppointmentScreen(),
     const FrontScreen(),
-    CommunityScreen(),
+    const CommunityScreen(),
   ];
 
   @override

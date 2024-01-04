@@ -1,17 +1,15 @@
 import 'package:final_project/globals/global.dart';
 import 'package:final_project/screens/auth_screens/signin_screen.dart';
 import 'package:final_project/screens/front_screens/edit_profile.dart';
-
 import 'package:final_project/screens/front_screens/widget_profile.dart';
 import 'package:final_project/screens/front_screens/widgets/bottomsheet_widget.dart';
 import 'package:final_project/screens/front_screens/widgets/lanagebotoomsheeet_widget.dart';
 import 'package:final_project/screens/my_participation_screen/my_participation_screen.dart';
-
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key});
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -39,9 +37,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Container(
                 width: 80,
                 height: 89,
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
-                child: Icon(
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.white),
+                child: const Icon(
                   Icons.person,
                   color: Color(0xff0086D3),
                   size: 75,
@@ -68,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Container(
                     width: 27,
                     height: 26,
-                    decoration: ShapeDecoration(
+                    decoration: const ShapeDecoration(
                       color: Colors.white,
                       shape: OvalBorder(),
                       shadows: [
@@ -85,11 +83,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => EditProfile(),
+                            builder: (context) => const EditProfile(),
                           ),
                         );
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.edit,
                         color: Color(0xff0086D3),
                         size: 20,
@@ -97,11 +95,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ))),
             Positioned(
               top: 200,
-              right: 170,
+              right: 165,
               child: Text(
                 '${currentUser!.username}',
                 textAlign: TextAlign.right,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontFamily: 'Cairo',
@@ -146,12 +144,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Positioned(
-              top: 50,
-              right: 30,
+              top: 60,
+              right: 10,
               child: IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  size: 21,
+                icon: const Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  size: 28,
                   color: Colors.white,
                 ),
                 onPressed: () {
@@ -160,10 +158,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             Positioned(
-              bottom: 160,
-              right: 328,
+              // bottom: 160,
+              top: 60,
+              left: 20,
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.logout_outlined,
                   size: 33,
                   color: Colors.white,
@@ -182,7 +181,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ]),
         ),
-        SizedBox(
+        const SizedBox(
           height: 40,
         ),
         CustomContainer(
@@ -196,7 +195,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               );
             }),
-        SizedBox(
+        const SizedBox(
           height: 25,
         ),
         CustomContainer(
@@ -212,7 +211,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             );
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 25,
         ),
         CustomContainer(
@@ -228,25 +227,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
             );
           },
         ),
-        SizedBox(
+        const SizedBox(
           height: 25,
         ),
-        CustomContainer(
+        const CustomContainer(
           leftIcon: Icons.star_outline_sharp,
           leftText: 'قيٌم التطبيق',
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
           width: 265,
           height: 59,
           decoration: ShapeDecoration(
-            color: Color(0xFF0086D3),
+            color: const Color(0xFF0086D3),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
           ),
-          child: Row(
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Center(
