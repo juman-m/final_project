@@ -1,6 +1,7 @@
 import 'package:final_project/functions/noti_scince.dart';
 import 'package:final_project/models/notification_model.dart';
 import 'package:final_project/screens/common_widgets/custom_app_bar.dart';
+import 'package:final_project/screens/front_screens/front_screen.dart';
 import 'package:final_project/screens/notifications_screen/widgets/notification_card.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,9 @@ class NotificationsScreen extends StatelessWidget {
     notiScince(notifications);
     return Scaffold(
       appBar: customAppBar('الاشعارات', () {
-        Navigator.pop(context);
+        notifications.clear();
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const FrontScreen()));
       }, true),
       body: SingleChildScrollView(
         child: Column(

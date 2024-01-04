@@ -88,7 +88,6 @@ class FrontScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                  
                         const SizedBox(width: 8),
                         Text(
                           'مرحبا, ${currentUser!.username}',
@@ -103,13 +102,12 @@ class FrontScreen extends StatelessWidget {
                             return InkWell(
                               onTap: () {
                                 Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => NotificationsScreen(
-                                        notifications:
-                                            state.notificationsObjectsList),
-                                  ),
-                                );
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            NotificationsScreen(
+                                                notifications: state
+                                                    .notificationsObjectsList)));
                               },
                               child: Image.asset(
                                 'assets/اشعارات.png',
@@ -241,7 +239,6 @@ class FrontScreen extends StatelessWidget {
           ),
         ),
       ),
-     
       floatingActionButton: FloatinCustomm(
         imageUrl: "assets/flot.png",
         onPressed: () {
