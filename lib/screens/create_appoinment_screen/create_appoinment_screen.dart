@@ -61,15 +61,15 @@ class CreateAppointmentScreen extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 20),
               ScreenTitle(title: 'وصف الموعد'),
-              const SizedBox(height: 24),
+              const SizedBox(height: 8),
               SizedBox(
                 height: 40,
                 width: 237,
                 child: ScreenTextField(controller: descriptionController),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: BlocBuilder<MyAppointmentsBloc, MyAppointmentsState>(
@@ -101,7 +101,7 @@ class CreateAppointmentScreen extends StatelessWidget {
                   },
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 10),
               ScreenTitle(title: 'الوقت'),
               const SizedBox(height: 16),
               BlocBuilder<MyAppointmentsBloc, MyAppointmentsState>(
