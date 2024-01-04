@@ -1,3 +1,4 @@
+import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
 
 abstract class CommunityState {}
@@ -40,4 +41,18 @@ final class SearchedParticipationsState extends CommunityState {
   final List<CommunityModel> communityObjectsList;
 
   SearchedParticipationsState({required this.communityObjectsList});
+}
+
+final class GetCommentState extends CommunityState {
+  final List<CommentModel> commentsList;
+
+  GetCommentState({required this.commentsList});
+}
+
+final class LoadingCommentsState extends CommunityState {}
+
+final class AddCommentState extends CommunityState {
+  final List<CommentModel> newCommentsList;
+
+  AddCommentState({required this.newCommentsList});
 }

@@ -65,7 +65,7 @@ class MyAppointmentsBloc
                       ? "${event.selectedTime!.hour}:0${event.selectedTime!.minute}"
                       : "${event.selectedTime!.hour}:${event.selectedTime!.minute}"
         };
-        await SupabaseFunctions().addAppointmentNoti(notiBody);
+        await SupabaseFunctions().addNoti(notiBody);
       }
     });
 

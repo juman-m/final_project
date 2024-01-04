@@ -137,20 +137,35 @@ class SupabaseFunctions {
     return communityObjectsList;
   }
 
-  Stream getComments(int communityId) {
+  Future<List<CommentModel>> getComments(int communityId) async {
     final supabase = Supabase.instance.client;
-    // final comments =
-    //       supabase.from('comments').select().eq('community_id', 17);
-    // log('===${comments.length.toString()}===');
-    final commentsAsStream = supabase
+    final comments = await supabase
         .from('comments')
-        .stream(primaryKey: ['id'])
-        .eq('community_id', communityId)
-        .map((item) =>
-            item.where((element) => element['community_id'] == communityId));
-    final commentsAsStreamModel = commentsAsStream.map(
-        (items) => items.map((item) => CommentModel.fromJson(item)).toList());
-    return commentsAsStreamModel;
+        .select()
+        .eq('community_id', communityId);
+    final List<CommentModel> commentsObjectsList = [];
+    for (var element in comments) {
+      commentsObjectsList.add(CommentModel.fromJson(element));
+    }
+
+    log('===${comments.toString()}');
+    log('==${commentsObjectsList.toString()}');
+    return commentsObjectsList;
+    // log('===${comments.length.toString()}===');
+    // final commentsAsStream = supabase
+    //     .from('comments')
+    //     .stream(primaryKey: ['id'])
+    //     .eq('community_id', communityId)
+    //     .map((item) =>
+    //         item.where((element) => element['community_id'] == communityId));
+    // final commentsAsStreamModel = commentsAsStream.map(
+    //     (items) => items.map((item) => CommentModel.fromJson(item)).toList());
+    // return commentsAsStreamModel;
+  }
+
+  addComment(Map body) async {
+    final supabase = Supabase.instance.client;
+    await supabase.from('comments').insert(body);
   }
 
   Future<List<NotificationsModel>> getNotifications() async {
@@ -166,7 +181,7 @@ class SupabaseFunctions {
     return notificationObjectsList;
   }
 
-  addAppointmentNoti(Map body) async {
+  addNoti(Map body) async {
     await Supabase.instance.client.from('notifications').insert(body);
   }
 

@@ -5,7 +5,7 @@ String remainingDays(String date) {
   if (difference == 1) {
     return 'يوم';
   } else if (difference == 2) {
-    return 'يومان';
+    return 'يومين';
   } else if (difference > 2 && difference < 11) {
     return '\t\t$difference\nأيام';
   } else {
