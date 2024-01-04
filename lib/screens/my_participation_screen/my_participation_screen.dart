@@ -21,13 +21,6 @@ class MyParticipationsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // ScreenAppBar(
-            //   title: 'مشاركاتي',
-            //   onPressed: () {
-            //     context.read<CommunityBloc>().add(GetCommunitiesEvent());
-            //     Navigator.pop(context);
-            //   },
-            // ),
             const SizedBox(height: 24),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -39,8 +32,6 @@ class MyParticipationsScreen extends StatelessWidget {
                         return const Center(
                           child: Text(
                             'لا يوجد لديك مشاركات',
-                            // style: TextStyle(
-                            //     fontWeight: FontWeight.bold, fontSize: 24),
                             style: TextStyle(
                                 fontSize: 22, color: Color(0xff869096)),
                           ),

@@ -51,6 +51,8 @@ class MyAppointmentScreen extends StatelessWidget {
                                 fontSize: 22, color: Color(0xff869096)),
                           ),
                         );
+                      } else if (state is LoadingState) {
+                        return const Center(child: CircularProgressIndicator());
                       } else if (state is GetAppointmentsState) {
                         return SizedBox(
                           height: MediaQuery.sizeOf(context).height * 0.9,

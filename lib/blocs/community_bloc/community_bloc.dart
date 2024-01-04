@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:final_project/blocs/community_bloc/community_event.dart';
 import 'package:final_project/blocs/community_bloc/community_state.dart';
 import 'package:final_project/globals/global.dart';
@@ -89,9 +87,6 @@ class CommunityBloc extends Bloc<CommunityEvent, CommunityState> {
 
     on<AddCommentEvent>((event, emit) async {
       List<CommentModel> currentList = event.currentCommentsList;
-      log(event.content);
-      log(event.participantName);
-      log(event.currentCommentsList.length.toString());
       currentList.add(CommentModel(
           communityId: event.communityId,
           communityParticipantId: event.communityParticipantId,

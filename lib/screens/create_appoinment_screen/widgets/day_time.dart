@@ -11,7 +11,6 @@ class DayTime extends StatelessWidget {
       text,
       style: TextStyle(
         color: isSelected ? const Color(0xff008CDC) : const Color(0xffD3D3D3),
-        // fontWeight: FontWeight.bold,
         fontSize: 22,
       ),
     );

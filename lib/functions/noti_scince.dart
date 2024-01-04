@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:final_project/models/notification_model.dart';
 
 notiScince(List<NotificationsModel> list) {
@@ -24,21 +23,20 @@ notiScince(List<NotificationsModel> list) {
     if (difference > 0) {
       difference++;
     }
-    log(difference.toString());
     if (element.type == '0') {
       if (difference <= 2) {
         if (difference == 2) {
           element.time = 'بعد يومين';
           element.content = '${element.content} باقي يومين على موعدك';
-          // الساعات
+          
         } else if (difference == 1) {
           element.time = 'بعد يوم';
           element.content = '${element.content} باقي يوم على موعدك';
-          // الساعات
+          
         } else if (difference == 0) {
           element.time = 'اليوم';
           element.content = '${element.content} موعدك اليوم';
-          // الساعات
+          
         } else if (difference == -1) {
           element.time = 'منذ يوم';
           element.content = '${element.content} موعدك اليوم';
@@ -89,7 +87,7 @@ notiScince(List<NotificationsModel> list) {
     } else if (element.type == '1') {
       if (difference == 0) {
         element.time = 'اليوم';
-        // الساعات
+        
       } else if (difference == -1) {
         element.time = 'منذ يوم';
       } else if (difference == -2) {
@@ -124,7 +122,7 @@ notiScince(List<NotificationsModel> list) {
     } else {
       if (difference == 0) {
         element.time = 'اليوم';
-        // الساعات
+        
       } else if (difference == -1) {
         element.time = 'منذ يوم';
       } else if (difference == -2) {

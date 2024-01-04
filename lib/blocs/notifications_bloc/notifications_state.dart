@@ -9,5 +9,3 @@ final class GetNotificationsState extends NotificationsState {
 
   GetNotificationsState({required this.notificationsObjectsList});
 }
-
-// final class EmptyNotificationsState extends NotificationsState {}

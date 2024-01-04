@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:final_project/models/appointment_model.dart';
 import 'package:final_project/models/comments_model.dart';
 import 'package:final_project/models/community_model.dart';
@@ -52,7 +50,6 @@ class SupabaseFunctions {
     final supabase = Supabase.instance.client;
     final List rowId =
         await supabase.from('appointments').insert(body).select();
-    log('===${rowId.first['id']}');
     return rowId.first['id'];
   }
 
@@ -147,20 +144,7 @@ class SupabaseFunctions {
     for (var element in comments) {
       commentsObjectsList.add(CommentModel.fromJson(element));
     }
-
-    log('===${comments.toString()}');
-    log('==${commentsObjectsList.toString()}');
     return commentsObjectsList;
-    // log('===${comments.length.toString()}===');
-    // final commentsAsStream = supabase
-    //     .from('comments')
-    //     .stream(primaryKey: ['id'])
-    //     .eq('community_id', communityId)
-    //     .map((item) =>
-    //         item.where((element) => element['community_id'] == communityId));
-    // final commentsAsStreamModel = commentsAsStream.map(
-    //     (items) => items.map((item) => CommentModel.fromJson(item)).toList());
-    // return commentsAsStreamModel;
   }
 
   addComment(Map body) async {

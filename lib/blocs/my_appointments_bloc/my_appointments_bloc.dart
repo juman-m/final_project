@@ -148,6 +148,7 @@ class MyAppointmentsBloc
     });
 
     on<GetAppointmentsEvent>((event, emit) async {
+      emit(LoadingState());
       final List<AppointmentModel> appointmentList =
           await SupabaseFunctions().getAppointments();
       if (appointmentList.isEmpty) {

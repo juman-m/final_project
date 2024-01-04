@@ -38,6 +38,8 @@ final class SuccessRescheduleState extends MyAppointmentsState {}
 
 class SuccessDeleteState extends MyAppointmentsState {}
 
+final class LoadingState extends MyAppointmentsState {}
+
 final class ErrorState extends MyAppointmentsState {
   final String message;
   ErrorState({required this.message});

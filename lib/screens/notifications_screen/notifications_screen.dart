@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:final_project/functions/noti_scince.dart';
 import 'package:final_project/models/notification_model.dart';
 import 'package:final_project/screens/common_widgets/custom_app_bar.dart';
 import 'package:final_project/screens/notifications_screen/widgets/notification_card.dart';
-import 'package:final_project/services/supabase_auth_request.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -22,14 +19,6 @@ class NotificationsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () async {
-                final List<NotificationsModel> object =
-                    await SupabaseFunctions().getNotifications();
-                log(object.first.content.toString());
-              },
-              child: const Text('TEST'),
-            ),
             const SizedBox(height: 40),
             notifications.isEmpty
                 ? const Center(

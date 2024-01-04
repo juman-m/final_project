@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_bloc.dart';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_event.dart';
 import 'package:final_project/blocs/my_appointments_bloc/my_appointments_state.dart';
@@ -57,7 +56,6 @@ class CreateAppointmentScreen extends StatelessWidget {
                         context
                             .read<MyAppointmentsBloc>()
                             .add(SelectCategoryEvent(index: i));
-                        log(i.toString());
                       },
                     );
                   },
@@ -83,7 +81,6 @@ class CreateAppointmentScreen extends StatelessWidget {
                   },
                   builder: (context, state) {
                     return TableCalendar(
-                      locale: "ar",
                       headerStyle: const HeaderStyle(
                         formatButtonVisible: false,
                         titleCentered: true,

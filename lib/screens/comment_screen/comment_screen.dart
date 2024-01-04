@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:final_project/blocs/community_bloc/community_bloc.dart';
 import 'package:final_project/blocs/community_bloc/community_state.dart';
 import 'package:final_project/globals/global.dart';
@@ -63,12 +62,6 @@ class CommentScreen extends StatelessWidget {
                     content: community.content!,
                     onTap: () {},
                   ),
-                  // ElevatedButton(
-                  //     onPressed: () async {
-                  //       final newO = CommentModel(participantName: 'MEOW');
-                  //       log('${currentUser!.username}');
-                  //     },
-                  //     child: const Text('TEST')),
                   const SizedBox(height: 16),
                   BlocBuilder<CommunityBloc, CommunityState>(
                     builder: (context, state) {
@@ -121,33 +114,6 @@ class CommentScreen extends StatelessWidget {
                       return const SizedBox();
                     },
                   ),
-                  // const Divider(color: Colors.black),
-                  // SizedBox(
-                  //   height: MediaQuery.sizeOf(context).height * 0.6,
-                  //   child: StreamBuilder(
-                  //       stream: SupabaseFunctions().getComments(community.id!),
-                  //       builder: (context, snapshot) {
-                  //         log(snapshot.data.toString());
-                  //         final List<CommentModel> comments = snapshot.data;
-                  //         if (snapshot.hasData) {
-                  //           return ListView.separated(
-                  //             padding:
-                  //                 const EdgeInsets.only(top: 8, bottom: 88),
-                  //             shrinkWrap: true,
-                  //             itemCount: comments.length,
-                  //             itemBuilder: (context, i) => CommentCard(
-                  //               name: comments[i].participantName!,
-                  //               time: comments[i].time!.format(context),
-                  //               content: comments[i].content!,
-                  //             ),
-                  //             separatorBuilder: (context, i) =>
-                  //                 const SizedBox(height: 16),
-                  //           );
-                  //         } else {
-                  //           return const SizedBox();
-                  //         }
-                  //       }),
-                  // ),
                 ],
               ),
             ),

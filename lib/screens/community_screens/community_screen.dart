@@ -36,11 +36,6 @@ class CommunityScreen extends StatelessWidget {
           children: [
             const ScreenAppBar(),
             const SizedBox(height: 24),
-            // ElevatedButton(
-            //     onPressed: () async {
-            //       // final fun = SupabaseFunctions().getComments(17).toString();
-            //     },
-            //     child: const Text('TEST')),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
@@ -63,8 +58,6 @@ class CommunityScreen extends StatelessWidget {
                         return const Center(
                           child: Text(
                             'لا يوجد مشاركات حاليا',
-                            // style: TextStyle(
-                            //     fontWeight: FontWeight.bold, fontSize: 24),
                             style: TextStyle(
                                 fontSize: 22, color: Color(0xff869096)),
                           ),
