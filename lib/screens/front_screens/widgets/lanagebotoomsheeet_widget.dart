@@ -19,8 +19,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.start,
+          
             children: [
               Center(
                 child: Text(

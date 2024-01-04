@@ -88,13 +88,7 @@ class FrontScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // ClipOval(
-                        //   child: Image.asset(
-                        //     'assets/image_user.png',
-                        //     height: 44,
-                        //     width: 44,
-                        //   ),
-                        // ),
+                  
                         const SizedBox(width: 8),
                         Text(
                           'مرحبا, ${currentUser!.username}',
@@ -247,10 +241,7 @@ class FrontScreen extends StatelessWidget {
           ),
         ),
       ),
-      // floatingActionButton: Container(
-      //   margin: const EdgeInsets.only(top: 16, left: 16),
-
-      // body: const SizedBox(height: 20),
+     
       floatingActionButton: FloatinCustomm(
         imageUrl: "assets/flot.png",
         onPressed: () {

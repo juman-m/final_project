@@ -17,18 +17,6 @@ class SupabaseFunctions {
     }
   }
 
-// Future<void> requestPasswordReset(String email) async {
-//   try {
-//     final supabase = Supabase.instance.client;
-
-//
-//     await supabase.auth.resetPasswordForEmail(email);
-//     print('Password reset email sent successfully');
-//   } catch (error) {
-//     print('Error sending password reset email: $error');
-//
-//   }
-// }
 
   useradd(Map body) async {
     final supabase = Supabase.instance.client;

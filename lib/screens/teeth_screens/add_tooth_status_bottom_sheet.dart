@@ -23,7 +23,7 @@ class AddToothStatusBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final chipStatusBloc = context.read<StatusChipBloc>();
+    
     String selectedStatus = "جراحة و دواعم";
     final TextEditingController hospitalNameController =
         TextEditingController();
@@ -381,7 +381,7 @@ class AddToothStatusBottomSheet extends StatelessWidget {
                   context
                       .read<AddToothStatusBloc>()
                       .add(ChangeCategoryFileEvent());
-                  // print('switched to: $index');
+              
                 },
               ),
             ),

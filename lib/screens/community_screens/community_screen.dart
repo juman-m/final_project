@@ -20,7 +20,7 @@ class CommunityScreen extends StatelessWidget {
     TextEditingController controller = TextEditingController();
     context.read<CommunityBloc>().add(GetCommunitiesEvent());
     return Scaffold(
-      // appBar: customAppBar('الرياض', () => null, false, true),
+   
       floatingActionButton: FloatinCustomm(
         imageUrl: "assets/Vector.png",
         onPressed: () {
